@@ -16,7 +16,7 @@ class Admin_Member_Admin_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$office = PartnersQuery::create()->orderByDate()->find();
+		$office = PartnersQuery::create()->find();
 		$this->setAttribute('member', $office->toArray());
 		return 'Success';
 	}

@@ -16,7 +16,7 @@ class Admin_Comment_Publish_AdminAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$comment = TourCommentQuery::create()->filterByPublish(false)->find();
+		$comment = TourCommentQuery::create()->orderByTourId()->filterByPublish(false)->find();
 		$this->setAttribute('comment', $comment->toArray());
 		
 		return 'Success';

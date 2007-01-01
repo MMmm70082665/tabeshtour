@@ -12,12 +12,12 @@
  * @method TourQuery orderByEndDate($order = Criteria::ASC) Order by the end_date column
  * @method TourQuery orderByCost($order = Criteria::ASC) Order by the cost column
  * @method TourQuery orderByMabda($order = Criteria::ASC) Order by the mabda column
- * @method TourQuery orderByKind($order = Criteria::ASC) Order by the kind column
- * @method TourQuery orderByTravel($order = Criteria::ASC) Order by the travel column
- * @method TourQuery orderByType($order = Criteria::ASC) Order by the type column
  * @method TourQuery orderByMadarek($order = Criteria::ASC) Order by the madarek column
  * @method TourQuery orderByKhadamat($order = Criteria::ASC) Order by the khadamat column
  * @method TourQuery orderByDesc($order = Criteria::ASC) Order by the desc column
+ * @method TourQuery orderByKind($order = Criteria::ASC) Order by the kind column
+ * @method TourQuery orderByTravel($order = Criteria::ASC) Order by the travel column
+ * @method TourQuery orderByType($order = Criteria::ASC) Order by the type column
  * @method TourQuery orderByStatus($order = Criteria::ASC) Order by the status column
  * @method TourQuery orderByCityId($order = Criteria::ASC) Order by the city_id column
  *
@@ -27,12 +27,12 @@
  * @method TourQuery groupByEndDate() Group by the end_date column
  * @method TourQuery groupByCost() Group by the cost column
  * @method TourQuery groupByMabda() Group by the mabda column
- * @method TourQuery groupByKind() Group by the kind column
- * @method TourQuery groupByTravel() Group by the travel column
- * @method TourQuery groupByType() Group by the type column
  * @method TourQuery groupByMadarek() Group by the madarek column
  * @method TourQuery groupByKhadamat() Group by the khadamat column
  * @method TourQuery groupByDesc() Group by the desc column
+ * @method TourQuery groupByKind() Group by the kind column
+ * @method TourQuery groupByTravel() Group by the travel column
+ * @method TourQuery groupByType() Group by the type column
  * @method TourQuery groupByStatus() Group by the status column
  * @method TourQuery groupByCityId() Group by the city_id column
  *
@@ -60,12 +60,12 @@
  * @method Tour findOneByEndDate(string $end_date) Return the first Tour filtered by the end_date column
  * @method Tour findOneByCost(string $cost) Return the first Tour filtered by the cost column
  * @method Tour findOneByMabda(string $mabda) Return the first Tour filtered by the mabda column
- * @method Tour findOneByKind(string $kind) Return the first Tour filtered by the kind column
- * @method Tour findOneByTravel(string $travel) Return the first Tour filtered by the travel column
- * @method Tour findOneByType(string $type) Return the first Tour filtered by the type column
  * @method Tour findOneByMadarek(string $madarek) Return the first Tour filtered by the madarek column
  * @method Tour findOneByKhadamat(string $khadamat) Return the first Tour filtered by the khadamat column
  * @method Tour findOneByDesc(string $desc) Return the first Tour filtered by the desc column
+ * @method Tour findOneByKind(string $kind) Return the first Tour filtered by the kind column
+ * @method Tour findOneByTravel(string $travel) Return the first Tour filtered by the travel column
+ * @method Tour findOneByType(string $type) Return the first Tour filtered by the type column
  * @method Tour findOneByStatus(boolean $status) Return the first Tour filtered by the status column
  * @method Tour findOneByCityId(int $city_id) Return the first Tour filtered by the city_id column
  *
@@ -75,12 +75,12 @@
  * @method array findByEndDate(string $end_date) Return Tour objects filtered by the end_date column
  * @method array findByCost(string $cost) Return Tour objects filtered by the cost column
  * @method array findByMabda(string $mabda) Return Tour objects filtered by the mabda column
- * @method array findByKind(string $kind) Return Tour objects filtered by the kind column
- * @method array findByTravel(string $travel) Return Tour objects filtered by the travel column
- * @method array findByType(string $type) Return Tour objects filtered by the type column
  * @method array findByMadarek(string $madarek) Return Tour objects filtered by the madarek column
  * @method array findByKhadamat(string $khadamat) Return Tour objects filtered by the khadamat column
  * @method array findByDesc(string $desc) Return Tour objects filtered by the desc column
+ * @method array findByKind(string $kind) Return Tour objects filtered by the kind column
+ * @method array findByTravel(string $travel) Return Tour objects filtered by the travel column
+ * @method array findByType(string $type) Return Tour objects filtered by the type column
  * @method array findByStatus(boolean $status) Return Tour objects filtered by the status column
  * @method array findByCityId(int $city_id) Return Tour objects filtered by the city_id column
  *
@@ -186,7 +186,7 @@ abstract class BaseTourQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `package_code`, `begin_date`, `end_date`, `cost`, `mabda`, `kind`, `travel`, `type`, `madarek`, `khadamat`, `desc`, `status`, `city_id` FROM `tour` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `package_code`, `begin_date`, `end_date`, `cost`, `mabda`, `madarek`, `khadamat`, `desc`, `kind`, `travel`, `type`, `status`, `city_id` FROM `tour` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);			
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -448,93 +448,6 @@ abstract class BaseTourQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the kind column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByKind('fooValue');   // WHERE kind = 'fooValue'
-     * $query->filterByKind('%fooValue%'); // WHERE kind LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $kind The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return TourQuery The current query, for fluid interface
-     */
-    public function filterByKind($kind = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($kind)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $kind)) {
-                $kind = str_replace('*', '%', $kind);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(TourPeer::KIND, $kind, $comparison);
-    }
-
-    /**
-     * Filter the query on the travel column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByTravel('fooValue');   // WHERE travel = 'fooValue'
-     * $query->filterByTravel('%fooValue%'); // WHERE travel LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $travel The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return TourQuery The current query, for fluid interface
-     */
-    public function filterByTravel($travel = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($travel)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $travel)) {
-                $travel = str_replace('*', '%', $travel);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(TourPeer::TRAVEL, $travel, $comparison);
-    }
-
-    /**
-     * Filter the query on the type column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByType('fooValue');   // WHERE type = 'fooValue'
-     * $query->filterByType('%fooValue%'); // WHERE type LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $type The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return TourQuery The current query, for fluid interface
-     */
-    public function filterByType($type = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($type)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $type)) {
-                $type = str_replace('*', '%', $type);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(TourPeer::TYPE, $type, $comparison);
-    }
-
-    /**
      * Filter the query on the madarek column
      *
      * Example usage:
@@ -619,6 +532,93 @@ abstract class BaseTourQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(TourPeer::DESC, $desc, $comparison);
+    }
+
+    /**
+     * Filter the query on the kind column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByKind('fooValue');   // WHERE kind = 'fooValue'
+     * $query->filterByKind('%fooValue%'); // WHERE kind LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $kind The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return TourQuery The current query, for fluid interface
+     */
+    public function filterByKind($kind = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($kind)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $kind)) {
+                $kind = str_replace('*', '%', $kind);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(TourPeer::KIND, $kind, $comparison);
+    }
+
+    /**
+     * Filter the query on the travel column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByTravel('fooValue');   // WHERE travel = 'fooValue'
+     * $query->filterByTravel('%fooValue%'); // WHERE travel LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $travel The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return TourQuery The current query, for fluid interface
+     */
+    public function filterByTravel($travel = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($travel)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $travel)) {
+                $travel = str_replace('*', '%', $travel);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(TourPeer::TRAVEL, $travel, $comparison);
+    }
+
+    /**
+     * Filter the query on the type column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByType('fooValue');   // WHERE type = 'fooValue'
+     * $query->filterByType('%fooValue%'); // WHERE type LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $type The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return TourQuery The current query, for fluid interface
+     */
+    public function filterByType($type = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($type)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $type)) {
+                $type = str_replace('*', '%', $type);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(TourPeer::TYPE, $type, $comparison);
     }
 
     /**

@@ -66,24 +66,6 @@ abstract class BaseTour extends BaseObject implements Persistent
     protected $mabda;
 
     /**
-     * The value for the kind field.
-     * @var        string
-     */
-    protected $kind;
-
-    /**
-     * The value for the travel field.
-     * @var        string
-     */
-    protected $travel;
-
-    /**
-     * The value for the type field.
-     * @var        string
-     */
-    protected $type;
-
-    /**
      * The value for the madarek field.
      * @var        string
      */
@@ -100,6 +82,24 @@ abstract class BaseTour extends BaseObject implements Persistent
      * @var        string
      */
     protected $desc;
+
+    /**
+     * The value for the kind field.
+     * @var        string
+     */
+    protected $kind;
+
+    /**
+     * The value for the travel field.
+     * @var        string
+     */
+    protected $travel;
+
+    /**
+     * The value for the type field.
+     * @var        string
+     */
+    protected $type;
 
     /**
      * The value for the status field.
@@ -217,36 +217,6 @@ abstract class BaseTour extends BaseObject implements Persistent
     }
 
     /**
-     * Get the [kind] column value.
-     * 
-     * @return string
-     */
-    public function getKind()
-    {
-        return $this->kind;
-    }
-
-    /**
-     * Get the [travel] column value.
-     * 
-     * @return string
-     */
-    public function getTravel()
-    {
-        return $this->travel;
-    }
-
-    /**
-     * Get the [type] column value.
-     * 
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
      * Get the [madarek] column value.
      * 
      * @return string
@@ -274,6 +244,36 @@ abstract class BaseTour extends BaseObject implements Persistent
     public function getDesc()
     {
         return $this->desc;
+    }
+
+    /**
+     * Get the [kind] column value.
+     * 
+     * @return string
+     */
+    public function getKind()
+    {
+        return $this->kind;
+    }
+
+    /**
+     * Get the [travel] column value.
+     * 
+     * @return string
+     */
+    public function getTravel()
+    {
+        return $this->travel;
+    }
+
+    /**
+     * Get the [type] column value.
+     * 
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -423,69 +423,6 @@ abstract class BaseTour extends BaseObject implements Persistent
     } // setMabda()
 
     /**
-     * Set the value of [kind] column.
-     * 
-     * @param string $v new value
-     * @return Tour The current object (for fluent API support)
-     */
-    public function setKind($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->kind !== $v) {
-            $this->kind = $v;
-            $this->modifiedColumns[] = TourPeer::KIND;
-        }
-
-
-        return $this;
-    } // setKind()
-
-    /**
-     * Set the value of [travel] column.
-     * 
-     * @param string $v new value
-     * @return Tour The current object (for fluent API support)
-     */
-    public function setTravel($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->travel !== $v) {
-            $this->travel = $v;
-            $this->modifiedColumns[] = TourPeer::TRAVEL;
-        }
-
-
-        return $this;
-    } // setTravel()
-
-    /**
-     * Set the value of [type] column.
-     * 
-     * @param string $v new value
-     * @return Tour The current object (for fluent API support)
-     */
-    public function setType($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->type !== $v) {
-            $this->type = $v;
-            $this->modifiedColumns[] = TourPeer::TYPE;
-        }
-
-
-        return $this;
-    } // setType()
-
-    /**
      * Set the value of [madarek] column.
      * 
      * @param string $v new value
@@ -547,6 +484,69 @@ abstract class BaseTour extends BaseObject implements Persistent
 
         return $this;
     } // setDesc()
+
+    /**
+     * Set the value of [kind] column.
+     * 
+     * @param string $v new value
+     * @return Tour The current object (for fluent API support)
+     */
+    public function setKind($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->kind !== $v) {
+            $this->kind = $v;
+            $this->modifiedColumns[] = TourPeer::KIND;
+        }
+
+
+        return $this;
+    } // setKind()
+
+    /**
+     * Set the value of [travel] column.
+     * 
+     * @param string $v new value
+     * @return Tour The current object (for fluent API support)
+     */
+    public function setTravel($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->travel !== $v) {
+            $this->travel = $v;
+            $this->modifiedColumns[] = TourPeer::TRAVEL;
+        }
+
+
+        return $this;
+    } // setTravel()
+
+    /**
+     * Set the value of [type] column.
+     * 
+     * @param string $v new value
+     * @return Tour The current object (for fluent API support)
+     */
+    public function setType($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->type !== $v) {
+            $this->type = $v;
+            $this->modifiedColumns[] = TourPeer::TYPE;
+        }
+
+
+        return $this;
+    } // setType()
 
     /**
      * Sets the value of the [status] column.
@@ -640,12 +640,12 @@ abstract class BaseTour extends BaseObject implements Persistent
             $this->end_date = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
             $this->cost = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
             $this->mabda = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->kind = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-            $this->travel = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-            $this->type = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-            $this->madarek = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-            $this->khadamat = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-            $this->desc = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+            $this->madarek = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->khadamat = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->desc = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+            $this->kind = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+            $this->travel = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+            $this->type = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
             $this->status = ($row[$startcol + 12] !== null) ? (boolean) $row[$startcol + 12] : null;
             $this->city_id = ($row[$startcol + 13] !== null) ? (int) $row[$startcol + 13] : null;
             $this->resetModified();
@@ -941,15 +941,6 @@ abstract class BaseTour extends BaseObject implements Persistent
         if ($this->isColumnModified(TourPeer::MABDA)) {
             $modifiedColumns[':p' . $index++]  = '`mabda`';
         }
-        if ($this->isColumnModified(TourPeer::KIND)) {
-            $modifiedColumns[':p' . $index++]  = '`kind`';
-        }
-        if ($this->isColumnModified(TourPeer::TRAVEL)) {
-            $modifiedColumns[':p' . $index++]  = '`travel`';
-        }
-        if ($this->isColumnModified(TourPeer::TYPE)) {
-            $modifiedColumns[':p' . $index++]  = '`type`';
-        }
         if ($this->isColumnModified(TourPeer::MADAREK)) {
             $modifiedColumns[':p' . $index++]  = '`madarek`';
         }
@@ -958,6 +949,15 @@ abstract class BaseTour extends BaseObject implements Persistent
         }
         if ($this->isColumnModified(TourPeer::DESC)) {
             $modifiedColumns[':p' . $index++]  = '`desc`';
+        }
+        if ($this->isColumnModified(TourPeer::KIND)) {
+            $modifiedColumns[':p' . $index++]  = '`kind`';
+        }
+        if ($this->isColumnModified(TourPeer::TRAVEL)) {
+            $modifiedColumns[':p' . $index++]  = '`travel`';
+        }
+        if ($this->isColumnModified(TourPeer::TYPE)) {
+            $modifiedColumns[':p' . $index++]  = '`type`';
         }
         if ($this->isColumnModified(TourPeer::STATUS)) {
             $modifiedColumns[':p' . $index++]  = '`status`';
@@ -994,15 +994,6 @@ abstract class BaseTour extends BaseObject implements Persistent
                     case '`mabda`':						
                         $stmt->bindValue($identifier, $this->mabda, PDO::PARAM_STR);
                         break;
-                    case '`kind`':						
-                        $stmt->bindValue($identifier, $this->kind, PDO::PARAM_STR);
-                        break;
-                    case '`travel`':						
-                        $stmt->bindValue($identifier, $this->travel, PDO::PARAM_STR);
-                        break;
-                    case '`type`':						
-                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
-                        break;
                     case '`madarek`':						
                         $stmt->bindValue($identifier, $this->madarek, PDO::PARAM_STR);
                         break;
@@ -1011,6 +1002,15 @@ abstract class BaseTour extends BaseObject implements Persistent
                         break;
                     case '`desc`':						
                         $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
+                        break;
+                    case '`kind`':						
+                        $stmt->bindValue($identifier, $this->kind, PDO::PARAM_STR);
+                        break;
+                    case '`travel`':						
+                        $stmt->bindValue($identifier, $this->travel, PDO::PARAM_STR);
+                        break;
+                    case '`type`':						
+                        $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
                     case '`status`':
                         $stmt->bindValue($identifier, (int) $this->status, PDO::PARAM_INT);
@@ -1199,22 +1199,22 @@ abstract class BaseTour extends BaseObject implements Persistent
                 return $this->getMabda();
                 break;
             case 6:
-                return $this->getKind();
-                break;
-            case 7:
-                return $this->getTravel();
-                break;
-            case 8:
-                return $this->getType();
-                break;
-            case 9:
                 return $this->getMadarek();
                 break;
-            case 10:
+            case 7:
                 return $this->getKhadamat();
                 break;
-            case 11:
+            case 8:
                 return $this->getDesc();
+                break;
+            case 9:
+                return $this->getKind();
+                break;
+            case 10:
+                return $this->getTravel();
+                break;
+            case 11:
+                return $this->getType();
                 break;
             case 12:
                 return $this->getStatus();
@@ -1257,12 +1257,12 @@ abstract class BaseTour extends BaseObject implements Persistent
             $keys[3] => $this->getEndDate(),
             $keys[4] => $this->getCost(),
             $keys[5] => $this->getMabda(),
-            $keys[6] => $this->getKind(),
-            $keys[7] => $this->getTravel(),
-            $keys[8] => $this->getType(),
-            $keys[9] => $this->getMadarek(),
-            $keys[10] => $this->getKhadamat(),
-            $keys[11] => $this->getDesc(),
+            $keys[6] => $this->getMadarek(),
+            $keys[7] => $this->getKhadamat(),
+            $keys[8] => $this->getDesc(),
+            $keys[9] => $this->getKind(),
+            $keys[10] => $this->getTravel(),
+            $keys[11] => $this->getType(),
             $keys[12] => $this->getStatus(),
             $keys[13] => $this->getCityId(),
         );
@@ -1329,22 +1329,22 @@ abstract class BaseTour extends BaseObject implements Persistent
                 $this->setMabda($value);
                 break;
             case 6:
-                $this->setKind($value);
-                break;
-            case 7:
-                $this->setTravel($value);
-                break;
-            case 8:
-                $this->setType($value);
-                break;
-            case 9:
                 $this->setMadarek($value);
                 break;
-            case 10:
+            case 7:
                 $this->setKhadamat($value);
                 break;
-            case 11:
+            case 8:
                 $this->setDesc($value);
+                break;
+            case 9:
+                $this->setKind($value);
+                break;
+            case 10:
+                $this->setTravel($value);
+                break;
+            case 11:
+                $this->setType($value);
                 break;
             case 12:
                 $this->setStatus($value);
@@ -1382,12 +1382,12 @@ abstract class BaseTour extends BaseObject implements Persistent
         if (array_key_exists($keys[3], $arr)) $this->setEndDate($arr[$keys[3]]);
         if (array_key_exists($keys[4], $arr)) $this->setCost($arr[$keys[4]]);
         if (array_key_exists($keys[5], $arr)) $this->setMabda($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setKind($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setTravel($arr[$keys[7]]);
-        if (array_key_exists($keys[8], $arr)) $this->setType($arr[$keys[8]]);
-        if (array_key_exists($keys[9], $arr)) $this->setMadarek($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setKhadamat($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setDesc($arr[$keys[11]]);
+        if (array_key_exists($keys[6], $arr)) $this->setMadarek($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setKhadamat($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setDesc($arr[$keys[8]]);
+        if (array_key_exists($keys[9], $arr)) $this->setKind($arr[$keys[9]]);
+        if (array_key_exists($keys[10], $arr)) $this->setTravel($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setType($arr[$keys[11]]);
         if (array_key_exists($keys[12], $arr)) $this->setStatus($arr[$keys[12]]);
         if (array_key_exists($keys[13], $arr)) $this->setCityId($arr[$keys[13]]);
     }
@@ -1407,12 +1407,12 @@ abstract class BaseTour extends BaseObject implements Persistent
         if ($this->isColumnModified(TourPeer::END_DATE)) $criteria->add(TourPeer::END_DATE, $this->end_date);
         if ($this->isColumnModified(TourPeer::COST)) $criteria->add(TourPeer::COST, $this->cost);
         if ($this->isColumnModified(TourPeer::MABDA)) $criteria->add(TourPeer::MABDA, $this->mabda);
-        if ($this->isColumnModified(TourPeer::KIND)) $criteria->add(TourPeer::KIND, $this->kind);
-        if ($this->isColumnModified(TourPeer::TRAVEL)) $criteria->add(TourPeer::TRAVEL, $this->travel);
-        if ($this->isColumnModified(TourPeer::TYPE)) $criteria->add(TourPeer::TYPE, $this->type);
         if ($this->isColumnModified(TourPeer::MADAREK)) $criteria->add(TourPeer::MADAREK, $this->madarek);
         if ($this->isColumnModified(TourPeer::KHADAMAT)) $criteria->add(TourPeer::KHADAMAT, $this->khadamat);
         if ($this->isColumnModified(TourPeer::DESC)) $criteria->add(TourPeer::DESC, $this->desc);
+        if ($this->isColumnModified(TourPeer::KIND)) $criteria->add(TourPeer::KIND, $this->kind);
+        if ($this->isColumnModified(TourPeer::TRAVEL)) $criteria->add(TourPeer::TRAVEL, $this->travel);
+        if ($this->isColumnModified(TourPeer::TYPE)) $criteria->add(TourPeer::TYPE, $this->type);
         if ($this->isColumnModified(TourPeer::STATUS)) $criteria->add(TourPeer::STATUS, $this->status);
         if ($this->isColumnModified(TourPeer::CITY_ID)) $criteria->add(TourPeer::CITY_ID, $this->city_id);
 
@@ -1483,12 +1483,12 @@ abstract class BaseTour extends BaseObject implements Persistent
         $copyObj->setEndDate($this->getEndDate());
         $copyObj->setCost($this->getCost());
         $copyObj->setMabda($this->getMabda());
-        $copyObj->setKind($this->getKind());
-        $copyObj->setTravel($this->getTravel());
-        $copyObj->setType($this->getType());
         $copyObj->setMadarek($this->getMadarek());
         $copyObj->setKhadamat($this->getKhadamat());
         $copyObj->setDesc($this->getDesc());
+        $copyObj->setKind($this->getKind());
+        $copyObj->setTravel($this->getTravel());
+        $copyObj->setType($this->getType());
         $copyObj->setStatus($this->getStatus());
         $copyObj->setCityId($this->getCityId());
 
@@ -2077,12 +2077,12 @@ abstract class BaseTour extends BaseObject implements Persistent
         $this->end_date = null;
         $this->cost = null;
         $this->mabda = null;
-        $this->kind = null;
-        $this->travel = null;
-        $this->type = null;
         $this->madarek = null;
         $this->khadamat = null;
         $this->desc = null;
+        $this->kind = null;
+        $this->travel = null;
+        $this->type = null;
         $this->status = null;
         $this->city_id = null;
         $this->alreadyInSave = false;

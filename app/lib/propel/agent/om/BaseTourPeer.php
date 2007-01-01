@@ -50,15 +50,6 @@ abstract class BaseTourPeer
     /** the column name for the mabda field */
     const MABDA = 'tour.mabda';
 
-    /** the column name for the kind field */
-    const KIND = 'tour.kind';
-
-    /** the column name for the travel field */
-    const TRAVEL = 'tour.travel';
-
-    /** the column name for the type field */
-    const TYPE = 'tour.type';
-
     /** the column name for the madarek field */
     const MADAREK = 'tour.madarek';
 
@@ -67,6 +58,15 @@ abstract class BaseTourPeer
 
     /** the column name for the desc field */
     const DESC = 'tour.desc';
+
+    /** the column name for the kind field */
+    const KIND = 'tour.kind';
+
+    /** the column name for the travel field */
+    const TRAVEL = 'tour.travel';
+
+    /** the column name for the type field */
+    const TYPE = 'tour.type';
 
     /** the column name for the status field */
     const STATUS = 'tour.status';
@@ -93,11 +93,11 @@ abstract class BaseTourPeer
      * e.g. TourPeer::$fieldNames[TourPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'PackageCode', 'BeginDate', 'EndDate', 'Cost', 'Mabda', 'Kind', 'Travel', 'Type', 'Madarek', 'Khadamat', 'Desc', 'Status', 'CityId', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'packageCode', 'beginDate', 'endDate', 'cost', 'mabda', 'kind', 'travel', 'type', 'madarek', 'khadamat', 'desc', 'status', 'cityId', ),
-        BasePeer::TYPE_COLNAME => array (TourPeer::ID, TourPeer::PACKAGE_CODE, TourPeer::BEGIN_DATE, TourPeer::END_DATE, TourPeer::COST, TourPeer::MABDA, TourPeer::KIND, TourPeer::TRAVEL, TourPeer::TYPE, TourPeer::MADAREK, TourPeer::KHADAMAT, TourPeer::DESC, TourPeer::STATUS, TourPeer::CITY_ID, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'PACKAGE_CODE', 'BEGIN_DATE', 'END_DATE', 'COST', 'MABDA', 'KIND', 'TRAVEL', 'TYPE', 'MADAREK', 'KHADAMAT', 'DESC', 'STATUS', 'CITY_ID', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'package_code', 'begin_date', 'end_date', 'cost', 'mabda', 'kind', 'travel', 'type', 'madarek', 'khadamat', 'desc', 'status', 'city_id', ),
+        BasePeer::TYPE_PHPNAME => array ('Id', 'PackageCode', 'BeginDate', 'EndDate', 'Cost', 'Mabda', 'Madarek', 'Khadamat', 'Desc', 'Kind', 'Travel', 'Type', 'Status', 'CityId', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'packageCode', 'beginDate', 'endDate', 'cost', 'mabda', 'madarek', 'khadamat', 'desc', 'kind', 'travel', 'type', 'status', 'cityId', ),
+        BasePeer::TYPE_COLNAME => array (TourPeer::ID, TourPeer::PACKAGE_CODE, TourPeer::BEGIN_DATE, TourPeer::END_DATE, TourPeer::COST, TourPeer::MABDA, TourPeer::MADAREK, TourPeer::KHADAMAT, TourPeer::DESC, TourPeer::KIND, TourPeer::TRAVEL, TourPeer::TYPE, TourPeer::STATUS, TourPeer::CITY_ID, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'PACKAGE_CODE', 'BEGIN_DATE', 'END_DATE', 'COST', 'MABDA', 'MADAREK', 'KHADAMAT', 'DESC', 'KIND', 'TRAVEL', 'TYPE', 'STATUS', 'CITY_ID', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'package_code', 'begin_date', 'end_date', 'cost', 'mabda', 'madarek', 'khadamat', 'desc', 'kind', 'travel', 'type', 'status', 'city_id', ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
     );
 
@@ -108,11 +108,11 @@ abstract class BaseTourPeer
      * e.g. TourPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'PackageCode' => 1, 'BeginDate' => 2, 'EndDate' => 3, 'Cost' => 4, 'Mabda' => 5, 'Kind' => 6, 'Travel' => 7, 'Type' => 8, 'Madarek' => 9, 'Khadamat' => 10, 'Desc' => 11, 'Status' => 12, 'CityId' => 13, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'packageCode' => 1, 'beginDate' => 2, 'endDate' => 3, 'cost' => 4, 'mabda' => 5, 'kind' => 6, 'travel' => 7, 'type' => 8, 'madarek' => 9, 'khadamat' => 10, 'desc' => 11, 'status' => 12, 'cityId' => 13, ),
-        BasePeer::TYPE_COLNAME => array (TourPeer::ID => 0, TourPeer::PACKAGE_CODE => 1, TourPeer::BEGIN_DATE => 2, TourPeer::END_DATE => 3, TourPeer::COST => 4, TourPeer::MABDA => 5, TourPeer::KIND => 6, TourPeer::TRAVEL => 7, TourPeer::TYPE => 8, TourPeer::MADAREK => 9, TourPeer::KHADAMAT => 10, TourPeer::DESC => 11, TourPeer::STATUS => 12, TourPeer::CITY_ID => 13, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'PACKAGE_CODE' => 1, 'BEGIN_DATE' => 2, 'END_DATE' => 3, 'COST' => 4, 'MABDA' => 5, 'KIND' => 6, 'TRAVEL' => 7, 'TYPE' => 8, 'MADAREK' => 9, 'KHADAMAT' => 10, 'DESC' => 11, 'STATUS' => 12, 'CITY_ID' => 13, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'package_code' => 1, 'begin_date' => 2, 'end_date' => 3, 'cost' => 4, 'mabda' => 5, 'kind' => 6, 'travel' => 7, 'type' => 8, 'madarek' => 9, 'khadamat' => 10, 'desc' => 11, 'status' => 12, 'city_id' => 13, ),
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'PackageCode' => 1, 'BeginDate' => 2, 'EndDate' => 3, 'Cost' => 4, 'Mabda' => 5, 'Madarek' => 6, 'Khadamat' => 7, 'Desc' => 8, 'Kind' => 9, 'Travel' => 10, 'Type' => 11, 'Status' => 12, 'CityId' => 13, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'packageCode' => 1, 'beginDate' => 2, 'endDate' => 3, 'cost' => 4, 'mabda' => 5, 'madarek' => 6, 'khadamat' => 7, 'desc' => 8, 'kind' => 9, 'travel' => 10, 'type' => 11, 'status' => 12, 'cityId' => 13, ),
+        BasePeer::TYPE_COLNAME => array (TourPeer::ID => 0, TourPeer::PACKAGE_CODE => 1, TourPeer::BEGIN_DATE => 2, TourPeer::END_DATE => 3, TourPeer::COST => 4, TourPeer::MABDA => 5, TourPeer::MADAREK => 6, TourPeer::KHADAMAT => 7, TourPeer::DESC => 8, TourPeer::KIND => 9, TourPeer::TRAVEL => 10, TourPeer::TYPE => 11, TourPeer::STATUS => 12, TourPeer::CITY_ID => 13, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'PACKAGE_CODE' => 1, 'BEGIN_DATE' => 2, 'END_DATE' => 3, 'COST' => 4, 'MABDA' => 5, 'MADAREK' => 6, 'KHADAMAT' => 7, 'DESC' => 8, 'KIND' => 9, 'TRAVEL' => 10, 'TYPE' => 11, 'STATUS' => 12, 'CITY_ID' => 13, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'package_code' => 1, 'begin_date' => 2, 'end_date' => 3, 'cost' => 4, 'mabda' => 5, 'madarek' => 6, 'khadamat' => 7, 'desc' => 8, 'kind' => 9, 'travel' => 10, 'type' => 11, 'status' => 12, 'city_id' => 13, ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, )
     );
 
@@ -193,12 +193,12 @@ abstract class BaseTourPeer
             $criteria->addSelectColumn(TourPeer::END_DATE);
             $criteria->addSelectColumn(TourPeer::COST);
             $criteria->addSelectColumn(TourPeer::MABDA);
-            $criteria->addSelectColumn(TourPeer::KIND);
-            $criteria->addSelectColumn(TourPeer::TRAVEL);
-            $criteria->addSelectColumn(TourPeer::TYPE);
             $criteria->addSelectColumn(TourPeer::MADAREK);
             $criteria->addSelectColumn(TourPeer::KHADAMAT);
             $criteria->addSelectColumn(TourPeer::DESC);
+            $criteria->addSelectColumn(TourPeer::KIND);
+            $criteria->addSelectColumn(TourPeer::TRAVEL);
+            $criteria->addSelectColumn(TourPeer::TYPE);
             $criteria->addSelectColumn(TourPeer::STATUS);
             $criteria->addSelectColumn(TourPeer::CITY_ID);
         } else {
@@ -208,12 +208,12 @@ abstract class BaseTourPeer
             $criteria->addSelectColumn($alias . '.end_date');
             $criteria->addSelectColumn($alias . '.cost');
             $criteria->addSelectColumn($alias . '.mabda');
-            $criteria->addSelectColumn($alias . '.kind');
-            $criteria->addSelectColumn($alias . '.travel');
-            $criteria->addSelectColumn($alias . '.type');
             $criteria->addSelectColumn($alias . '.madarek');
             $criteria->addSelectColumn($alias . '.khadamat');
             $criteria->addSelectColumn($alias . '.desc');
+            $criteria->addSelectColumn($alias . '.kind');
+            $criteria->addSelectColumn($alias . '.travel');
+            $criteria->addSelectColumn($alias . '.type');
             $criteria->addSelectColumn($alias . '.status');
             $criteria->addSelectColumn($alias . '.city_id');
         }

@@ -16,12 +16,8 @@ class Admin_Tour_Admin_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$city  = CityQuery::create()->find();
-		$this->setAttribute('city', $city->toArray());
-		foreach ($city as $c)
-		{
-			$this->setAttribute('city_code', $c['Id']);
-		}
+		$tour  = TourQuery::create()->filterByStatus(true)->orderByType()->find();
+		$this->setAttribute('tour', $tour->toArray());
 		return 'Success';
 	}
 }

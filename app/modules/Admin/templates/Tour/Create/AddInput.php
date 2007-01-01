@@ -44,7 +44,7 @@
 						</div>
 									<label for="mabda">مبدا <em>*</em>:  </label>
 				<div class="form_row">
-						<input type="text" id="mabda" class="text_input2l" name="mabda">
+						<input type="text" id="mabda" class="text_input2r" name="mabda">
 					</div>
 						</td>
 						</tr>
@@ -55,23 +55,23 @@
 				<select name="maghsad">
 				<option selected="selected">انتخاب</option>
 				<?php foreach ($t['city'] as $city):?>
-				<option value="<?php echo $city['Id'];?>"><?php echo $city['Country'].'-'.$city['Name'];?></option>
+				<option value="<?php echo $city['Id'];?>"><?php echo $city['City'];?></option>
 				<?php endforeach;?>
 				</select>
 				<label for="kind">تور <em>*</em>: </label>
 				<select name="kind">
-				<option value="true">داخلی</option>
-				<option value="false">خارجی</option>
+				<option value="iner">داخلی</option>
+				<option value="outer">خارجی</option>
 				</select>
-				<label for="publisher">نوع <em>*</em>: </label>
-				<select name="publisher">
-				<option value="true">تفریحی</option>
-				<option value="false">زیارتی</option>
-				</select>
-				<label for="type">سفر <em>*</em>: </label>
+				<label for="type">نوع <em>*</em>: </label>
 				<select name="type">
-				<option value="true">هوایی</option>
-				<option value="false">زمینی</option>
+				<option value="tafrihi" > تفریحی </option>
+				<option value="ziyarati">زیارتی</option>
+				</select>
+				<label for="travel">سفر <em>*</em>: </label>
+				<select name="travel">
+				<option value="sky">هوایی</option>
+				<option value="ground">زمینی</option>
 				</select>
 							<label for="status">وضعیت <em>*</em>: </label>
 				<select name="status">

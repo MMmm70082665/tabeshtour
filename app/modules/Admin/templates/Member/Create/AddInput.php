@@ -24,7 +24,7 @@
 			<td style="" class="first">
 				<label for="office">نام شرکت:  <em>*</em></label>
 					<div class="form_row">
-						<input type="text" id="office" class="text_input2" name="office">
+						<input type="text" id="office" class="text_input2r" name="office">
 					</div>
 			</td>
 		</tr>
@@ -32,7 +32,7 @@
 			<td style="" class="first">
 				<label for="phone">تلفن :  <em>*</em></label>
 					<div class="form_row">
-						<input type="text" id="phone" class="text_input2" name="phone">
+						<input type="text" id="phone" class="text_input2l" name="phone">
 					</div>
 			</td>
 		</tr>
@@ -40,7 +40,7 @@
 			<td style="" class="first">
 				<label for="fax">فکس : </label>
 					<div class="form_row">
-						<input type="text" id="fax" class="text_input2" name="fax">
+						<input type="text" id="fax" class="text_input2l" name="fax">
 					</div>
 			</td>
 		</tr>
@@ -48,7 +48,7 @@
 			<td style="" class="first">
 				<label for="website">وبسایت: </label>
 					<div class="form_row">
-						<input type="text" id="website" class="text_input2" name="website">
+						<input type="text" id="website" class="text_input2l" name="website">
 					</div>
 			</td>
 		</tr>

@@ -14,7 +14,7 @@
 			<route name=".index" pattern="^/admin-page$" action=".Index" />
 			</route>
 			<route name=".delete" pattern="^/delete-post" action=".Delete">
-			<route name=".del" pattern="^/del/(id:\d+)$" action=".Del" />
+			<route name=".index" pattern="^/del/(id:\d+)$" action=".Index" />
 			</route>
 			<route name=".ellow" pattern="^/ellow" action=".Ellow">
 			<route name=".yes" pattern="^/yes/(id:\d+)$" action=".Yes" />
@@ -113,24 +113,9 @@
 			<route name=".pub" pattern="^/pub/(id:\d+)$" action=".Pub" />
 			</route>
 			</route>
-			
-			
-			<route name=".user" pattern="^/user" action="User">
-			<route name=".create" pattern="^/edit" action=".Create">
-			<route name=".add" pattern="^/profile$" action=".Add" />
+		
 			
 			</route>
-			</route>
-			
-			</route>
-			
-			
-			
-			
-			
-			
-			
-			
 			<!-- end of routing admin page -->
 			
 			<!-- an example for a CRUD-style set of routes -->

@@ -22,16 +22,17 @@
 			<td colspan="5" class="first" style="font-family:BKoodak">
 			<span>نام :</span> <?php echo $cm['Name'];?> <br>
 			<span>پست الکترونیک :</span> <?php if ($cm['Email'] == null) echo '-';?><?php echo $cm['Email'];?><br>
-			<span>تور مورد نظر :</span><a target="_blank" href=""><?php foreach ($t['tour_name'] as $name): ?><?php echo $name['Id'] ?><?php endforeach;?></a><br>
+			<?php $tour_info = $t['tour'];?>
+			<span>تور مورد نظر :</span><a target="_blank" href="">شماره پکیج : <?php  echo $tour_info['PackageCode'] ;?></a><br>
 			<span>دیدگاه :</span> <?php echo $cm['Desc'];?> <br><p></p>
 			</td>
 		</tr>
 	</tbody>
 </table>
 <div class="form_button_wrapper">
-<a href="<?php echo $ro->gen('news.comment.ellow.yes',array('id' => $cm['Id']));?>" ><input type="submit" class="submit_button" value="تایید نظر"></a>
-<a href="<?php echo $ro->gen('news.comment.answer.add',array('id' => $cm['Id']));?>"><input type="submit" class="submit_button" value="پاسخ"></a>  
-<a href="<?php echo $ro->gen('news.comment.delete.del',array('id' => $cm['Id']));?>"><input type="submit" class="submit_button" value="حذف نظر"></a> 
+<a href="<?php echo $ro->gen('admin.comment.ellow.yes',array('id' => $cm['Id']));?>" ><input type="submit" class="submit_button" value="تایید نظر"></a>
+<a href="<?php echo $ro->gen('admin.comment.answer.add',array('id' => $cm['Id']));?>"><input type="submit" class="submit_button" value="پاسخ"></a>  
+<a href="<?php echo $ro->gen('admin.comment.delete.index',array('id' => $cm['Id']));?>"><input type="submit" class="submit_button" value="حذف نظر"></a> 
 </div>
 <?php endforeach;?>
 </div>

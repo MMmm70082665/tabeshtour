@@ -44,12 +44,12 @@ class TourTableMap extends TableMap
         $this->addColumn('end_date', 'EndDate', 'VARCHAR', true, 255, null);
         $this->addColumn('cost', 'Cost', 'VARCHAR', true, 15, null);
         $this->addColumn('mabda', 'Mabda', 'VARCHAR', true, 15, null);
-        $this->addColumn('kind', 'Kind', 'VARCHAR', true, 255, null);
-        $this->addColumn('travel', 'Travel', 'VARCHAR', true, 255, null);
-        $this->addColumn('type', 'Type', 'VARCHAR', true, 255, null);
         $this->addColumn('madarek', 'Madarek', 'LONGVARCHAR', true, null, null);
         $this->addColumn('khadamat', 'Khadamat', 'LONGVARCHAR', true, null, null);
         $this->addColumn('desc', 'Desc', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('kind', 'Kind', 'VARCHAR', true, 255, null);
+        $this->addColumn('travel', 'Travel', 'VARCHAR', true, 255, null);
+        $this->addColumn('type', 'Type', 'VARCHAR', true, 255, null);
         $this->addColumn('status', 'Status', 'BOOLEAN', true, 1, null);
         $this->addForeignKey('city_id', 'CityId', 'INTEGER', 'city', 'id', false, null, null);
         // validators

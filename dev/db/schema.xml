@@ -7,14 +7,14 @@
 <column name="package_code" type="VARCHAR" required="true" />
 <column name="begin_date" type="VARCHAR" required="true" />
 <column name="end_date" type="VARCHAR" required="true" />
-<column name="cost" type="VARCHAR" size="15" required="true" /> <!-- هزینه تور -->
+<column name="cost" type="VARCHAR" size="15" required="true" /> 
 <column name="mabda" type="VARCHAR" size="15" required="true" />
-<column name="kind" type="VARCHAR" required="true" /> <!-- داخلی خارجی  -->
-<column name="travel" type="VARCHAR" required="true" /> <!-- زمینی یا هوایی -->
-<column name="type" type="VARCHAR" required="true" /> <!-- تفریحی زیارتی -->
 <column name="madarek" type="LONGVARCHAR" required="true" />
 <column name="khadamat" type="LONGVARCHAR" required="true" />
 <column name="desc" type="LONGVARCHAR" required="true" /> <!-- توضیح کلی -->
+<column name="kind" type="VARCHAR" required="true" /> <!-- داخلی خارجی  -->
+<column name="travel" type="VARCHAR" required="true" /> <!-- زمینی یا هوایی -->
+<column name="type" type="VARCHAR" required="true" /> <!-- تفریحی زیارتی -->
 <column name="status"  type="BOOLEAN" required="true" />
 <column name="city_id" type="INTEGER" required="false" />
 <foreign-key foreignTable="city" >

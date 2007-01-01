@@ -1,6 +1,9 @@
-#Fri Jul 12 01:41:25 PDT 2013
+#Mon Jan 01 02:04:35 PST 2007
 eclipse.preferences.version=1
 encoding//app/modules/Admin/templates/Comment/Admin/IndexSuccess.php=UTF-8
+encoding//app/modules/Admin/templates/Comment/Answer/AddInput.php=UTF-8
+encoding//app/modules/Admin/templates/Comment/Delete/IndexError.php=UTF-8
+encoding//app/modules/Admin/templates/Comment/Ellow/YesError.php=UTF-8
 encoding//app/modules/Admin/templates/Comment/Publish/AdminSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Communication/Contact/AdminSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Communication/Contact/DeleteError.php=UTF-8

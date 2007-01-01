@@ -32,7 +32,7 @@
          			 <ae:parameter name="required">false</ae:parameter>
           		</ae:parameters>
       		</validator>
-		<validator class="number">
+		<validator class="string">
 			<arguments>
 				<argument>status</argument>
 			</arguments>
@@ -88,7 +88,7 @@
          			 <ae:parameter name="required">true</ae:parameter>
           		</ae:parameters>
       		</validator>
-      			<validator class="number">
+      			<validator class="string">
         		<arguments>
           			<argument>travel</argument>
         		</arguments>
@@ -96,7 +96,7 @@
          			 <ae:parameter name="required">true</ae:parameter>
           		</ae:parameters>
       		</validator>
-      			<validator class="number">
+      			<validator class="string">
         		<arguments>
           			<argument>kind</argument>
         		</arguments>
@@ -104,7 +104,7 @@
          			 <ae:parameter name="required">true</ae:parameter>
           		</ae:parameters>
       		</validator>
-       	<validator class="number">
+       	<validator class="string">
         		<arguments>
           			<argument>type</argument>
         		</arguments>

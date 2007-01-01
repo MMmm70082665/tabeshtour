@@ -16,8 +16,8 @@ class Admin_Comment_Admin_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$cm = TourCommentQuery::create()->filterByPublish(true)->orderByDate()->find();
-		$this->setAttribute('comment', $cm->toArray());
+		$comment = TourCommentQuery::create()->orderByTourId()->filterByPublish(true)->find();
+		$this->setAttribute('comment', $comment->toArray());
 		return 'Success';
 	}
 }

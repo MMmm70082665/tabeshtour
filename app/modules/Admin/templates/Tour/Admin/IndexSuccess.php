@@ -1,7 +1,7 @@
 <div id="content">
 <div class="breadcrumb">
 <span class="active">مدیریت تورها</span>
-<?php if (count($t['city']) == 0):?>
+<?php if (count($t['tour']) == 0):?>
 <?php echo '.:: هیچ توری باز نیست ::.' ?>
 </div>
 <?php else :?>
@@ -14,36 +14,42 @@
 .:: در صورت کلیک به روی یک تور باز میتوانید آن را بسته کنید ::.
 </div>
 </div>
-<?php foreach ($t['city'] as $city):?>
 <div class="border_wrapper">
-	<div class="title">مدیریت تور <?php echo $city['Country'];?></div>
+	<div class="title">مدیریت تور</div>
 <table cellspacing="0" class="general">
 	<thead>
 		<tr>
-			<th width="5%" style="" class=" first">شماره</th>
-			<th width="40%" style="" class=" first">عنوان</th>
-			<th width="10%" style=""  class="align_center">وضعیت</th>
-			<th  width="20%" colspan="2" style="" class="align_center last">گزینه ها</th>
+		<th width="5%" style="" class="align_center">شماره پکیج</th>
+			<th width="5%" style="" class="align_center"><a href="<?php echo $ro->gen('admin.tour.admin.index',array('order' => 'Mabda'));?>">مبدا </a></th>
+			<th width="5%" style="" class="align_center">مقصد</th>
+			<th width="5%" style="" class="align_center">تور</th>
+			<th width="5%" style="" class="align_center">نوع</th>
+			<th width="5%" style="" class="align_center">سفر</th>
+			<th width="5%" style=""  class="align_center">وضعیت</th>
+			<th width="5%" style=""  class="align_center">تاریخ شروع</th>
+			<th width="5%" style=""  class="align_center">تاریخ پایان</th>
+			<th  width="8%" colspan="2" style="" class="align_center last">گزینه ها</th>
 		</tr>
 	</thead>
 	<tbody>
+	<?php foreach ($t['tour'] as $tour):?>
 		<tr class="first">
-			<td  style="" class="align_center last alt_col"></td>
-			<td style="" class="first"></td>
-			<td style="" class="align_center alt_col">
-			<a href=""></a></td>
-			<td style="" class="align_center alt_col"></td>
-			<td  style="" class="align_center">
-			<a href="">ویرایش</a>
-			</td>
-			<td  style="" class="align_center last alt_col">
-			<a href="">حذف</a>
-			</td>
+			<td  style="" class="align_center last alt_col"><?php echo $tour['PackageCode'] ;?></td>
+			<td  style="" class="align_center last alt_col"><?php echo $tour['Mabda'] ;?></td>
+			<td  style="" class="align_center last alt_col"><?php $city = CityQuery::create()->findPk($tour['CityId']);echo $city->getCity();?></td>
+			<td  style="" class="align_center last alt_col"><?php if ($tour['Kind'] == 'iner') echo 'داخلی'; else 'خارجی';?></td>
+			<td  style="" class="align_center last alt_col"><?php if ($tour['Type'] == 'ziyarati') echo 'زیارتی'; else echo 'تفریحی';?></td>
+			<td  style="" class="align_center last alt_col"><?php if ($tour['Travel'] == 'sky') echo 'هوایی' ; else 'زمینی' ;?></td>
+			<td  style="" class="align_center last alt_col"><a href="<?php echo $ro->gen('admin.tour.publish.pub',array('id' => $tour['Id'])); ?>">باز </a></td>
+			<td  style="" class="align_center last alt_col"><?php echo $tour['BeginDate'];?></td>
+			<td  style="" class="align_center last alt_col"><?php echo $tour['EndDate'] ;?></td>
+			<td  style="" class="align_center"><a href="<?php echo $ro->gen('admin.tour.edit.index',array('id' => $tour['Id']));?>">ویرایش</a></td>
+			<td  style="" class="align_center last alt_col"><a href="<?php echo $ro->gen('admin.tour.delete.index',array('id'=> $tour['Id']));?>">حذف</a></td>
 		</tr>
+		<?php endforeach;?>
 	</tbody>
 </table>
 </div>	
-<?php endforeach;?>
 <?php endif;?>
 		</div>
 		</div>
