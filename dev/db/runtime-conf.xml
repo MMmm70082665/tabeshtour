@@ -9,11 +9,11 @@
   </log>
   -->
   <propel>
-    <datasources default="travel">
-      <datasource id="travel">
+    <datasources default="tabesh">
+      <datasource id="tabesh">
         <adapter>mysql</adapter>
         <connection>
-          <dsn>mysql:host=localhost;dbname=travel</dsn>
+          <dsn>mysql:host=localhost;dbname=tabesh</dsn>
           <user>root</user>
           <password></password>
         </connection>

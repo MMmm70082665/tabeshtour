@@ -4,7 +4,7 @@
 /**
  * Base class that represents a query for the 'partners' table.
  *
- *
+ * 
  *
  * @method PartnersQuery orderById($order = Criteria::ASC) Order by the id column
  * @method PartnersQuery orderByName($order = Criteria::ASC) Order by the name column
@@ -55,7 +55,7 @@ abstract class BasePartnersQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'travel', $modelName = 'Partners', $modelAlias = null)
+    public function __construct($dbName = 'tabesh', $modelName = 'Partners', $modelAlias = null)
     {
         parent::__construct($dbName, $modelName, $modelAlias);
     }
@@ -93,7 +93,7 @@ abstract class BasePartnersQuery extends ModelCriteria
      * $obj  = $c->findPk(12, $con);
      * </code>
      *
-     * @param mixed $key Primary key to use for the query
+     * @param mixed $key Primary key to use for the query 
      * @param     PropelPDO $con an optional connection object
      *
      * @return   Partners|Partners[]|mixed the result, formatted by the current formatter
@@ -148,7 +148,7 @@ abstract class BasePartnersQuery extends ModelCriteria
     {
         $sql = 'SELECT `id`, `name`, `address`, `website`, `phone`, `fax`, `desc` FROM `partners` WHERE `id` = :p0';
         try {
-            $stmt = $con->prepare($sql);
+            $stmt = $con->prepare($sql);			
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {

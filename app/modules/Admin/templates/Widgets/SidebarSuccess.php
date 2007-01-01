@@ -38,8 +38,14 @@
 <div class="left_menu_box">
 <div class="title">اسلایدر</div>
 <ul class="menu">
-<li class=""><a href="">آپلود عکس</a></li>
-<li class=""><a href="">مدیریت تصاویر</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.slider.admin.index');?>">مدیریت</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.slider.create.add');?>">ایجاد محتوا</a></li>
+</ul>
+</div>
+<div class="left_menu_box">
+<div class="title">فایل منیجر</div>
+<ul class="menu">
+<li class=""><a href="">آپلود و مدیریت فایل</a></li>
 </ul>
 </div>
 <div class="left_menu_box">

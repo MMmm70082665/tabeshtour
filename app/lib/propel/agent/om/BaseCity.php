@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'city' table.
  *
- *
+ * 
  *
  * @package    propel.generator.agent.om
  */
@@ -111,7 +111,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     *
+     * 
      * @return int
      */
     public function getId()
@@ -121,7 +121,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [city] column value.
-     *
+     * 
      * @return string
      */
     public function getCity()
@@ -131,7 +131,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [country] column value.
-     *
+     * 
      * @return string
      */
     public function getCountry()
@@ -141,7 +141,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [desc] column value.
-     *
+     * 
      * @return string
      */
     public function getDesc()
@@ -151,7 +151,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [useful_info] column value.
-     *
+     * 
      * @return string
      */
     public function getUsefulInfo()
@@ -161,7 +161,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [place] column value.
-     *
+     * 
      * @return string
      */
     public function getPlace()
@@ -171,7 +171,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [hotel] column value.
-     *
+     * 
      * @return string
      */
     public function getHotel()
@@ -181,7 +181,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [restoran] column value.
-     *
+     * 
      * @return string
      */
     public function getRestoran()
@@ -191,7 +191,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [buy_center] column value.
-     *
+     * 
      * @return string
      */
     public function getBuyCenter()
@@ -201,7 +201,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     *
+     * 
      * @param int $v new value
      * @return City The current object (for fluent API support)
      */
@@ -222,7 +222,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [city] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -243,7 +243,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [country] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -264,7 +264,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [desc] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -285,7 +285,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [useful_info] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -306,7 +306,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [place] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -327,7 +327,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [hotel] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -348,7 +348,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [restoran] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -369,7 +369,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [buy_center] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -707,31 +707,31 @@ abstract class BaseCity extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`id`':						
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`city`':
+                    case '`city`':						
                         $stmt->bindValue($identifier, $this->city, PDO::PARAM_STR);
                         break;
-                    case '`country`':
+                    case '`country`':						
                         $stmt->bindValue($identifier, $this->country, PDO::PARAM_STR);
                         break;
-                    case '`desc`':
+                    case '`desc`':						
                         $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
                         break;
-                    case '`useful_info`':
+                    case '`useful_info`':						
                         $stmt->bindValue($identifier, $this->useful_info, PDO::PARAM_STR);
                         break;
-                    case '`place`':
+                    case '`place`':						
                         $stmt->bindValue($identifier, $this->place, PDO::PARAM_STR);
                         break;
-                    case '`hotel`':
+                    case '`hotel`':						
                         $stmt->bindValue($identifier, $this->hotel, PDO::PARAM_STR);
                         break;
-                    case '`restoran`':
+                    case '`restoran`':						
                         $stmt->bindValue($identifier, $this->restoran, PDO::PARAM_STR);
                         break;
-                    case '`buy_center`':
+                    case '`buy_center`':						
                         $stmt->bindValue($identifier, $this->buy_center, PDO::PARAM_STR);
                         break;
                 }

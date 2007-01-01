@@ -168,5 +168,22 @@ CREATE TABLE `user`
     UNIQUE INDEX `username` (`username`)
 ) ENGINE=MyISAM;
 
+-- ---------------------------------------------------------------------
+-- slider
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `slider`;
+
+CREATE TABLE `slider`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `content` VARCHAR(255) NOT NULL,
+    `shenase` VARCHAR(255) NOT NULL,
+    `xpos` INTEGER NOT NULL,
+    `ypos` INTEGER NOT NULL,
+    `effect` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
 # This restores the fkey checks, after having unset them earlier
 SET FOREIGN_KEY_CHECKS = 1;

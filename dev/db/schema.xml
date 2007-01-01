@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<database name="travel" defaultIdMethod="native" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<database name="tabesh" defaultIdMethod="native" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd">
   
 <table name="tour">
@@ -106,17 +106,11 @@
 
 <table name="slider">
 <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
-</table>
-
-<table name="slider_tune">
-<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
-<column name="type" type="ENUM" valueSet="img,text" default="text"  />
+<column name="content" type="VARCHAR" required="true" />
+<column name="shenase" type="VARCHAR" required="true"  />
 <column name="xpos" type="INTEGER" required="true" />
 <column name="ypos" type="INTEGER" required="true" />
-<column name="slider_id" type="INTEGER" required="false" />
-<foreign-key foreignTable="slider">
-<reference local="slider_id" foreign="id"  />
-</foreign-key>
+<column name="effect" type="VARCHAR" required="true" />
 </table>
 
 

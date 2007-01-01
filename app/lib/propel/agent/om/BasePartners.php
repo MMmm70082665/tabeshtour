@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'partners' table.
  *
- *
+ * 
  *
  * @package    propel.generator.agent.om
  */
@@ -87,7 +87,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     *
+     * 
      * @return int
      */
     public function getId()
@@ -97,7 +97,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Get the [name] column value.
-     *
+     * 
      * @return string
      */
     public function getName()
@@ -107,7 +107,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Get the [address] column value.
-     *
+     * 
      * @return string
      */
     public function getAddress()
@@ -117,7 +117,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Get the [website] column value.
-     *
+     * 
      * @return string
      */
     public function getWebsite()
@@ -127,7 +127,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Get the [phone] column value.
-     *
+     * 
      * @return string
      */
     public function getPhone()
@@ -137,7 +137,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Get the [fax] column value.
-     *
+     * 
      * @return string
      */
     public function getFax()
@@ -147,7 +147,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Get the [desc] column value.
-     *
+     * 
      * @return string
      */
     public function getDesc()
@@ -157,7 +157,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     *
+     * 
      * @param int $v new value
      * @return Partners The current object (for fluent API support)
      */
@@ -178,7 +178,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Set the value of [name] column.
-     *
+     * 
      * @param string $v new value
      * @return Partners The current object (for fluent API support)
      */
@@ -199,7 +199,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Set the value of [address] column.
-     *
+     * 
      * @param string $v new value
      * @return Partners The current object (for fluent API support)
      */
@@ -220,7 +220,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Set the value of [website] column.
-     *
+     * 
      * @param string $v new value
      * @return Partners The current object (for fluent API support)
      */
@@ -241,7 +241,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Set the value of [phone] column.
-     *
+     * 
      * @param string $v new value
      * @return Partners The current object (for fluent API support)
      */
@@ -262,7 +262,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Set the value of [fax] column.
-     *
+     * 
      * @param string $v new value
      * @return Partners The current object (for fluent API support)
      */
@@ -283,7 +283,7 @@ abstract class BasePartners extends BaseObject implements Persistent
 
     /**
      * Set the value of [desc] column.
-     *
+     * 
      * @param string $v new value
      * @return Partners The current object (for fluent API support)
      */
@@ -593,25 +593,25 @@ abstract class BasePartners extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`id`':						
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`name`':
+                    case '`name`':						
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`address`':
+                    case '`address`':						
                         $stmt->bindValue($identifier, $this->address, PDO::PARAM_STR);
                         break;
-                    case '`website`':
+                    case '`website`':						
                         $stmt->bindValue($identifier, $this->website, PDO::PARAM_STR);
                         break;
-                    case '`phone`':
+                    case '`phone`':						
                         $stmt->bindValue($identifier, $this->phone, PDO::PARAM_STR);
                         break;
-                    case '`fax`':
+                    case '`fax`':						
                         $stmt->bindValue($identifier, $this->fax, PDO::PARAM_STR);
                         break;
-                    case '`desc`':
+                    case '`desc`':						
                         $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
                         break;
                 }

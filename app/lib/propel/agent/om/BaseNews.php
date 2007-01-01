@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'news' table.
  *
- *
+ * 
  *
  * @package    propel.generator.agent.om
  */
@@ -81,7 +81,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     *
+     * 
      * @return int
      */
     public function getId()
@@ -91,7 +91,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Get the [subject] column value.
-     *
+     * 
      * @return string
      */
     public function getSubject()
@@ -101,7 +101,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Get the [long_desc] column value.
-     *
+     * 
      * @return string
      */
     public function getLongDesc()
@@ -111,7 +111,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Get the [short_desc] column value.
-     *
+     * 
      * @return string
      */
     public function getShortDesc()
@@ -121,7 +121,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Get the [publish] column value.
-     *
+     * 
      * @return boolean
      */
     public function getPublish()
@@ -131,7 +131,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Get the [date] column value.
-     *
+     * 
      * @return string
      */
     public function getDate()
@@ -141,7 +141,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     *
+     * 
      * @param int $v new value
      * @return News The current object (for fluent API support)
      */
@@ -162,7 +162,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Set the value of [subject] column.
-     *
+     * 
      * @param string $v new value
      * @return News The current object (for fluent API support)
      */
@@ -183,7 +183,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Set the value of [long_desc] column.
-     *
+     * 
      * @param string $v new value
      * @return News The current object (for fluent API support)
      */
@@ -204,7 +204,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Set the value of [short_desc] column.
-     *
+     * 
      * @param string $v new value
      * @return News The current object (for fluent API support)
      */
@@ -229,7 +229,7 @@ abstract class BaseNews extends BaseObject implements Persistent
      *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
      *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
      * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     *
+     * 
      * @param boolean|integer|string $v The new value
      * @return News The current object (for fluent API support)
      */
@@ -254,7 +254,7 @@ abstract class BaseNews extends BaseObject implements Persistent
 
     /**
      * Set the value of [date] column.
-     *
+     * 
      * @param string $v new value
      * @return News The current object (for fluent API support)
      */
@@ -560,22 +560,22 @@ abstract class BaseNews extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`id`':						
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`subject`':
+                    case '`subject`':						
                         $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
                         break;
-                    case '`long_desc`':
+                    case '`long_desc`':						
                         $stmt->bindValue($identifier, $this->long_desc, PDO::PARAM_STR);
                         break;
-                    case '`short_desc`':
+                    case '`short_desc`':						
                         $stmt->bindValue($identifier, $this->short_desc, PDO::PARAM_STR);
                         break;
                     case '`publish`':
                         $stmt->bindValue($identifier, (int) $this->publish, PDO::PARAM_INT);
                         break;
-                    case '`date`':
+                    case '`date`':						
                         $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
                         break;
                 }

@@ -4,7 +4,7 @@
 /**
  * Base class that represents a query for the 'news' table.
  *
- *
+ * 
  *
  * @method NewsQuery orderById($order = Criteria::ASC) Order by the id column
  * @method NewsQuery orderBySubject($order = Criteria::ASC) Order by the subject column
@@ -51,7 +51,7 @@ abstract class BaseNewsQuery extends ModelCriteria
      * @param     string $modelName The phpName of a model, e.g. 'Book'
      * @param     string $modelAlias The alias for the model in this query, e.g. 'b'
      */
-    public function __construct($dbName = 'travel', $modelName = 'News', $modelAlias = null)
+    public function __construct($dbName = 'tabesh', $modelName = 'News', $modelAlias = null)
     {
         parent::__construct($dbName, $modelName, $modelAlias);
     }
@@ -89,7 +89,7 @@ abstract class BaseNewsQuery extends ModelCriteria
      * $obj  = $c->findPk(12, $con);
      * </code>
      *
-     * @param mixed $key Primary key to use for the query
+     * @param mixed $key Primary key to use for the query 
      * @param     PropelPDO $con an optional connection object
      *
      * @return   News|News[]|mixed the result, formatted by the current formatter
@@ -144,7 +144,7 @@ abstract class BaseNewsQuery extends ModelCriteria
     {
         $sql = 'SELECT `id`, `subject`, `long_desc`, `short_desc`, `publish`, `date` FROM `news` WHERE `id` = :p0';
         try {
-            $stmt = $con->prepare($sql);
+            $stmt = $con->prepare($sql);			
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {

@@ -4,17 +4,17 @@
 $conf = array (
   'datasources' => 
   array (
-    'travel' => 
+    'tabesh' => 
     array (
       'adapter' => 'mysql',
       'connection' => 
       array (
-        'dsn' => 'mysql:host=localhost;dbname=travel',
+        'dsn' => 'mysql:host=localhost;dbname=tabesh',
         'user' => 'root',
         'password' => '',
       ),
     ),
-    'default' => 'travel',
+    'default' => 'tabesh',
   ),
   'generator_version' => '1.6.7',
 );
