@@ -16,15 +16,13 @@ class Admin_Masir_Create_AddAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$tour = CountryQuery::create()->filterByPublish(true)->find();
-		$this->setAttribute('tour', $tour->toArray());
+		
 		return 'Input';
 	}
 	public function executeWrite(AgaviWebRequestDataHolder $rd)
 	{
-		$name = $rd->getParameter('name');
-		$country_id = $rd->getParameter('tour');
-		$pub = $rd->getParameter('publish');
+		$city = $rd->getParameter('city');
+		$country= $rd->getParameter('country');
 		$desc = $rd->getParameter('desc');
 		$res = $rd->getParameter('restoran');
 		$hotel = $rd->getParameter('hotel');
@@ -32,9 +30,8 @@ class Admin_Masir_Create_AddAction extends agentAdminBaseAction
 		$buy = $rd->getParameter('buy_center');
 		$info = $rd->getParameter('useful_info');
 		$obj = new City();
-		$obj->setName($name);
-		$obj->setCountryId($country_id);
-		$obj->setPublish($pub);
+		$obj->setCity($city);
+		$obj->setCountry($country);
 		$obj->setDesc($desc);
 		$obj->setRestoran($res);
 		$obj->setHotel($hotel);

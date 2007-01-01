@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'tour' table.
  *
- *
+ * 
  *
  * @package    propel.generator.agent.om
  */
@@ -158,7 +158,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     *
+     * 
      * @return int
      */
     public function getId()
@@ -168,7 +168,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [package_code] column value.
-     *
+     * 
      * @return string
      */
     public function getPackageCode()
@@ -178,7 +178,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [begin_date] column value.
-     *
+     * 
      * @return string
      */
     public function getBeginDate()
@@ -188,7 +188,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [end_date] column value.
-     *
+     * 
      * @return string
      */
     public function getEndDate()
@@ -198,7 +198,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [cost] column value.
-     *
+     * 
      * @return string
      */
     public function getCost()
@@ -208,7 +208,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [mabda] column value.
-     *
+     * 
      * @return string
      */
     public function getMabda()
@@ -218,7 +218,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [kind] column value.
-     *
+     * 
      * @return string
      */
     public function getKind()
@@ -228,7 +228,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [travel] column value.
-     *
+     * 
      * @return string
      */
     public function getTravel()
@@ -238,7 +238,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [type] column value.
-     *
+     * 
      * @return string
      */
     public function getType()
@@ -248,7 +248,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [madarek] column value.
-     *
+     * 
      * @return string
      */
     public function getMadarek()
@@ -258,7 +258,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [khadamat] column value.
-     *
+     * 
      * @return string
      */
     public function getKhadamat()
@@ -268,7 +268,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [desc] column value.
-     *
+     * 
      * @return string
      */
     public function getDesc()
@@ -278,7 +278,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [status] column value.
-     *
+     * 
      * @return boolean
      */
     public function getStatus()
@@ -288,7 +288,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Get the [city_id] column value.
-     *
+     * 
      * @return int
      */
     public function getCityId()
@@ -298,7 +298,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     *
+     * 
      * @param int $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -319,7 +319,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [package_code] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -340,7 +340,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [begin_date] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -361,7 +361,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [end_date] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -382,7 +382,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [cost] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -403,7 +403,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [mabda] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -424,7 +424,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [kind] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -445,7 +445,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [travel] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -466,7 +466,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [type] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -487,7 +487,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [madarek] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -508,7 +508,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [khadamat] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -529,7 +529,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [desc] column.
-     *
+     * 
      * @param string $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -554,7 +554,7 @@ abstract class BaseTour extends BaseObject implements Persistent
      *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
      *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
      * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     *
+     * 
      * @param boolean|integer|string $v The new value
      * @return Tour The current object (for fluent API support)
      */
@@ -579,7 +579,7 @@ abstract class BaseTour extends BaseObject implements Persistent
 
     /**
      * Set the value of [city_id] column.
-     *
+     * 
      * @param int $v new value
      * @return Tour The current object (for fluent API support)
      */
@@ -976,46 +976,46 @@ abstract class BaseTour extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`id`':						
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`package_code`':
+                    case '`package_code`':						
                         $stmt->bindValue($identifier, $this->package_code, PDO::PARAM_STR);
                         break;
-                    case '`begin_date`':
+                    case '`begin_date`':						
                         $stmt->bindValue($identifier, $this->begin_date, PDO::PARAM_STR);
                         break;
-                    case '`end_date`':
+                    case '`end_date`':						
                         $stmt->bindValue($identifier, $this->end_date, PDO::PARAM_STR);
                         break;
-                    case '`cost`':
+                    case '`cost`':						
                         $stmt->bindValue($identifier, $this->cost, PDO::PARAM_STR);
                         break;
-                    case '`mabda`':
+                    case '`mabda`':						
                         $stmt->bindValue($identifier, $this->mabda, PDO::PARAM_STR);
                         break;
-                    case '`kind`':
+                    case '`kind`':						
                         $stmt->bindValue($identifier, $this->kind, PDO::PARAM_STR);
                         break;
-                    case '`travel`':
+                    case '`travel`':						
                         $stmt->bindValue($identifier, $this->travel, PDO::PARAM_STR);
                         break;
-                    case '`type`':
+                    case '`type`':						
                         $stmt->bindValue($identifier, $this->type, PDO::PARAM_STR);
                         break;
-                    case '`madarek`':
+                    case '`madarek`':						
                         $stmt->bindValue($identifier, $this->madarek, PDO::PARAM_STR);
                         break;
-                    case '`khadamat`':
+                    case '`khadamat`':						
                         $stmt->bindValue($identifier, $this->khadamat, PDO::PARAM_STR);
                         break;
-                    case '`desc`':
+                    case '`desc`':						
                         $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
                         break;
                     case '`status`':
                         $stmt->bindValue($identifier, (int) $this->status, PDO::PARAM_INT);
                         break;
-                    case '`city_id`':
+                    case '`city_id`':						
                         $stmt->bindValue($identifier, $this->city_id, PDO::PARAM_INT);
                         break;
                 }

@@ -4,7 +4,7 @@
 /**
  * Base class that represents a query for the 'tour' table.
  *
- *
+ * 
  *
  * @method TourQuery orderById($order = Criteria::ASC) Order by the id column
  * @method TourQuery orderByPackageCode($order = Criteria::ASC) Order by the package_code column
@@ -133,7 +133,7 @@ abstract class BaseTourQuery extends ModelCriteria
      * $obj  = $c->findPk(12, $con);
      * </code>
      *
-     * @param mixed $key Primary key to use for the query
+     * @param mixed $key Primary key to use for the query 
      * @param     PropelPDO $con an optional connection object
      *
      * @return   Tour|Tour[]|mixed the result, formatted by the current formatter
@@ -188,7 +188,7 @@ abstract class BaseTourQuery extends ModelCriteria
     {
         $sql = 'SELECT `id`, `package_code`, `begin_date`, `end_date`, `cost`, `mabda`, `kind`, `travel`, `type`, `madarek`, `khadamat`, `desc`, `status`, `city_id` FROM `tour` WHERE `id` = :p0';
         try {
-            $stmt = $con->prepare($sql);
+            $stmt = $con->prepare($sql);			
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {

@@ -39,7 +39,7 @@ class CityTableMap extends TableMap
         $this->setUseIdGenerator(true);
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
-        $this->addColumn('name', 'Name', 'VARCHAR', true, 45, null);
+        $this->addColumn('city', 'City', 'VARCHAR', true, 255, null);
         $this->addColumn('country', 'Country', 'VARCHAR', true, 255, null);
         $this->addColumn('desc', 'Desc', 'LONGVARCHAR', false, null, null);
         $this->addColumn('useful_info', 'UsefulInfo', 'LONGVARCHAR', false, null, null);

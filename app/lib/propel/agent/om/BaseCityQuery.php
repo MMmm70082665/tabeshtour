@@ -4,10 +4,10 @@
 /**
  * Base class that represents a query for the 'city' table.
  *
- *
+ * 
  *
  * @method CityQuery orderById($order = Criteria::ASC) Order by the id column
- * @method CityQuery orderByName($order = Criteria::ASC) Order by the name column
+ * @method CityQuery orderByCity($order = Criteria::ASC) Order by the city column
  * @method CityQuery orderByCountry($order = Criteria::ASC) Order by the country column
  * @method CityQuery orderByDesc($order = Criteria::ASC) Order by the desc column
  * @method CityQuery orderByUsefulInfo($order = Criteria::ASC) Order by the useful_info column
@@ -17,7 +17,7 @@
  * @method CityQuery orderByBuyCenter($order = Criteria::ASC) Order by the buy_center column
  *
  * @method CityQuery groupById() Group by the id column
- * @method CityQuery groupByName() Group by the name column
+ * @method CityQuery groupByCity() Group by the city column
  * @method CityQuery groupByCountry() Group by the country column
  * @method CityQuery groupByDesc() Group by the desc column
  * @method CityQuery groupByUsefulInfo() Group by the useful_info column
@@ -37,7 +37,7 @@
  * @method City findOne(PropelPDO $con = null) Return the first City matching the query
  * @method City findOneOrCreate(PropelPDO $con = null) Return the first City matching the query, or a new City object populated from the query conditions when no match is found
  *
- * @method City findOneByName(string $name) Return the first City filtered by the name column
+ * @method City findOneByCity(string $city) Return the first City filtered by the city column
  * @method City findOneByCountry(string $country) Return the first City filtered by the country column
  * @method City findOneByDesc(string $desc) Return the first City filtered by the desc column
  * @method City findOneByUsefulInfo(string $useful_info) Return the first City filtered by the useful_info column
@@ -47,7 +47,7 @@
  * @method City findOneByBuyCenter(string $buy_center) Return the first City filtered by the buy_center column
  *
  * @method array findById(int $id) Return City objects filtered by the id column
- * @method array findByName(string $name) Return City objects filtered by the name column
+ * @method array findByCity(string $city) Return City objects filtered by the city column
  * @method array findByCountry(string $country) Return City objects filtered by the country column
  * @method array findByDesc(string $desc) Return City objects filtered by the desc column
  * @method array findByUsefulInfo(string $useful_info) Return City objects filtered by the useful_info column
@@ -105,7 +105,7 @@ abstract class BaseCityQuery extends ModelCriteria
      * $obj  = $c->findPk(12, $con);
      * </code>
      *
-     * @param mixed $key Primary key to use for the query
+     * @param mixed $key Primary key to use for the query 
      * @param     PropelPDO $con an optional connection object
      *
      * @return   City|City[]|mixed the result, formatted by the current formatter
@@ -158,9 +158,9 @@ abstract class BaseCityQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `country`, `desc`, `useful_info`, `place`, `hotel`, `restoran`, `buy_center` FROM `city` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `city`, `country`, `desc`, `useful_info`, `place`, `hotel`, `restoran`, `buy_center` FROM `city` WHERE `id` = :p0';
         try {
-            $stmt = $con->prepare($sql);
+            $stmt = $con->prepare($sql);			
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {
@@ -275,32 +275,32 @@ abstract class BaseCityQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the name column
+     * Filter the query on the city column
      *
      * Example usage:
      * <code>
-     * $query->filterByName('fooValue');   // WHERE name = 'fooValue'
-     * $query->filterByName('%fooValue%'); // WHERE name LIKE '%fooValue%'
+     * $query->filterByCity('fooValue');   // WHERE city = 'fooValue'
+     * $query->filterByCity('%fooValue%'); // WHERE city LIKE '%fooValue%'
      * </code>
      *
-     * @param     string $name The value to use as filter.
+     * @param     string $city The value to use as filter.
      *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
-    public function filterByName($name = null, $comparison = null)
+    public function filterByCity($city = null, $comparison = null)
     {
         if (null === $comparison) {
-            if (is_array($name)) {
+            if (is_array($city)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $name)) {
-                $name = str_replace('*', '%', $name);
+            } elseif (preg_match('/[\%\*]/', $city)) {
+                $city = str_replace('*', '%', $city);
                 $comparison = Criteria::LIKE;
             }
         }
 
-        return $this->addUsingAlias(CityPeer::NAME, $name, $comparison);
+        return $this->addUsingAlias(CityPeer::CITY, $city, $comparison);
     }
 
     /**

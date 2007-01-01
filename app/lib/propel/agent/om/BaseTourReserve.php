@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'tour_reserve' table.
  *
- *
+ * 
  *
  * @package    propel.generator.agent.om
  */
@@ -98,7 +98,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     *
+     * 
      * @return int
      */
     public function getId()
@@ -108,7 +108,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [name] column value.
-     *
+     * 
      * @return string
      */
     public function getName()
@@ -118,7 +118,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [family] column value.
-     *
+     * 
      * @return string
      */
     public function getFamily()
@@ -128,7 +128,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [address] column value.
-     *
+     * 
      * @return string
      */
     public function getAddress()
@@ -138,7 +138,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [telphone] column value.
-     *
+     * 
      * @return string
      */
     public function getTelphone()
@@ -148,7 +148,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [mobile] column value.
-     *
+     * 
      * @return string
      */
     public function getMobile()
@@ -158,7 +158,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [date] column value.
-     *
+     * 
      * @return string
      */
     public function getDate()
@@ -168,7 +168,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Get the [tour_id] column value.
-     *
+     * 
      * @return int
      */
     public function getTourId()
@@ -178,7 +178,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     *
+     * 
      * @param int $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -199,7 +199,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [name] column.
-     *
+     * 
      * @param string $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -220,7 +220,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [family] column.
-     *
+     * 
      * @param string $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -241,7 +241,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [address] column.
-     *
+     * 
      * @param string $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -262,7 +262,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [telphone] column.
-     *
+     * 
      * @param string $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -283,7 +283,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [mobile] column.
-     *
+     * 
      * @param string $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -304,7 +304,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [date] column.
-     *
+     * 
      * @param string $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -325,7 +325,7 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
 
     /**
      * Set the value of [tour_id] column.
-     *
+     * 
      * @param int $v new value
      * @return TourReserve The current object (for fluent API support)
      */
@@ -659,28 +659,28 @@ abstract class BaseTourReserve extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`id`':						
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`name`':
+                    case '`name`':						
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`family`':
+                    case '`family`':						
                         $stmt->bindValue($identifier, $this->family, PDO::PARAM_STR);
                         break;
-                    case '`address`':
+                    case '`address`':						
                         $stmt->bindValue($identifier, $this->address, PDO::PARAM_STR);
                         break;
-                    case '`telphone`':
+                    case '`telphone`':						
                         $stmt->bindValue($identifier, $this->telphone, PDO::PARAM_STR);
                         break;
-                    case '`mobile`':
+                    case '`mobile`':						
                         $stmt->bindValue($identifier, $this->mobile, PDO::PARAM_STR);
                         break;
-                    case '`date`':
+                    case '`date`':						
                         $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
                         break;
-                    case '`tour_id`':
+                    case '`tour_id`':						
                         $stmt->bindValue($identifier, $this->tour_id, PDO::PARAM_INT);
                         break;
                 }

@@ -88,7 +88,7 @@ DROP TABLE IF EXISTS `city`;
 CREATE TABLE `city`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name` VARCHAR(45) NOT NULL,
+    `city` VARCHAR(255) NOT NULL,
     `country` VARCHAR(255) NOT NULL,
     `desc` TEXT,
     `useful_info` TEXT,

@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'city' table.
  *
- *
+ * 
  *
  * @package    propel.generator.agent.om
  */
@@ -36,10 +36,10 @@ abstract class BaseCity extends BaseObject implements Persistent
     protected $id;
 
     /**
-     * The value for the name field.
+     * The value for the city field.
      * @var        string
      */
-    protected $name;
+    protected $city;
 
     /**
      * The value for the country field.
@@ -111,7 +111,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     *
+     * 
      * @return int
      */
     public function getId()
@@ -120,18 +120,18 @@ abstract class BaseCity extends BaseObject implements Persistent
     }
 
     /**
-     * Get the [name] column value.
-     *
+     * Get the [city] column value.
+     * 
      * @return string
      */
-    public function getName()
+    public function getCity()
     {
-        return $this->name;
+        return $this->city;
     }
 
     /**
      * Get the [country] column value.
-     *
+     * 
      * @return string
      */
     public function getCountry()
@@ -141,7 +141,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [desc] column value.
-     *
+     * 
      * @return string
      */
     public function getDesc()
@@ -151,7 +151,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [useful_info] column value.
-     *
+     * 
      * @return string
      */
     public function getUsefulInfo()
@@ -161,7 +161,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [place] column value.
-     *
+     * 
      * @return string
      */
     public function getPlace()
@@ -171,7 +171,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [hotel] column value.
-     *
+     * 
      * @return string
      */
     public function getHotel()
@@ -181,7 +181,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [restoran] column value.
-     *
+     * 
      * @return string
      */
     public function getRestoran()
@@ -191,7 +191,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Get the [buy_center] column value.
-     *
+     * 
      * @return string
      */
     public function getBuyCenter()
@@ -201,7 +201,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     *
+     * 
      * @param int $v new value
      * @return City The current object (for fluent API support)
      */
@@ -221,29 +221,29 @@ abstract class BaseCity extends BaseObject implements Persistent
     } // setId()
 
     /**
-     * Set the value of [name] column.
-     *
+     * Set the value of [city] column.
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
-    public function setName($v)
+    public function setCity($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->name !== $v) {
-            $this->name = $v;
-            $this->modifiedColumns[] = CityPeer::NAME;
+        if ($this->city !== $v) {
+            $this->city = $v;
+            $this->modifiedColumns[] = CityPeer::CITY;
         }
 
 
         return $this;
-    } // setName()
+    } // setCity()
 
     /**
      * Set the value of [country] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -264,7 +264,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [desc] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -285,7 +285,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [useful_info] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -306,7 +306,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [place] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -327,7 +327,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [hotel] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -348,7 +348,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [restoran] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -369,7 +369,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * Set the value of [buy_center] column.
-     *
+     * 
      * @param string $v new value
      * @return City The current object (for fluent API support)
      */
@@ -421,7 +421,7 @@ abstract class BaseCity extends BaseObject implements Persistent
         try {
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
-            $this->name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
+            $this->city = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->country = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
             $this->desc = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
             $this->useful_info = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
@@ -672,8 +672,8 @@ abstract class BaseCity extends BaseObject implements Persistent
         if ($this->isColumnModified(CityPeer::ID)) {
             $modifiedColumns[':p' . $index++]  = '`id`';
         }
-        if ($this->isColumnModified(CityPeer::NAME)) {
-            $modifiedColumns[':p' . $index++]  = '`name`';
+        if ($this->isColumnModified(CityPeer::CITY)) {
+            $modifiedColumns[':p' . $index++]  = '`city`';
         }
         if ($this->isColumnModified(CityPeer::COUNTRY)) {
             $modifiedColumns[':p' . $index++]  = '`country`';
@@ -707,31 +707,31 @@ abstract class BaseCity extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':
+                    case '`id`':						
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`name`':
-                        $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
+                    case '`city`':						
+                        $stmt->bindValue($identifier, $this->city, PDO::PARAM_STR);
                         break;
-                    case '`country`':
+                    case '`country`':						
                         $stmt->bindValue($identifier, $this->country, PDO::PARAM_STR);
                         break;
-                    case '`desc`':
+                    case '`desc`':						
                         $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
                         break;
-                    case '`useful_info`':
+                    case '`useful_info`':						
                         $stmt->bindValue($identifier, $this->useful_info, PDO::PARAM_STR);
                         break;
-                    case '`place`':
+                    case '`place`':						
                         $stmt->bindValue($identifier, $this->place, PDO::PARAM_STR);
                         break;
-                    case '`hotel`':
+                    case '`hotel`':						
                         $stmt->bindValue($identifier, $this->hotel, PDO::PARAM_STR);
                         break;
-                    case '`restoran`':
+                    case '`restoran`':						
                         $stmt->bindValue($identifier, $this->restoran, PDO::PARAM_STR);
                         break;
-                    case '`buy_center`':
+                    case '`buy_center`':						
                         $stmt->bindValue($identifier, $this->buy_center, PDO::PARAM_STR);
                         break;
                 }
@@ -880,7 +880,7 @@ abstract class BaseCity extends BaseObject implements Persistent
                 return $this->getId();
                 break;
             case 1:
-                return $this->getName();
+                return $this->getCity();
                 break;
             case 2:
                 return $this->getCountry();
@@ -933,7 +933,7 @@ abstract class BaseCity extends BaseObject implements Persistent
         $keys = CityPeer::getFieldNames($keyType);
         $result = array(
             $keys[0] => $this->getId(),
-            $keys[1] => $this->getName(),
+            $keys[1] => $this->getCity(),
             $keys[2] => $this->getCountry(),
             $keys[3] => $this->getDesc(),
             $keys[4] => $this->getUsefulInfo(),
@@ -984,7 +984,7 @@ abstract class BaseCity extends BaseObject implements Persistent
                 $this->setId($value);
                 break;
             case 1:
-                $this->setName($value);
+                $this->setCity($value);
                 break;
             case 2:
                 $this->setCountry($value);
@@ -1032,7 +1032,7 @@ abstract class BaseCity extends BaseObject implements Persistent
         $keys = CityPeer::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
-        if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
+        if (array_key_exists($keys[1], $arr)) $this->setCity($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setCountry($arr[$keys[2]]);
         if (array_key_exists($keys[3], $arr)) $this->setDesc($arr[$keys[3]]);
         if (array_key_exists($keys[4], $arr)) $this->setUsefulInfo($arr[$keys[4]]);
@@ -1052,7 +1052,7 @@ abstract class BaseCity extends BaseObject implements Persistent
         $criteria = new Criteria(CityPeer::DATABASE_NAME);
 
         if ($this->isColumnModified(CityPeer::ID)) $criteria->add(CityPeer::ID, $this->id);
-        if ($this->isColumnModified(CityPeer::NAME)) $criteria->add(CityPeer::NAME, $this->name);
+        if ($this->isColumnModified(CityPeer::CITY)) $criteria->add(CityPeer::CITY, $this->city);
         if ($this->isColumnModified(CityPeer::COUNTRY)) $criteria->add(CityPeer::COUNTRY, $this->country);
         if ($this->isColumnModified(CityPeer::DESC)) $criteria->add(CityPeer::DESC, $this->desc);
         if ($this->isColumnModified(CityPeer::USEFUL_INFO)) $criteria->add(CityPeer::USEFUL_INFO, $this->useful_info);
@@ -1123,7 +1123,7 @@ abstract class BaseCity extends BaseObject implements Persistent
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setName($this->getName());
+        $copyObj->setCity($this->getCity());
         $copyObj->setCountry($this->getCountry());
         $copyObj->setDesc($this->getDesc());
         $copyObj->setUsefulInfo($this->getUsefulInfo());
@@ -1434,7 +1434,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     public function clear()
     {
         $this->id = null;
-        $this->name = null;
+        $this->city = null;
         $this->country = null;
         $this->desc = null;
         $this->useful_info = null;

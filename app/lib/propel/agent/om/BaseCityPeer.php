@@ -4,7 +4,7 @@
 /**
  * Base static class for performing query and update operations on the 'city' table.
  *
- *
+ * 
  *
  * @package propel.generator.agent.om
  */
@@ -35,8 +35,8 @@ abstract class BaseCityPeer
     /** the column name for the id field */
     const ID = 'city.id';
 
-    /** the column name for the name field */
-    const NAME = 'city.name';
+    /** the column name for the city field */
+    const CITY = 'city.city';
 
     /** the column name for the country field */
     const COUNTRY = 'city.country';
@@ -78,11 +78,11 @@ abstract class BaseCityPeer
      * e.g. CityPeer::$fieldNames[CityPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'Country', 'Desc', 'UsefulInfo', 'Place', 'Hotel', 'Restoran', 'BuyCenter', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'country', 'desc', 'usefulInfo', 'place', 'hotel', 'restoran', 'buyCenter', ),
-        BasePeer::TYPE_COLNAME => array (CityPeer::ID, CityPeer::NAME, CityPeer::COUNTRY, CityPeer::DESC, CityPeer::USEFUL_INFO, CityPeer::PLACE, CityPeer::HOTEL, CityPeer::RESTORAN, CityPeer::BUY_CENTER, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'COUNTRY', 'DESC', 'USEFUL_INFO', 'PLACE', 'HOTEL', 'RESTORAN', 'BUY_CENTER', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'country', 'desc', 'useful_info', 'place', 'hotel', 'restoran', 'buy_center', ),
+        BasePeer::TYPE_PHPNAME => array ('Id', 'City', 'Country', 'Desc', 'UsefulInfo', 'Place', 'Hotel', 'Restoran', 'BuyCenter', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'city', 'country', 'desc', 'usefulInfo', 'place', 'hotel', 'restoran', 'buyCenter', ),
+        BasePeer::TYPE_COLNAME => array (CityPeer::ID, CityPeer::CITY, CityPeer::COUNTRY, CityPeer::DESC, CityPeer::USEFUL_INFO, CityPeer::PLACE, CityPeer::HOTEL, CityPeer::RESTORAN, CityPeer::BUY_CENTER, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'CITY', 'COUNTRY', 'DESC', 'USEFUL_INFO', 'PLACE', 'HOTEL', 'RESTORAN', 'BUY_CENTER', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'city', 'country', 'desc', 'useful_info', 'place', 'hotel', 'restoran', 'buy_center', ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
@@ -93,11 +93,11 @@ abstract class BaseCityPeer
      * e.g. CityPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'Country' => 2, 'Desc' => 3, 'UsefulInfo' => 4, 'Place' => 5, 'Hotel' => 6, 'Restoran' => 7, 'BuyCenter' => 8, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'country' => 2, 'desc' => 3, 'usefulInfo' => 4, 'place' => 5, 'hotel' => 6, 'restoran' => 7, 'buyCenter' => 8, ),
-        BasePeer::TYPE_COLNAME => array (CityPeer::ID => 0, CityPeer::NAME => 1, CityPeer::COUNTRY => 2, CityPeer::DESC => 3, CityPeer::USEFUL_INFO => 4, CityPeer::PLACE => 5, CityPeer::HOTEL => 6, CityPeer::RESTORAN => 7, CityPeer::BUY_CENTER => 8, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'COUNTRY' => 2, 'DESC' => 3, 'USEFUL_INFO' => 4, 'PLACE' => 5, 'HOTEL' => 6, 'RESTORAN' => 7, 'BUY_CENTER' => 8, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'country' => 2, 'desc' => 3, 'useful_info' => 4, 'place' => 5, 'hotel' => 6, 'restoran' => 7, 'buy_center' => 8, ),
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'City' => 1, 'Country' => 2, 'Desc' => 3, 'UsefulInfo' => 4, 'Place' => 5, 'Hotel' => 6, 'Restoran' => 7, 'BuyCenter' => 8, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'city' => 1, 'country' => 2, 'desc' => 3, 'usefulInfo' => 4, 'place' => 5, 'hotel' => 6, 'restoran' => 7, 'buyCenter' => 8, ),
+        BasePeer::TYPE_COLNAME => array (CityPeer::ID => 0, CityPeer::CITY => 1, CityPeer::COUNTRY => 2, CityPeer::DESC => 3, CityPeer::USEFUL_INFO => 4, CityPeer::PLACE => 5, CityPeer::HOTEL => 6, CityPeer::RESTORAN => 7, CityPeer::BUY_CENTER => 8, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'CITY' => 1, 'COUNTRY' => 2, 'DESC' => 3, 'USEFUL_INFO' => 4, 'PLACE' => 5, 'HOTEL' => 6, 'RESTORAN' => 7, 'BUY_CENTER' => 8, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'city' => 1, 'country' => 2, 'desc' => 3, 'useful_info' => 4, 'place' => 5, 'hotel' => 6, 'restoran' => 7, 'buy_center' => 8, ),
         BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
@@ -173,7 +173,7 @@ abstract class BaseCityPeer
     {
         if (null === $alias) {
             $criteria->addSelectColumn(CityPeer::ID);
-            $criteria->addSelectColumn(CityPeer::NAME);
+            $criteria->addSelectColumn(CityPeer::CITY);
             $criteria->addSelectColumn(CityPeer::COUNTRY);
             $criteria->addSelectColumn(CityPeer::DESC);
             $criteria->addSelectColumn(CityPeer::USEFUL_INFO);
@@ -183,7 +183,7 @@ abstract class BaseCityPeer
             $criteria->addSelectColumn(CityPeer::BUY_CENTER);
         } else {
             $criteria->addSelectColumn($alias . '.id');
-            $criteria->addSelectColumn($alias . '.name');
+            $criteria->addSelectColumn($alias . '.city');
             $criteria->addSelectColumn($alias . '.country');
             $criteria->addSelectColumn($alias . '.desc');
             $criteria->addSelectColumn($alias . '.useful_info');
@@ -373,7 +373,7 @@ abstract class BaseCityPeer
 
         return null; // just to be explicit
     }
-
+    
     /**
      * Clear the instance pool.
      *
@@ -383,7 +383,7 @@ abstract class BaseCityPeer
     {
         CityPeer::$instances = array();
     }
-
+    
     /**
      * Method to invalidate the instance pool of all tables related to city
      * by a foreign key with ON DELETE CASCADE
@@ -426,7 +426,7 @@ abstract class BaseCityPeer
 
         return (int) $row[$startcol];
     }
-
+    
     /**
      * The returned array will contain objects of the default type or
      * objects that inherit from the default.
@@ -437,7 +437,7 @@ abstract class BaseCityPeer
     public static function populateObjects(PDOStatement $stmt)
     {
         $results = array();
-
+    
         // set the class once to avoid overhead in the loop
         $cls = CityPeer::getOMClass();
         // populate the object(s)
@@ -681,7 +681,7 @@ abstract class BaseCityPeer
             // use transaction because $criteria could contain info
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
-
+            
             $affectedRows += BasePeer::doDelete($criteria, $con);
             CityPeer::clearRelatedInstancePool();
             $con->commit();

@@ -16,7 +16,7 @@ class Admin_Masir_Admin_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$masir = CityQuery::create()->filterByPublish(true)->find();
+		$masir = CityQuery::create()->orderByCountry()->find();
 		$this->setAttribute('masir', $masir->toArray());
 		return 'Success';
 	}

@@ -4,7 +4,7 @@
 /**
  * Base class that represents a query for the 'tiket' table.
  *
- *
+ * 
  *
  * @method TiketQuery orderById($order = Criteria::ASC) Order by the id column
  * @method TiketQuery orderByName($order = Criteria::ASC) Order by the name column
@@ -97,7 +97,7 @@ abstract class BaseTiketQuery extends ModelCriteria
      * $obj  = $c->findPk(12, $con);
      * </code>
      *
-     * @param mixed $key Primary key to use for the query
+     * @param mixed $key Primary key to use for the query 
      * @param     PropelPDO $con an optional connection object
      *
      * @return   Tiket|Tiket[]|mixed the result, formatted by the current formatter
@@ -152,7 +152,7 @@ abstract class BaseTiketQuery extends ModelCriteria
     {
         $sql = 'SELECT `id`, `name`, `subject`, `email`, `mobile`, `desc`, `date`, `publish` FROM `tiket` WHERE `id` = :p0';
         try {
-            $stmt = $con->prepare($sql);
+            $stmt = $con->prepare($sql);			
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {

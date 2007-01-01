@@ -4,7 +4,7 @@
 /**
  * Base static class for performing query and update operations on the 'partners' table.
  *
- *
+ * 
  *
  * @package propel.generator.agent.om
  */
@@ -363,7 +363,7 @@ abstract class BasePartnersPeer
 
         return null; // just to be explicit
     }
-
+    
     /**
      * Clear the instance pool.
      *
@@ -373,7 +373,7 @@ abstract class BasePartnersPeer
     {
         PartnersPeer::$instances = array();
     }
-
+    
     /**
      * Method to invalidate the instance pool of all tables related to partners
      * by a foreign key with ON DELETE CASCADE
@@ -416,7 +416,7 @@ abstract class BasePartnersPeer
 
         return (int) $row[$startcol];
     }
-
+    
     /**
      * The returned array will contain objects of the default type or
      * objects that inherit from the default.
@@ -427,7 +427,7 @@ abstract class BasePartnersPeer
     public static function populateObjects(PDOStatement $stmt)
     {
         $results = array();
-
+    
         // set the class once to avoid overhead in the loop
         $cls = PartnersPeer::getOMClass();
         // populate the object(s)
@@ -671,7 +671,7 @@ abstract class BasePartnersPeer
             // use transaction because $criteria could contain info
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
-
+            
             $affectedRows += BasePeer::doDelete($criteria, $con);
             PartnersPeer::clearRelatedInstancePool();
             $con->commit();

@@ -1,6 +1,6 @@
 <div id="content">
 <div class="breadcrumb">
-<span class="active">افزودن یک مسیر جدید</span>
+<span class="active">سفرنامه</span>
 </div>
 <div id="inner">
 <div class="nav_tabs">
@@ -8,39 +8,27 @@
 .:: پر کردن فیلد های ستاره دار الزامی است ::.
 </div>
 <div class="tab_description">
-.:: در این بخش شما میتوانید یک مسیر جدید ایجاد کنید ::.
+.:: در این بخش شما میتوانید یک سفرنامه جدید ایجاد کنید ::.
 </div>
 <div class="tab_description">
-.:: در صورت ایجاد مسیر شما به صفحه اصلی بخش مدیریت هدایت میشوید در غیر اینصورت به همین صفحه باز میگردید ::. 
+.:: در صورت ایجاد سفرنامه شما به صفحه اصلی بخش مدیریت هدایت میشوید در غیر اینصورت به همین صفحه باز میگردید ::. 
 </div>
 </div>
 <form method="post" action="<?php echo $ro->gen('admin.masir.create.add');?>">
 <div class="border_wrapper">
-<div class="title">افزودن یک مسیر جدید</div>
+<div class="title">افزودن یک سفرنامه  جدید</div>
 <table cellspacing="0" class="general form_container ">
 	<tbody>
 		<tr class="alt_row">
 			<td style="" class="first">
-				<label for="name">نام شهر:  <em>*</em></label>
+			<label for="country">نام کشور:  <em>*</em></label>
 					<div class="form_row">
-						<input type="text" id="name" class="text_input2" name="name">
+						<input type="text" id="country" class="text_input2r" name="country">
 					</div>
-			</td>
-		</tr>
-				<tr class="alt_row">
-			<td style="" class="first">
-				<label for="tour">تور: <em>*</em></label>
-				<select name="tour">
-				<option selected="selected">انتخاب</option>
-				<?php foreach ($t['tour'] as $tour):?>
-				<option value="<?php echo  $tour['Id']; ?>"><?php echo $tour['Name']; ?></option>
-				<?php endforeach;?>
-				</select>
-				<label for="publish">وضعیت انتشار: <em>*</em></label>
-				<select name="publish">
-				<option value="true">اکنون منتشر شود</option>
-				<option value="false">اکنون منتشر نشود</option>
-				</select>
+				<label for="city">نام شهر:  <em>*</em></label>
+					<div class="form_row">
+						<input type="text" id="city" class="text_input2r" name="city">
+					</div>
 			</td>
 		</tr>
 				<tr>

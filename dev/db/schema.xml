@@ -55,7 +55,7 @@
 
 <table name="city">
 <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
-<column name="name" type="VARCHAR" size="45" required="true" />
+<column name="city" type="VARCHAR"  required="true" />
 <column name="country" type="VARCHAR" required="true" />
 <column name="desc" type="LONGVARCHAR" required="false" />
 <column name="useful_info" type="LONGVARCHAR" required="false" />
