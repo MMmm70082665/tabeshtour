@@ -1,0 +1,211 @@
+@font-face {
+    font-family: "bkoodak";
+    src: url("../../font/b koodk.eot?iefix") format("eot"), url("../../font/BKoodak.ttf") format("truetype");
+}
+@font-face {
+    font-family: "sina";
+    src: url("../../font/b sina.eot?iefix") format("eot"), url("../../font/BSina.ttf") format("truetype");
+}
+@font-face {
+    font-family: "byekan";
+    src: url("../../font/b yekan.eot?iefix") format("eot"), url("../../font/BYekan.ttf") format("truetype");
+}
+body {
+	font-family: Tahoma;
+	font-size: 12px;
+	color: #000000;
+	margin: 0;
+}
+
+a {
+	color: #035488;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #444;
+	text-decoration: underline;
+}
+
+.invisible {
+	display: none;
+}
+
+#container {
+	width: 410px;
+	margin: 100px auto;
+}
+
+#logo h1 {
+	height: 82px;
+	background: transparent url(../../images/logo.png) bottom left no-repeat;
+	margin: 10px;
+	padding: 0;
+	width:452px;
+}
+
+#header h1 a {
+	float: right;
+	height: 82px;
+	width: 410px;
+}
+
+#content {
+	border: 2px solid #ccc;
+	background: #fff;
+	border: 1px solid #CFCFCF;
+    box-shadow: 1px 1px 4px #E6E6E6;
+	width:449px;
+}
+
+p, form {
+	padding: 0 10px 10px 10px 
+}
+
+form {
+	padding-bottom: 0;
+}
+
+p {
+	margin-bottom: 0;
+}
+
+form p {
+	padding: 0 0 10px 0;
+}
+
+h2 {
+	direction: rtl;
+ background: url("images/ptitle_bg.png") repeat-x scroll center bottom transparent;
+	border-bottom: 1px solid #000000;
+	color:#fff;
+	margin: 0;
+	padding: 8px;
+	font-size: 12px;
+	background: url("images/ptitle_bg.png") repeat-x scroll center bottom transparent;
+    color:  #FFF;
+    font-size: 100%;
+    font-family: BKoodak;
+    font-size:15px;
+     text-shadow: 0 0 3px #B9D5F5;
+    padding: 6px;
+    text-align: right;
+    border-radius:6px 6px 0 0 ;
+}
+
+input.text_input {
+	border: 1px solid #0F5C8E;
+	background: #fff;
+	width: 275px;
+	padding: 4px;
+	font-size: 13px;
+	direction: ltr;
+	  background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #0F5C8E;
+    font-size: 13px;
+    font-family: b koodak;
+    padding: 3px;
+    border-radius:5px;
+    color: #D82727;
+     font-size: 15px;
+    font-family: b koodak;
+    font-weight: bolder;
+}
+
+input.text_input:focus {
+	border: 1px solid #0099FF;
+    box-shadow: 0 0 2px #0099FF;
+}
+
+#message {
+	direction: rtl;
+	margin: 10px 10px 0 10px;
+	padding: 10px;
+	font-weight: bold;
+	background: #efefef;
+	border: 1px solid #ccc;
+}
+
+#message.error {
+	border: 1px solid #FC6;
+	background: #FFC;
+	color: #C00;
+}
+
+#message.success {
+	border: #080 1px solid;
+	background-color: #E8FCDC;
+	color: #080;
+}
+
+form .label {
+	margin-top: 5px;
+	margin-bottom: 3px;
+	width: 100px;
+	clear: right;
+	float: right;
+	padding-bottom:5px;
+}
+
+form label {
+	font-weight: bold;
+	float: right;
+	direction: rtl;
+	font-family: BKoodak;
+	font-size: 16px;
+	color: #D82727;
+	text-shadow: 0 0 1px #993366;
+}
+
+.form_container .field{
+	float: right;
+	padding-bottom: 5px;
+}
+
+p.submit {
+	clear: both;
+	padding-top: 8px;
+	margin-top: 8px;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+
+p.submit input {
+	padding: 3px;
+	background: #fff url(images/submit_bg.gif) repeat-x top;
+	color: #0F5C8E;
+	font-weight: bold;
+	margin-left: 3px;
+	border-radius:6px;
+	 background-image: url("images/bgmenu-group.png");
+    background-position: center top;
+    border: 0 none;
+    border-radius: 6px;
+    color: #FFFFFF;
+    font: 12px BYekan;
+    min-width: 60px;
+    padding: 4px 10px 3px !important;
+    text-align: center;
+}
+
+.forgot_password {
+	float: right;
+	padding-top: 8px;
+	font-size: 11px;
+}
+
+.forgot_password a {
+	color: #555;
+}
+
+.alert {
+	padding: 5px 10px;
+	border: #FC6 1px solid;
+	background-color: #ffc;
+	color: #900; 
+	font-style: normal;
+	font-weight: bold;
+	padding-left: 10px;
+	display: block;
+}
