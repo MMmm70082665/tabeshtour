@@ -18,7 +18,7 @@
 			<td style="" class="first">
 				<label for="username">نام کاربری :<em>*</em> </label>
 					<div class="form_row">
-						<input value="<?php echo $user['Username'];?>" type="text" id="username" class="text_input2" name="username">
+						<input value="<?php echo $user['Username'];?>" type="text" id="username" class="text_input2l" name="username">
 					</div>
 			</td>
 		</tr>
@@ -27,7 +27,7 @@
 			<td style="" class="first">
 				<label for="password">کلمه عبور:<em>*</em>  </label>
 					<div class="form_row">
-						<input value="<?php echo $user['Password'];?>" type="text" id="password" class="text_input2" name="password">
+						<input value="<?php echo $user['Password'];?>" type="text" id="password" class="text_input2l" name="password">
 					</div>
 			</td>
 		</tr>

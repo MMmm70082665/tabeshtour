@@ -1,15 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fa" lang="rtl">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<base href="<?php echo $ro->getBaseHref(); ?>" />
-		<meta name="ROBOTS" content="index,follow"  />
-		<title><?php if(isset($t['_title'])) echo htmlspecialchars($t['_title']) . ' - '; echo AgaviConfig::get('core.app_name'); ?></title>
+		<meta name="ROBOTS" content="noindex,nofollow"  />
+		<title>TabeshTour - Login</title>
+		<link type="text/css" rel="stylesheet" href="admin/css/login.css"  />
 	</head>
 	<body>
-	<?php echo $slots['header'] ;?>
-	<?php echo $slots['sidebar'] ;?>
+	<div id="container">
+	<div id="page">
 	<?php echo $inner; ?>
-	<?php echo $slots['footer'] ;?>
+	</div>
+	</div>
 	</body>
 </html>

@@ -16,8 +16,23 @@ class Default_LoginAction extends agentDefaultBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		return 'Success';
+		return 'Input';
 	}
+	public function executeWrite(AgaviRequestDataHolder $rd)
+    {
+    	$u = $rd->getParameter('username');
+    	$p = $rd->getParameter('password');
+    	$f = UserQuery::create()->filterByUsername($u)->filterByPassword($p)->find();
+    	
+    	if (count($f) != 0) {
+    		$this->getContext()->getUser()->setAuthenticated(true);
+    		$this->getContext()->getUser()->revokeAllRoles();
+    		return 'Success';
+    	} else {
+    		return 'Error';
+    	}
+      
+    }
 }
 
 ?>

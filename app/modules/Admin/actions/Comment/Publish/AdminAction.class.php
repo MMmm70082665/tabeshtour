@@ -21,6 +21,10 @@ class Admin_Comment_Publish_AdminAction extends agentAdminBaseAction
 		
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

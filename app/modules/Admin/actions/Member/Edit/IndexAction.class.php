@@ -47,6 +47,10 @@ class Admin_Member_Edit_IndexAction extends agentAdminBaseAction
 		
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

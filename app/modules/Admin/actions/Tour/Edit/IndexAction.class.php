@@ -63,6 +63,10 @@ class Admin_Tour_Edit_IndexAction extends agentAdminBaseAction
 		);
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 	
 }
 

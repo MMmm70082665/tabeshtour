@@ -53,6 +53,10 @@ class Admin_Tour_Create_AddAction extends agentAdminBaseAction
 		return 'Success';
 		
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

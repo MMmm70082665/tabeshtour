@@ -104,4 +104,20 @@
 </unique>
 </table>
 
+<table name="slider">
+<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+</table>
+
+<table name="slider_tune">
+<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+<column name="type" type="ENUM" valueSet="img,text" default="text"  />
+<column name="xpos" type="INTEGER" required="true" />
+<column name="ypos" type="INTEGER" required="true" />
+<column name="slider_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="slider">
+<reference local="slider_id" foreign="id"  />
+</foreign-key>
+</table>
+
+
 </database>

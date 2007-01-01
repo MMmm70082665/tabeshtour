@@ -20,7 +20,7 @@
 	<thead>
 		<tr>
 		<th width="5%" style="" class="align_center">شماره پکیج</th>
-			<th width="5%" style="" class="align_center"><a href="<?php echo $ro->gen('admin.tour.admin.index',array('order' => 'Mabda'));?>">مبدا </a></th>
+			<th width="5%" style="" class="align_center">مبدا </th>
 			<th width="5%" style="" class="align_center">مقصد</th>
 			<th width="5%" style="" class="align_center">تور</th>
 			<th width="5%" style="" class="align_center">نوع</th>

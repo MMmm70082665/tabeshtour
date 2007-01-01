@@ -29,6 +29,10 @@ class Admin_Communication_Contact_EllowAction extends agentAdminBaseAction
 		);
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

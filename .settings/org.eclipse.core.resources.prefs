@@ -1,4 +1,4 @@
-#Fri Jul 12 19:06:16 PDT 2013
+#Mon Jan 01 00:45:27 PST 2007
 eclipse.preferences.version=1
 encoding//app/modules/Admin/templates/Comment/Admin/IndexSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Comment/Answer/AddInput.php=UTF-8
@@ -35,3 +35,4 @@ encoding//app/modules/Admin/templates/User/Create/AddSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Widgets/FooterSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Widgets/HeaderSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Widgets/SidebarSuccess.php=UTF-8
+encoding//app/modules/Default/templates/LoginInput.php=UTF-8

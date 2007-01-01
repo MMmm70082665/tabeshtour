@@ -20,6 +20,10 @@ class Admin_Communication_Contact_AdminAction extends agentAdminBaseAction
 		$this->setAttribute('tiket', $tiket->toArray());
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

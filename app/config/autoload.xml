@@ -6,6 +6,7 @@
 		<autoload name="agentBaseAction">%core.lib_dir%/action/agentBaseAction.class.php</autoload>
 		<autoload name="agentBaseModel">%core.lib_dir%/model/agentBaseModel.class.php</autoload>
 		<autoload name="agentBaseView">%core.lib_dir%/view/agentBaseView.class.php</autoload>
+		<autoload name="agentUser">%core.lib_dir%/user/agentUser.class.php</autoload>
 		
 	</ae:configuration>
 	

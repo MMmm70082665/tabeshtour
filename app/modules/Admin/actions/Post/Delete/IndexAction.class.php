@@ -25,6 +25,10 @@ class Admin_Post_Delete_IndexAction extends agentAdminBaseAction
 		$object->delete();
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

@@ -25,6 +25,10 @@ class Admin_Communication_Contact_DeleteAction extends agentAdminBaseAction
 		$object->delete();
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

@@ -29,6 +29,10 @@ class Admin_Post_Publish_PubAction extends agentAdminBaseAction
 		$object->save();
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

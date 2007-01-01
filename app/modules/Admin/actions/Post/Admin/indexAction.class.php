@@ -32,6 +32,10 @@ class Admin_Post_Admin_indexAction extends agentAdminBaseAction
 		$this->setAttribute('post', $value);
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

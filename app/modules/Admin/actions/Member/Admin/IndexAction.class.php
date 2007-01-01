@@ -20,6 +20,10 @@ class Admin_Member_Admin_IndexAction extends agentAdminBaseAction
 		$this->setAttribute('member', $office->toArray());
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

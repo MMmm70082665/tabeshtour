@@ -7,8 +7,23 @@
 	
 	<ae:configuration>
 		
-		<validators>
-		</validators>
+		<validators method="write">
+      <validator class="string" required="true" name="user_valid">
+        <argument>username</argument>
+        <error>Username Incurrent</error>
+        <ae:parameters>
+          <ae:parameter name="min">4</ae:parameter>
+        </ae:parameters>
+      </validator>
+
+      <validator class="string" required="true" name="password_valid">
+        <argument>password</argument>
+        <error>Your password Incurrent</error>
+        <ae:parameters>
+          <ae:parameter name="min">4</ae:parameter>
+        </ae:parameters>
+      </validator>
+    </validators>
 		
 	</ae:configuration>
 	

@@ -16,9 +16,13 @@ class Admin_Post_Publish_AdminAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$matter = NewsQuery::create()->orderByOrder()->filterByPublisher(false)->find();
+		$matter = NewsQuery::create()->orderByOrder()->filterByPublish(false)->find();
 		$this->setAttribute('post', $matter->toArray());
 		return 'Success';
+	}
+	public function isSecure()
+	{
+		return 'true';
 	}
 
 }

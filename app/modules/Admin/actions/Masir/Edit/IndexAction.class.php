@@ -51,6 +51,10 @@ public function executeWrite(AgaviWebRequestDataHolder $rd)
 		);
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

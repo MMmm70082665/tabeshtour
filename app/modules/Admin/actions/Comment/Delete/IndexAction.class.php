@@ -25,6 +25,10 @@ public function executeRead(AgaviRequestDataHolder $rd)
 		$object->delete();
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

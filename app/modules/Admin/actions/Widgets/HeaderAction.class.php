@@ -31,6 +31,10 @@ class Admin_Widgets_HeaderAction extends agentAdminBaseAction
 		return 'Success';
 		
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

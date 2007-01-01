@@ -33,6 +33,10 @@ class Admin_User_Create_AddAction extends agentAdminBaseAction
 		);
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

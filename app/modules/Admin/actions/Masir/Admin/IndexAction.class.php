@@ -20,6 +20,10 @@ class Admin_Masir_Admin_IndexAction extends agentAdminBaseAction
 		$this->setAttribute('masir', $masir->toArray());
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

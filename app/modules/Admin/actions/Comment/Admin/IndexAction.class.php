@@ -20,6 +20,10 @@ class Admin_Comment_Admin_IndexAction extends agentAdminBaseAction
 		$this->setAttribute('comment', $comment->toArray());
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

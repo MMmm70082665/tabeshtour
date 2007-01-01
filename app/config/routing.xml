@@ -3,7 +3,8 @@
 	<ae:configuration>
 		<routes>
 			<!-- default action for "/" -->
-			<route name="index" pattern="^/$" module="%actions.default_module%" action="%actions.default_action%" />
+			<route name="login" pattern="^/$" module="%actions.default_module%" action="Login" />
+			<route name="logout" pattern="^/logout$" module="Default" action="Logout" />
 			
 			<!-- this part of routing for admin page -->
 			<route name="admin" pattern="^/admin-page" module="Admin">

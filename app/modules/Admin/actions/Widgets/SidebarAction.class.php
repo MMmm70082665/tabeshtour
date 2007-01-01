@@ -18,6 +18,10 @@ class Admin_Widgets_SidebarAction extends agentAdminBaseAction
 	{
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

@@ -29,6 +29,10 @@ class Admin_Comment_Ellow_YesAction extends agentAdminBaseAction
 		);
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

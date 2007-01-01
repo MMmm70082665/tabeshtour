@@ -41,6 +41,10 @@ class Admin_Masir_Create_AddAction extends agentAdminBaseAction
 		$obj->save();
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>

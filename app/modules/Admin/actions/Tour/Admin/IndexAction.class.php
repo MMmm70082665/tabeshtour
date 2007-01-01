@@ -16,9 +16,13 @@ class Admin_Tour_Admin_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$tour  = TourQuery::create()->filterByStatus(true)->orderByType()->find();
+		$tour  = TourQuery::create()->filterByStatus(true)->orderByCityId()->find();
 		$this->setAttribute('tour', $tour->toArray());
 		return 'Success';
+	}
+	public function isSecure()
+	{
+		return 'true';
 	}
 }
 

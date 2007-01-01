@@ -20,6 +20,10 @@ class Admin_Tour_Publish_AdminAction extends agentAdminBaseAction
 		$this->setAttribute('tour', $tour->toArray());
 		return 'Success';
 	}
+	public function isSecure()
+	{
+		return 'true';
+	}
 }
 
 ?>
