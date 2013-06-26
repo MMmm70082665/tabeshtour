@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<database name="travel" defaultIdMethod="native" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://xsd.propelorm.org/1.6/database.xsd">
+
+<table name="country">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"  />
+<column name="name" type="VARCHAR" size="25" required="true" />
+<column name="date" type="DATE" required="true" />
+</table>
+
+<table name="country_info">
+<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+<column name="explaine" type="LONGVARCHAR" required="false" />
+<column name="country_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="country">
+<reference local="country_id" foreign="id"/>
+</foreign-key>
+</table>
+
+<table name="city">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="name" type="VARCHAR" size="45" required="true" />
+<column name="date" type="DATE" required="true" />
+<column name="country_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="country">
+<reference local="country_id" foreign="id"/>
+</foreign-key>
+</table>
+
+<table name="city_info">
+<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+<column name="explaine" type="LONGVARCHAR" required="false" />
+<column name="city_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="city">
+<reference local="city_id" foreign="id"/>
+</foreign-key>
+</table>
+
+<table name="record_city">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="day_counter" type="INTEGER" required="true" />
+<column name="status"  type="BOOLEAN" required="true" />
+<column name="city_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="city">
+<reference local="city_id" foreign="id"/>
+</foreign-key>
+</table>
+
+<table name="option">
+<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+<column name="record_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="record_city">
+<reference local="record_id" foreign="id"/>
+</foreign-key>
+</table>
+
+<table name="airplane_info">
+<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+<column name="office_name" type="VARCHAR" size="45" required="true" />
+<column name="address" type="LONGVARCHAR" required="true" />
+<column name="website" type="VARCHAR" size="60" required="false" />
+<column name="explaine" type="LONGVARCHAR" required="true" />
+<column name="record_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="record_city">
+<reference local="record_id" foreign="id"/>
+</foreign-key>
+</table>
+
+<table name="reserve">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="name" type="VARCHAR" size="45" required="true" />
+<column name="family" type="VARCHAR" size="45" required="true" />
+<column name="address" type="LONGVARCHAR" required="true" />
+<column name="mobile" type="VARCHAR" size="11" required="false" />
+<column name="record_id" type="INTEGER" required="false" />
+<foreign-key foreignTable="record_city">
+<reference local="record_id" foreign="id"/>
+</foreign-key>
+</table>
+
+<table name="post"> 
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="subject" type="VARCHAR" required="true" />
+<column name="date" type="DATE" required="true" />
+<column name="main_explaine" type="LONGVARCHAR" required="true" />
+<column name="order" type="INTEGER" required="true" />
+</table>
+
+<table name="contact_us">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="email" type="VARCHAR" size="60" required="true" />
+<column name="explaine" type="LONGVARCHAR" required="true" />
+<column name="mobile" type="VARCHAR" size="11" required="false" /> 
+</table>
+
+<table name="about_us">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+</table>
+
+<table name="complaint">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+</table>
+
+<table name="comment_meter">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+</table>
+</database>

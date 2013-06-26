@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+ <!-- Uncomment this if you have PEAR Log installed
+  <log>
+    <type>file</type>
+    <name>/path/to/propel.log</name>
+    <ident>propel-downloadvar</ident>
+    <level>7</level>
+  </log>
+  -->
+  <propel>
+    <datasources default="travel">
+      <datasource id="travel">
+        <adapter>mysql</adapter>
+        <connection>
+          <dsn>mysql:host=localhost;dbname=travel</dsn>
+          <user>root</user>
+          <password></password>
+        </connection>
+		</datasource>
+    </datasources>
+  </propel>
+</config>
+
+
