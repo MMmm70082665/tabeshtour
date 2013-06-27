@@ -13,8 +13,11 @@
 			<route name=".create" pattern="^/create" action=".Create">
 			<route name=".add" pattern="^/new$" action=".Add" />
 			</route>
+			<route name=".admin" pattern="^/administrator" action=".Admin">
+			<route name=".index" pattern="^/page$" action=".Index" />
 			</route>
 			
+			</route>
 			</route>
 			
 			

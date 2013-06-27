@@ -6,6 +6,9 @@
 		<title><?php if(isset($t['_title'])) echo htmlspecialchars($t['_title']) . ' - '; echo AgaviConfig::get('core.app_name'); ?></title>
 	</head>
 	<body>
+	<?php echo $slots['header'] ;?>
+	<?php echo $slots['sidebar'] ;?>
 	<?php echo $inner; ?>
+	<?php echo $slots['footer'] ;?>
 	</body>
 </html>
