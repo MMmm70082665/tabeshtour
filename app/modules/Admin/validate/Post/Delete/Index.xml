@@ -7,9 +7,13 @@
 	
 	<ae:configuration>
 		
-		<validators>
+			<validators method="read">
+		<validator class="number" name="id">
+			<arguments>
+				<argument>id</argument>
+			</arguments>
+		</validator>
 		</validators>
-		
 	</ae:configuration>
 	
 </ae:configurations>
