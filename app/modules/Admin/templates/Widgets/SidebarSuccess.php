@@ -4,7 +4,7 @@
 <div class="title">مطالب </div>
 <ul class="menu">
 <li><a href="<?php echo $ro->gen('admin.post.create.add');?>">ایجاد خبر</a></li>
-<li class=""><a href="<?php echo $ro->gen('admin.post.admin.index');?>">مدیریت خبر ها</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.post.admin.index',array('id' => 1));?>">مدیریت خبر ها</a></li>
 </ul>
 </div>
 <div class="left_menu_box">

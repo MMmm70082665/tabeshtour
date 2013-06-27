@@ -11,7 +11,7 @@ set_include_path(
 // | An absolute filesystem path to the agavi/agavi.php script.                |
 // +---------------------------------------------------------------------------+
 require('../libs/agavi/agavi.php');
-
+require_once dirname(__FILE__).'/../libs/jdatetime/jdatetime.class.php';
 // +---------------------------------------------------------------------------+
 // | An absolute filesystem path to our app/config.php script.                 |
 // +---------------------------------------------------------------------------+

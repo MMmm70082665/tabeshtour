@@ -26,26 +26,26 @@
             <tbody>
                 <?php foreach ($t['post'] as $post): ?>
 		<tr class="first">
-			<td class="align_center last alt_col" style="">62</td>
+			<td class="align_center last alt_col" style=""><?php echo $post['Id']?></td>
                         <td class="first" style=""><?php echo $post['Subject'];   ?></td>
 			<td class="align_center alt_col" style="">
-			<a href="/news/matter/publish/pub/62">منتشر شده</a></td>
-			<td class="align_center alt_col" style="">8</td>
+			<a href="<?php echo $ro->gen('admin.post.publish.waiting',array('id' => $post['Id']));?>">منتشر شده</a></td>
+			<td class="align_center alt_col" style=""><?php echo $post['View']?></td>
 			<td class="align_center" style="">
-			<a href="/news/matter/edite/edit/62">ویرایش</a>
+			<a href="<?php echo $ro->gen('admin.post.edit.index',array('id' => $post['Id']));?>">ویرایش</a>
 			</td>
 			<td class="align_center last alt_col" style="">
-			<a href="/news/matter/delete/del/62">حذف</a>
+			<a href="<?php echo $ro->gen('admin.post.delete.index',array('id' => $post['Id']));?>">حذف</a>
 			</td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
 </table>
-</div>	
+</div>
 <div class="pagination clearfix">
-                       <a href="/news/matter/admin/page/1">1</a>
-                       <a href="/news/matter/admin/page/2">2</a>
-                       <a href="/news/matter/admin/page/3">3</a>
+			<?php foreach ($t['page'] as $page):?>	
+                       <a href="<?php echo $ro->gen('admin.post.admin.index',array('id' => $page)); ?>"><?php echo $page ;?></a>
+            		            <?php endforeach;?>
             		</div>
 		</div>
 		</div>

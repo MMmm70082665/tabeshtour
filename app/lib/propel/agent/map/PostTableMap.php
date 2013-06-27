@@ -40,9 +40,13 @@ class PostTableMap extends TableMap
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
-        $this->addColumn('date', 'Date', 'DATE', true, null, null);
-        $this->addColumn('main_explaine', 'MainExplaine', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('long_desc', 'LongDesc', 'LONGVARCHAR', true, null, null);
+        $this->addColumn('short_desc', 'ShortDesc', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('publisher', 'Publisher', 'BOOLEAN', true, 1, null);
+        $this->addColumn('date', 'Date', 'VARCHAR', true, 255, null);
+        $this->addColumn('tag', 'Tag', 'LONGVARCHAR', false, null, null);
         $this->addColumn('order', 'Order', 'INTEGER', true, null, null);
+        $this->addColumn('view', 'View', 'INTEGER', false, null, null);
         // validators
     } // initialize()
 

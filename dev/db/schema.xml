@@ -81,9 +81,13 @@
 <table name="post"> 
 <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
 <column name="subject" type="VARCHAR" required="true" />
-<column name="date" type="DATE" required="true" />
-<column name="main_explaine" type="LONGVARCHAR" required="true" />
+<column name="long_desc" type="LONGVARCHAR" required="true" />
+<column name="short_desc" type="LONGVARCHAR" required="false" />
+<column name="publisher" type="BOOLEAN" required="true" />
+<column name="date" type="VARCHAR" required="true" />
+<column name="tag" type="LONGVARCHAR" required="false" />
 <column name="order" type="INTEGER" required="true" />
+<column name="view" type="INTEGER" required="false" />
 </table>
 
 <table name="contact_us">

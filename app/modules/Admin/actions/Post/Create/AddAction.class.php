@@ -18,6 +18,28 @@ class Admin_Post_Create_AddAction extends agentAdminBaseAction
 	{
 		return 'Input';
 	}
+	public function executeWrite(AgaviWebRequestDataHolder $rd)
+	{
+        $shamsi = new jDateTime();
+       	$post = PostQuery::create()->find();
+        $order = 999 - count($post);
+		$subject = $rd->getParameter('subject');
+		$long_desc = $rd->getParameter('long_desc');
+		$short_desc = $rd->getParameter('short_desc');
+		$tag = $rd->getParameter('tag');
+		$pub = $rd->getParameter('publisher');
+		$obj = new Post();
+		$obj->setSubject($subject);
+		$obj->setLongDesc($long_desc);
+		$obj->setShortDesc($short_desc);
+		$obj->setPublisher($pub);
+		$obj->setTag($tag);
+        $obj->setDate($shamsi->date('d M Y',time()));
+        $obj->setView(1);
+        $obj->setOrder($order);
+		$obj->save();
+		return 'Success';
+	}
 }
 
 ?>

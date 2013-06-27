@@ -24,13 +24,13 @@ abstract class BasePostPeer
     const TM_CLASS = 'PostTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 5;
+    const NUM_COLUMNS = 9;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 5;
+    const NUM_HYDRATE_COLUMNS = 9;
 
     /** the column name for the id field */
     const ID = 'post.id';
@@ -38,14 +38,26 @@ abstract class BasePostPeer
     /** the column name for the subject field */
     const SUBJECT = 'post.subject';
 
+    /** the column name for the long_desc field */
+    const LONG_DESC = 'post.long_desc';
+
+    /** the column name for the short_desc field */
+    const SHORT_DESC = 'post.short_desc';
+
+    /** the column name for the publisher field */
+    const PUBLISHER = 'post.publisher';
+
     /** the column name for the date field */
     const DATE = 'post.date';
 
-    /** the column name for the main_explaine field */
-    const MAIN_EXPLAINE = 'post.main_explaine';
+    /** the column name for the tag field */
+    const TAG = 'post.tag';
 
     /** the column name for the order field */
     const ORDER = 'post.order';
+
+    /** the column name for the view field */
+    const VIEW = 'post.view';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -66,12 +78,12 @@ abstract class BasePostPeer
      * e.g. PostPeer::$fieldNames[PostPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Subject', 'Date', 'MainExplaine', 'Order', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'subject', 'date', 'mainExplaine', 'order', ),
-        BasePeer::TYPE_COLNAME => array (PostPeer::ID, PostPeer::SUBJECT, PostPeer::DATE, PostPeer::MAIN_EXPLAINE, PostPeer::ORDER, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SUBJECT', 'DATE', 'MAIN_EXPLAINE', 'ORDER', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'subject', 'date', 'main_explaine', 'order', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Subject', 'LongDesc', 'ShortDesc', 'Publisher', 'Date', 'Tag', 'Order', 'View', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'subject', 'longDesc', 'shortDesc', 'publisher', 'date', 'tag', 'order', 'view', ),
+        BasePeer::TYPE_COLNAME => array (PostPeer::ID, PostPeer::SUBJECT, PostPeer::LONG_DESC, PostPeer::SHORT_DESC, PostPeer::PUBLISHER, PostPeer::DATE, PostPeer::TAG, PostPeer::ORDER, PostPeer::VIEW, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'SUBJECT', 'LONG_DESC', 'SHORT_DESC', 'PUBLISHER', 'DATE', 'TAG', 'ORDER', 'VIEW', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'subject', 'long_desc', 'short_desc', 'publisher', 'date', 'tag', 'order', 'view', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -81,12 +93,12 @@ abstract class BasePostPeer
      * e.g. PostPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Subject' => 1, 'Date' => 2, 'MainExplaine' => 3, 'Order' => 4, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'subject' => 1, 'date' => 2, 'mainExplaine' => 3, 'order' => 4, ),
-        BasePeer::TYPE_COLNAME => array (PostPeer::ID => 0, PostPeer::SUBJECT => 1, PostPeer::DATE => 2, PostPeer::MAIN_EXPLAINE => 3, PostPeer::ORDER => 4, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SUBJECT' => 1, 'DATE' => 2, 'MAIN_EXPLAINE' => 3, 'ORDER' => 4, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'subject' => 1, 'date' => 2, 'main_explaine' => 3, 'order' => 4, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Subject' => 1, 'LongDesc' => 2, 'ShortDesc' => 3, 'Publisher' => 4, 'Date' => 5, 'Tag' => 6, 'Order' => 7, 'View' => 8, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'subject' => 1, 'longDesc' => 2, 'shortDesc' => 3, 'publisher' => 4, 'date' => 5, 'tag' => 6, 'order' => 7, 'view' => 8, ),
+        BasePeer::TYPE_COLNAME => array (PostPeer::ID => 0, PostPeer::SUBJECT => 1, PostPeer::LONG_DESC => 2, PostPeer::SHORT_DESC => 3, PostPeer::PUBLISHER => 4, PostPeer::DATE => 5, PostPeer::TAG => 6, PostPeer::ORDER => 7, PostPeer::VIEW => 8, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'SUBJECT' => 1, 'LONG_DESC' => 2, 'SHORT_DESC' => 3, 'PUBLISHER' => 4, 'DATE' => 5, 'TAG' => 6, 'ORDER' => 7, 'VIEW' => 8, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'subject' => 1, 'long_desc' => 2, 'short_desc' => 3, 'publisher' => 4, 'date' => 5, 'tag' => 6, 'order' => 7, 'view' => 8, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -162,15 +174,23 @@ abstract class BasePostPeer
         if (null === $alias) {
             $criteria->addSelectColumn(PostPeer::ID);
             $criteria->addSelectColumn(PostPeer::SUBJECT);
+            $criteria->addSelectColumn(PostPeer::LONG_DESC);
+            $criteria->addSelectColumn(PostPeer::SHORT_DESC);
+            $criteria->addSelectColumn(PostPeer::PUBLISHER);
             $criteria->addSelectColumn(PostPeer::DATE);
-            $criteria->addSelectColumn(PostPeer::MAIN_EXPLAINE);
+            $criteria->addSelectColumn(PostPeer::TAG);
             $criteria->addSelectColumn(PostPeer::ORDER);
+            $criteria->addSelectColumn(PostPeer::VIEW);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.subject');
+            $criteria->addSelectColumn($alias . '.long_desc');
+            $criteria->addSelectColumn($alias . '.short_desc');
+            $criteria->addSelectColumn($alias . '.publisher');
             $criteria->addSelectColumn($alias . '.date');
-            $criteria->addSelectColumn($alias . '.main_explaine');
+            $criteria->addSelectColumn($alias . '.tag');
             $criteria->addSelectColumn($alias . '.order');
+            $criteria->addSelectColumn($alias . '.view');
         }
     }
 

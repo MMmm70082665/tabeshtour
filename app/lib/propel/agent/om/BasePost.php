@@ -42,22 +42,46 @@ abstract class BasePost extends BaseObject implements Persistent
     protected $subject;
 
     /**
+     * The value for the long_desc field.
+     * @var        string
+     */
+    protected $long_desc;
+
+    /**
+     * The value for the short_desc field.
+     * @var        string
+     */
+    protected $short_desc;
+
+    /**
+     * The value for the publisher field.
+     * @var        boolean
+     */
+    protected $publisher;
+
+    /**
      * The value for the date field.
      * @var        string
      */
     protected $date;
 
     /**
-     * The value for the main_explaine field.
+     * The value for the tag field.
      * @var        string
      */
-    protected $main_explaine;
+    protected $tag;
 
     /**
      * The value for the order field.
      * @var        int
      */
     protected $order;
+
+    /**
+     * The value for the view field.
+     * @var        int
+     */
+    protected $view;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -94,53 +118,53 @@ abstract class BasePost extends BaseObject implements Persistent
     }
 
     /**
-     * Get the [optionally formatted] temporal [date] column value.
-     *
-     *
-     * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00
-     * @throws PropelException - if unable to parse/validate the date/time value.
-     */
-    public function getDate($format = '%x')
-    {
-        if ($this->date === null) {
-            return null;
-        }
-
-        if ($this->date === '0000-00-00') {
-            // while technically this is not a default value of null,
-            // this seems to be closest in meaning.
-            return null;
-        }
-
-        try {
-            $dt = new DateTime($this->date);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->date, true), $x);
-        }
-
-        if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        }
-
-        return $dt->format($format);
-
-    }
-
-    /**
-     * Get the [main_explaine] column value.
+     * Get the [long_desc] column value.
      *
      * @return string
      */
-    public function getMainExplaine()
+    public function getLongDesc()
     {
-        return $this->main_explaine;
+        return $this->long_desc;
+    }
+
+    /**
+     * Get the [short_desc] column value.
+     *
+     * @return string
+     */
+    public function getShortDesc()
+    {
+        return $this->short_desc;
+    }
+
+    /**
+     * Get the [publisher] column value.
+     *
+     * @return boolean
+     */
+    public function getPublisher()
+    {
+        return $this->publisher;
+    }
+
+    /**
+     * Get the [date] column value.
+     *
+     * @return string
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Get the [tag] column value.
+     *
+     * @return string
+     */
+    public function getTag()
+    {
+        return $this->tag;
     }
 
     /**
@@ -151,6 +175,16 @@ abstract class BasePost extends BaseObject implements Persistent
     public function getOrder()
     {
         return $this->order;
+    }
+
+    /**
+     * Get the [view] column value.
+     *
+     * @return int
+     */
+    public function getView()
+    {
+        return $this->view;
     }
 
     /**
@@ -196,48 +230,117 @@ abstract class BasePost extends BaseObject implements Persistent
     } // setSubject()
 
     /**
-     * Sets the value of [date] column to a normalized version of the date/time value specified.
+     * Set the value of [long_desc] column.
      *
-     * @param mixed $v string, integer (timestamp), or DateTime value.
-     *               Empty strings are treated as null.
+     * @param string $v new value
+     * @return Post The current object (for fluent API support)
+     */
+    public function setLongDesc($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->long_desc !== $v) {
+            $this->long_desc = $v;
+            $this->modifiedColumns[] = PostPeer::LONG_DESC;
+        }
+
+
+        return $this;
+    } // setLongDesc()
+
+    /**
+     * Set the value of [short_desc] column.
+     *
+     * @param string $v new value
+     * @return Post The current object (for fluent API support)
+     */
+    public function setShortDesc($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->short_desc !== $v) {
+            $this->short_desc = $v;
+            $this->modifiedColumns[] = PostPeer::SHORT_DESC;
+        }
+
+
+        return $this;
+    } // setShortDesc()
+
+    /**
+     * Sets the value of the [publisher] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return Post The current object (for fluent API support)
+     */
+    public function setPublisher($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->publisher !== $v) {
+            $this->publisher = $v;
+            $this->modifiedColumns[] = PostPeer::PUBLISHER;
+        }
+
+
+        return $this;
+    } // setPublisher()
+
+    /**
+     * Set the value of [date] column.
+     *
+     * @param string $v new value
      * @return Post The current object (for fluent API support)
      */
     public function setDate($v)
     {
-        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-        if ($this->date !== null || $dt !== null) {
-            $currentDateAsString = ($this->date !== null && $tmpDt = new DateTime($this->date)) ? $tmpDt->format('Y-m-d') : null;
-            $newDateAsString = $dt ? $dt->format('Y-m-d') : null;
-            if ($currentDateAsString !== $newDateAsString) {
-                $this->date = $newDateAsString;
-                $this->modifiedColumns[] = PostPeer::DATE;
-            }
-        } // if either are not null
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->date !== $v) {
+            $this->date = $v;
+            $this->modifiedColumns[] = PostPeer::DATE;
+        }
 
 
         return $this;
     } // setDate()
 
     /**
-     * Set the value of [main_explaine] column.
+     * Set the value of [tag] column.
      *
      * @param string $v new value
      * @return Post The current object (for fluent API support)
      */
-    public function setMainExplaine($v)
+    public function setTag($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->main_explaine !== $v) {
-            $this->main_explaine = $v;
-            $this->modifiedColumns[] = PostPeer::MAIN_EXPLAINE;
+        if ($this->tag !== $v) {
+            $this->tag = $v;
+            $this->modifiedColumns[] = PostPeer::TAG;
         }
 
 
         return $this;
-    } // setMainExplaine()
+    } // setTag()
 
     /**
      * Set the value of [order] column.
@@ -259,6 +362,27 @@ abstract class BasePost extends BaseObject implements Persistent
 
         return $this;
     } // setOrder()
+
+    /**
+     * Set the value of [view] column.
+     *
+     * @param int $v new value
+     * @return Post The current object (for fluent API support)
+     */
+    public function setView($v)
+    {
+        if ($v !== null) {
+            $v = (int) $v;
+        }
+
+        if ($this->view !== $v) {
+            $this->view = $v;
+            $this->modifiedColumns[] = PostPeer::VIEW;
+        }
+
+
+        return $this;
+    } // setView()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -294,9 +418,13 @@ abstract class BasePost extends BaseObject implements Persistent
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->subject = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-            $this->date = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->main_explaine = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->order = ($row[$startcol + 4] !== null) ? (int) $row[$startcol + 4] : null;
+            $this->long_desc = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+            $this->short_desc = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->publisher = ($row[$startcol + 4] !== null) ? (boolean) $row[$startcol + 4] : null;
+            $this->date = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->tag = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->order = ($row[$startcol + 7] !== null) ? (int) $row[$startcol + 7] : null;
+            $this->view = ($row[$startcol + 8] !== null) ? (int) $row[$startcol + 8] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -305,7 +433,7 @@ abstract class BasePost extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 5; // 5 = PostPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 9; // 9 = PostPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Post object", $e);
@@ -523,14 +651,26 @@ abstract class BasePost extends BaseObject implements Persistent
         if ($this->isColumnModified(PostPeer::SUBJECT)) {
             $modifiedColumns[':p' . $index++]  = '`subject`';
         }
+        if ($this->isColumnModified(PostPeer::LONG_DESC)) {
+            $modifiedColumns[':p' . $index++]  = '`long_desc`';
+        }
+        if ($this->isColumnModified(PostPeer::SHORT_DESC)) {
+            $modifiedColumns[':p' . $index++]  = '`short_desc`';
+        }
+        if ($this->isColumnModified(PostPeer::PUBLISHER)) {
+            $modifiedColumns[':p' . $index++]  = '`publisher`';
+        }
         if ($this->isColumnModified(PostPeer::DATE)) {
             $modifiedColumns[':p' . $index++]  = '`date`';
         }
-        if ($this->isColumnModified(PostPeer::MAIN_EXPLAINE)) {
-            $modifiedColumns[':p' . $index++]  = '`main_explaine`';
+        if ($this->isColumnModified(PostPeer::TAG)) {
+            $modifiedColumns[':p' . $index++]  = '`tag`';
         }
         if ($this->isColumnModified(PostPeer::ORDER)) {
             $modifiedColumns[':p' . $index++]  = '`order`';
+        }
+        if ($this->isColumnModified(PostPeer::VIEW)) {
+            $modifiedColumns[':p' . $index++]  = '`view`';
         }
 
         $sql = sprintf(
@@ -549,14 +689,26 @@ abstract class BasePost extends BaseObject implements Persistent
                     case '`subject`':
                         $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
                         break;
+                    case '`long_desc`':
+                        $stmt->bindValue($identifier, $this->long_desc, PDO::PARAM_STR);
+                        break;
+                    case '`short_desc`':
+                        $stmt->bindValue($identifier, $this->short_desc, PDO::PARAM_STR);
+                        break;
+                    case '`publisher`':
+                        $stmt->bindValue($identifier, (int) $this->publisher, PDO::PARAM_INT);
+                        break;
                     case '`date`':
                         $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
                         break;
-                    case '`main_explaine`':
-                        $stmt->bindValue($identifier, $this->main_explaine, PDO::PARAM_STR);
+                    case '`tag`':
+                        $stmt->bindValue($identifier, $this->tag, PDO::PARAM_STR);
                         break;
                     case '`order`':
                         $stmt->bindValue($identifier, $this->order, PDO::PARAM_INT);
+                        break;
+                    case '`view`':
+                        $stmt->bindValue($identifier, $this->view, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -699,13 +851,25 @@ abstract class BasePost extends BaseObject implements Persistent
                 return $this->getSubject();
                 break;
             case 2:
-                return $this->getDate();
+                return $this->getLongDesc();
                 break;
             case 3:
-                return $this->getMainExplaine();
+                return $this->getShortDesc();
                 break;
             case 4:
+                return $this->getPublisher();
+                break;
+            case 5:
+                return $this->getDate();
+                break;
+            case 6:
+                return $this->getTag();
+                break;
+            case 7:
                 return $this->getOrder();
+                break;
+            case 8:
+                return $this->getView();
                 break;
             default:
                 return null;
@@ -737,9 +901,13 @@ abstract class BasePost extends BaseObject implements Persistent
         $result = array(
             $keys[0] => $this->getId(),
             $keys[1] => $this->getSubject(),
-            $keys[2] => $this->getDate(),
-            $keys[3] => $this->getMainExplaine(),
-            $keys[4] => $this->getOrder(),
+            $keys[2] => $this->getLongDesc(),
+            $keys[3] => $this->getShortDesc(),
+            $keys[4] => $this->getPublisher(),
+            $keys[5] => $this->getDate(),
+            $keys[6] => $this->getTag(),
+            $keys[7] => $this->getOrder(),
+            $keys[8] => $this->getView(),
         );
 
         return $result;
@@ -781,13 +949,25 @@ abstract class BasePost extends BaseObject implements Persistent
                 $this->setSubject($value);
                 break;
             case 2:
-                $this->setDate($value);
+                $this->setLongDesc($value);
                 break;
             case 3:
-                $this->setMainExplaine($value);
+                $this->setShortDesc($value);
                 break;
             case 4:
+                $this->setPublisher($value);
+                break;
+            case 5:
+                $this->setDate($value);
+                break;
+            case 6:
+                $this->setTag($value);
+                break;
+            case 7:
                 $this->setOrder($value);
+                break;
+            case 8:
+                $this->setView($value);
                 break;
         } // switch()
     }
@@ -815,9 +995,13 @@ abstract class BasePost extends BaseObject implements Persistent
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setSubject($arr[$keys[1]]);
-        if (array_key_exists($keys[2], $arr)) $this->setDate($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setMainExplaine($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setOrder($arr[$keys[4]]);
+        if (array_key_exists($keys[2], $arr)) $this->setLongDesc($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setShortDesc($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setPublisher($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setDate($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setTag($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setOrder($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setView($arr[$keys[8]]);
     }
 
     /**
@@ -831,9 +1015,13 @@ abstract class BasePost extends BaseObject implements Persistent
 
         if ($this->isColumnModified(PostPeer::ID)) $criteria->add(PostPeer::ID, $this->id);
         if ($this->isColumnModified(PostPeer::SUBJECT)) $criteria->add(PostPeer::SUBJECT, $this->subject);
+        if ($this->isColumnModified(PostPeer::LONG_DESC)) $criteria->add(PostPeer::LONG_DESC, $this->long_desc);
+        if ($this->isColumnModified(PostPeer::SHORT_DESC)) $criteria->add(PostPeer::SHORT_DESC, $this->short_desc);
+        if ($this->isColumnModified(PostPeer::PUBLISHER)) $criteria->add(PostPeer::PUBLISHER, $this->publisher);
         if ($this->isColumnModified(PostPeer::DATE)) $criteria->add(PostPeer::DATE, $this->date);
-        if ($this->isColumnModified(PostPeer::MAIN_EXPLAINE)) $criteria->add(PostPeer::MAIN_EXPLAINE, $this->main_explaine);
+        if ($this->isColumnModified(PostPeer::TAG)) $criteria->add(PostPeer::TAG, $this->tag);
         if ($this->isColumnModified(PostPeer::ORDER)) $criteria->add(PostPeer::ORDER, $this->order);
+        if ($this->isColumnModified(PostPeer::VIEW)) $criteria->add(PostPeer::VIEW, $this->view);
 
         return $criteria;
     }
@@ -898,9 +1086,13 @@ abstract class BasePost extends BaseObject implements Persistent
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
         $copyObj->setSubject($this->getSubject());
+        $copyObj->setLongDesc($this->getLongDesc());
+        $copyObj->setShortDesc($this->getShortDesc());
+        $copyObj->setPublisher($this->getPublisher());
         $copyObj->setDate($this->getDate());
-        $copyObj->setMainExplaine($this->getMainExplaine());
+        $copyObj->setTag($this->getTag());
         $copyObj->setOrder($this->getOrder());
+        $copyObj->setView($this->getView());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -954,9 +1146,13 @@ abstract class BasePost extends BaseObject implements Persistent
     {
         $this->id = null;
         $this->subject = null;
+        $this->long_desc = null;
+        $this->short_desc = null;
+        $this->publisher = null;
         $this->date = null;
-        $this->main_explaine = null;
+        $this->tag = null;
         $this->order = null;
+        $this->view = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->clearAllReferences();

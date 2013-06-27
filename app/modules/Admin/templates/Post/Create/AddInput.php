@@ -5,52 +5,35 @@
 <div id="inner">
 <div class="nav_tabs">
 <div class="tab_description">
+.:: پر کردن فیلد های ستاره دار الزامی است ::.
+</div>
+<div class="tab_description">
 .:: در این بخش شما میتوانید یک مطلب جدید ایجاد کنید ::.
 </div>
 <div class="tab_description">
 .:: در صورت ایجاد مطلب شما به صفحه اصلی بخش مدیریت هدایت میشوید در غیر اینصورت به همین صفحه باز میگردید ::. 
 </div>
-<div class="tab_description">
-.:: پر کردن فیلد های ستاره دار الزامی است ::.
-</div>
 
 </div>
-<form method="post" action="">
+<form method="post" action="<?php echo $ro->gen('admin.post.create.add');?>">
 <div class="border_wrapper">
 <div class="title">افزودن یک مطلب جدید</div>
 <table cellspacing="0" class="general form_container ">
 	<tbody>
 		<tr class="alt_row">
 			<td style="" class="first">
-				<label for="main_subject">عنوان اصلی:  <em>*</em></label>
+				<label for="subject">عنوان اصلی:  <em>*</em></label>
 					<div class="form_row">
-						<input type="text" id="main_subject" class="text_input" name="main_subject">
+						<input type="text" id="subject" class="text_input" name="subject">
 					</div>
 			</td>
 		</tr>
 				<tr class="alt_row">
 			<td style="" class="first">
-							<label for="user_id">نام نویسنده: <em>*</em></label>
-				<select name="user_id">
-				<option selected="selected">انتخاب</option>
-				
-				<option value=""></option>
-				
-				</select>
 			<label for="publisher">وضعیت انتشار: <em>*</em></label>
 				<select name="publisher">
-				<option value="1">اکنون منتشر شود</option>
-				<option value="0">اکنون منتشر نشود</option>
-				</select>
-				<label for="spicial">مطلب ویژه: <em>*</em></label>
-				<select name="spicial">
-				<option selected="selected" value="0">خیر</option>
-				<option value="1">بله</option>
-				<option value="0">خیر</option>
-				</select>
-			<label for="order">اولویت: <em>*</em></label>
-				<select name="order">
-				<option value=""></option>
+				<option value="true">اکنون منتشر شود</option>
+				<option value="false">اکنون منتشر نشود</option>
 				</select>
 			</td>
 		</tr>
@@ -68,9 +51,9 @@
 		</tr>
 		<tr>
 			<td style="" class="first">
-			<label for="tag_desc">متاتگ Description:<em>*</em></label>
+			<label for="tag">متاتگ Description:</label>
 				<div class="form_row">
-				<textarea cols="45" rows="5" id="tag_desc" name="tag_desc" ></textarea>
+				<textarea cols="45" rows="5" id="tag" name="tag" ></textarea>
 				</div>
 			</td>
 		</tr>
@@ -86,7 +69,7 @@
 		</div>
 		<br style="clear: both;">
 <br style="clear: both;">
-<script type="text/javascript" src="admin/js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script><script type="text/javascript">
+<script type="text/javascript" src="js/tinymce/jscripts/tiny_mce/tiny_mce.js"></script><script type="text/javascript">
 tinyMCE.init({
         // General options
         mode : "textareas",

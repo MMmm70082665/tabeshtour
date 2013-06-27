@@ -160,9 +160,13 @@ CREATE TABLE `post`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `subject` VARCHAR(255) NOT NULL,
-    `date` DATE NOT NULL,
-    `main_explaine` TEXT NOT NULL,
+    `long_desc` TEXT NOT NULL,
+    `short_desc` TEXT,
+    `publisher` TINYINT(1) NOT NULL,
+    `date` VARCHAR(255) NOT NULL,
+    `tag` TEXT,
     `order` INTEGER NOT NULL,
+    `view` INTEGER,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 

@@ -7,7 +7,48 @@
 	
 	<ae:configuration>
 		
-		<validators>
+		<validators method="write">
+		 	<validator class="string">
+        		<arguments>
+          			<argument>subject</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+		<validator class="string">
+			<arguments>
+				<argument>publisher</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>long_desc</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+        		<arguments>
+          			<argument>short_desc</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>tag</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+       
 		</validators>
 		
 	</ae:configuration>

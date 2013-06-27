@@ -14,7 +14,7 @@
 			<route name=".add" pattern="^/new$" action=".Add" />
 			</route>
 			<route name=".admin" pattern="^/administrator" action=".Admin">
-			<route name=".index" pattern="^/page$" action=".Index" />
+			<route name=".index" pattern="^/page/(id:\d+)$" action=".Index" />
 			</route>
 			
 			</route>

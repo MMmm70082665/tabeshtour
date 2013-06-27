@@ -16,9 +16,21 @@ class Admin_Post_Admin_indexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-            $post = PostQuery::create()->orderByOrder()->find();
-            $this->setAttribute('post', $post->toArray());
             return 'Success';
+	}
+	public function executeRead(AgaviRequestDataHolder $rd)
+	{
+		$value = array();
+		$id = $rd->getParameter('id');
+		$post = PostQuery::create()->filterByPublisher(true)->orderByOrder()->paginate($id,20);
+		$page = $post->getLinks(100);
+		$this->setAttribute('page', $page);
+		foreach ($post as $p)
+		{
+			$value[] = $p->toArray();
+		}
+		$this->setAttribute('post', $value);
+		return 'Success';
 	}
 }
 
