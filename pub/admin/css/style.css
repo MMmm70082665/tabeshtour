@@ -765,7 +765,7 @@ ul.tabs li a.active, ul.tabs li.first a.active, ul.tabs li.last a.active {
     font-weight: bold;
 }
 .pagination a:hover {
-    background: none repeat scroll 0 0 #F5F5F5;
+     background-color: #CCFF33;
     text-decoration: none;
 }
 .view_fields .enabled, .view_fields .disabled {

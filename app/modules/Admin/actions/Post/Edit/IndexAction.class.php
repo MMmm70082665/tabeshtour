@@ -16,7 +16,7 @@ class Admin_Post_Edit_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		return 'Success';
+		return 'Input';
 	}
 }
 
