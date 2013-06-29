@@ -9,6 +9,24 @@
 			<route name="admin" pattern="^/admin-page" module="Admin">
 			<route name=".index" pattern="^/administrator$" action="Index" />
 			
+			<route name=".communication" pattern="^/communication" action="Communication">
+			<route name=".contact" pattern="^/contact" action=".Contact">
+			<route name=".admin" pattern="^/admin$" action=".Admin" />
+			<route name=".new" pattern="^/new$" action=".New" />
+			<route name=".delete" pattern="^/delete/(id:\d+)$" action=".Delete" />
+			<route name=".ellow" pattern="^/ellow/(id:\d+)$" action=".Ellow" />
+			</route>
+			</route>
+			
+			<route name=".member" pattern="^/member-office" action="Member">
+			<route name=".admin" pattern="^/admin" action=".Admin">
+			<route name=".index" pattern="^/index$" action=".Index" />
+			</route>
+			<route name=".create" pattern="^/create" action=".Create">
+			<route name=".add" pattern="^/new$" action=".Add" />
+			</route>
+			</route>
+			
 			<route name=".post" pattern="^/post" action="Post">
 			<route name=".create" pattern="^/create" action=".Create">
 			<route name=".add" pattern="^/new$" action=".Add" />
@@ -26,9 +44,9 @@
 			<route name=".index" pattern="^/index/(id:\d+)$" action=".Index" />
 			</route>
 			<route name=".publish" pattern="^/publish" action=".Publish">
+			<route name=".admin" pattern="^/admin$" action=".Admin" />
 			<route name=".pub" pattern="^/pub/(id:\d+)$" action=".Pub" />
 			</route>
-			
 			
 			
 			

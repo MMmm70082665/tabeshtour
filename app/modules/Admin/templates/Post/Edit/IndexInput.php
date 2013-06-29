@@ -17,7 +17,8 @@
 .:: در صورت ویرایش مطلب شما به صفحه اصلی بخش مدیریت هدایت میشوید در غیر اینصورت به همین صفحه باز میگردید ::. 
 </div>
 </div>
-<form method="post" action="<?php echo $ro->gen('admin.post.edit.index');?>">
+<?php foreach ($t['post'] as $post):?>
+<form method="post" action="<?php echo $ro->gen('admin.post.edit.index',array('id' => $post['Id']));?>">
 <div class="border_wrapper">
 <div class="title">ویرایش یک مطلب</div>
 <table cellspacing="0" class="general form_container ">
@@ -26,7 +27,7 @@
 			<td style="" class="first">
 				<label for="subject">عنوان اصلی:  <em>*</em></label>
 					<div class="form_row">
-						<input type="text" id="subject" class="text_input" name="subject">
+						<input value="<?php echo $post['Subject'];  ?>" type="text" id="subject" class="text_input" name="subject">
 					</div>
 			</td>
 		</tr>
@@ -43,11 +44,11 @@
 			<td style="" class="first">
 			<label for="long_desc">توضیح:<em>*</em></label>
 				<div class="form_row">
-				<textarea cols="45" rows="5" id="long_desc" name="long_desc" ></textarea>
+				<textarea cols="45" rows="5" id="long_desc" name="long_desc" ><?php echo $post['LongDesc']; ?></textarea>
 				</div>
 				<label for="short_desc">ادامه مطلب:</label>
 				<div class="form_row">
-				<textarea cols="45" rows="5" id="short_desc" name="short_desc" ></textarea>
+				<textarea cols="45" rows="5" id="short_desc" name="short_desc" ><?php echo $post['ShortDesc'];?></textarea>
 				</div>
 			</td>
 		</tr>
@@ -55,7 +56,7 @@
 			<td style="" class="first">
 			<label for="tag">متاتگ Description:</label>
 				<div class="form_row">
-				<textarea cols="45" rows="5" id="tag" name="tag" ></textarea>
+				<textarea cols="45" rows="5" id="tag" name="tag" ><?php echo $post['Tag'];?></textarea>
 				</div>
 			</td>
 		</tr>
@@ -67,6 +68,7 @@
 </div>
 </div>
 </form>
+<?php endforeach;?>
 	</div>
 		</div>
 		<br style="clear: both;">

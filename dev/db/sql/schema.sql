@@ -171,53 +171,41 @@ CREATE TABLE `post`
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
--- contact_us
+-- tiket
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `contact_us`;
+DROP TABLE IF EXISTS `tiket`;
 
-CREATE TABLE `contact_us`
+CREATE TABLE `tiket`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL,
     `email` VARCHAR(60) NOT NULL,
-    `explaine` TEXT NOT NULL,
     `mobile` VARCHAR(11),
+    `order` TINYINT(1) NOT NULL,
+    `desc` TEXT NOT NULL,
+    `date` VARCHAR(255) NOT NULL,
+    `publish` TINYINT(1) NOT NULL,
+    `subject` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
--- about_us
+-- member
 -- ---------------------------------------------------------------------
 
-DROP TABLE IF EXISTS `about_us`;
+DROP TABLE IF EXISTS `member`;
 
-CREATE TABLE `about_us`
+CREATE TABLE `member`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- complaint
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `complaint`;
-
-CREATE TABLE `complaint`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- comment_meter
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `comment_meter`;
-
-CREATE TABLE `comment_meter`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `office` VARCHAR(255) NOT NULL,
+    `address` TEXT NOT NULL,
+    `website` VARCHAR(60),
+    `phone` VARCHAR(60) NOT NULL,
+    `fax` VARCHAR(60) NOT NULL,
+    `date` VARCHAR(255) NOT NULL,
+    `publish` TINYINT(1) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 

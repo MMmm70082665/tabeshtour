@@ -90,22 +90,25 @@
 <column name="view" type="INTEGER" required="false" />
 </table>
 
-<table name="contact_us">
+<table name="tiket">
 <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="name" type="VARCHAR" required="true" />
 <column name="email" type="VARCHAR" size="60" required="true" />
-<column name="explaine" type="LONGVARCHAR" required="true" />
-<column name="mobile" type="VARCHAR" size="11" required="false" /> 
+<column name="mobile" type="VARCHAR" size="11" required="false" />
+<column name="order" type="BOOLEAN" required="true" />
+<column name="desc" type="LONGVARCHAR" required="true" />
+<column name="date" type="VARCHAR" required="true" />
+<column name="publish" type="BOOLEAN" required="true" />
+<column name="subject" type="VARCHAR" required="true"/>
 </table>
-
-<table name="about_us">
-<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
-</table>
-
-<table name="complaint">
-<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
-</table>
-
-<table name="comment_meter">
-<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<table name="member">
+<column name="id"  type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+<column name="office" type="VARCHAR" required="true" />
+<column name="address" type="LONGVARCHAR" required="true" />
+<column name="website" type="VARCHAR" size="60" required="false" />
+<column name="phone" type="VARCHAR" size="60" required="true" />
+<column name="fax" type="VARCHAR" size="60" required="true" />
+<column name="date" type="VARCHAR"  required="true" />
+<column name="publish" type="BOOLEAN" required="true" />
 </table>
 </database>

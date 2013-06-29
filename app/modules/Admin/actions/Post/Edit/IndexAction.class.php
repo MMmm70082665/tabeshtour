@@ -18,6 +18,33 @@ class Admin_Post_Edit_IndexAction extends agentAdminBaseAction
 	{
 		return 'Input';
 	}
+	public function executeRead(AgaviRequestDataHolder $rd)
+	{
+		$id = $rd->getParameter('id');
+		$post = PostQuery::create()->findPk($id);
+		$this->setAttribute('post', $post->toArray());
+		return 'Input';
+	}
+	public function executeWrite(AgaviWebRequestDataHolder $rd)
+	{
+		$id = $rd->getParameter('id');
+		$subject = $rd->getParameter('subject');
+		$long_desc = $rd->getParameter('long_desc');
+		$short_desc = $rd->getParameter('short_desc');
+		$tag = $rd->getParameter('tag');
+		$pub = $rd->getParameter('publisher');
+		$object = PostQuery::create()->filterById($id)
+		->update(
+		array(
+		'Subject' => $subject,
+		'Publisher' => $pub,
+		'LongDesc' => $long_desc,
+		'ShortDesc' => $short_desc,
+		'Tag' =>$tag
+		)
+		);
+		return 'Success';
+	}
 }
 
 ?>

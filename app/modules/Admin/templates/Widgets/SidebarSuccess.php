@@ -17,18 +17,25 @@
 </ul>
 </div>
 <div class="left_menu_box">
+<div class="title">شرکت های عضو</div>
+<ul class="menu">
+<li class=""><a href="<?php echo $ro->gen('admin.member.admin.index');?>">لیست شرکت ها</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.member.create.add');?>">اضافه کردن شرکت جدید</a></li>
+</ul>
+</div>
+<div class="left_menu_box">
 <div class="title">تماس ها</div>
 <ul class="menu">
+<li class=""><a href="<?php echo $ro->gen('admin.communication.contact.admin');?>">مدیریت تماس ها</a></li>
 <li class=""><a href="/news/comment/main-admin/page?id=1">مدیریت نظر سنجی</a></li>
-<li class=""><a href="/news/call/main-admin/page?id=1">مدیریت تماس ها</a></li>
 </ul>
 </div>
 <div class="left_menu_box">
 <div class="title">امنیت</div>
 <ul class="menu">
-<li class=""><a href="/logout">ایجاد کاربر جدید</a></li>
-<li class=""><a href="/logout">ویرایش پروفایل</a></li>
-<li class=""><a href="/logout">خروج</a></li>
+<li class=""><a href="">ایجاد کاربر جدید</a></li>
+<li class=""><a href="">ویرایش پروفایل</a></li>
+<li class=""><a href="<?php echo $ro->gen('logout');?>">خروج</a></li>
 </ul>
 </div>
 </div>
