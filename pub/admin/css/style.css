@@ -416,13 +416,23 @@ input.text_input {
     width: 550px;
     color: #D82727;
 }
+input.text_input2 {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #0F5C8E;
+    font-size: 13px;
+    font-family: BKoodak;
+    padding: 3px;
+    border-radius:5px;
+    width: 200px;
+    color: #D82727;
+}
 textarea {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #0F5C8E;
     font-family: Tahoma;
     font-size: 12px;
     padding: 4px;
-    width: 600px;
+    width: 550px;
      -moz-transition: all 0.3s ease-out 0s;
     border: 1px solid #E4E4E4;
     border-radius: 9px 9px 9px 9px;

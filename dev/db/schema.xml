@@ -107,8 +107,9 @@
 <column name="address" type="LONGVARCHAR" required="true" />
 <column name="website" type="VARCHAR" size="60" required="false" />
 <column name="phone" type="VARCHAR" size="60" required="true" />
-<column name="fax" type="VARCHAR" size="60" required="true" />
+<column name="fax" type="VARCHAR" size="60" required="false" />
 <column name="date" type="VARCHAR"  required="true" />
 <column name="publish" type="BOOLEAN" required="true" />
+<column name="desc" type="LONGVARCHAR" required="false" />
 </table>
 </database>

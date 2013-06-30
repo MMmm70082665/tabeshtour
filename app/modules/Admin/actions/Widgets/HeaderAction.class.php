@@ -16,10 +16,12 @@ class Admin_Widgets_HeaderAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		$tiket = TiketQuery::create()->filterByPublish(false)->find();
-		$this->setAttribute('new_tiket', count($tiket));
-		$non_publish = PostQuery::create()->filterByPublisher(false)->find();
-		$this->setAttribute('non_publisher', count($non_publish));
+		$new_tiket = TiketQuery::create()->filterByPublish(false)->find();
+		$this->setAttribute('new_tiket', count($new_tiket));
+		$non_publish_post = PostQuery::create()->filterByPublisher(false)->find();
+		$this->setAttribute('non_publisher', count($non_publish_post));
+		$non_publish_member = MemberQuery::create()->filterByPublish(false)->find();
+		$this->setAttribute('non_member', count($non_publish_member));
 		return 'Success';
 	}
 }

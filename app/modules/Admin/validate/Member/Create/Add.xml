@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+	xmlns="http://agavi.org/agavi/config/parts/validators/1.0"
+	xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+	parent="%core.module_dir%/Admin/config/validators.xml"
+>
+	
+	<ae:configuration>
+		
+		<validators method="write">
+		 	<validator class="string">
+        		<arguments>
+          			<argument>office</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+		<validator class="string">
+			<arguments>
+				<argument>publish</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>desc</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+        		<arguments>
+          			<argument>phone</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+        		<arguments>
+          			<argument>address</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>fax</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>website</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+       
+		</validators>
+		
+	</ae:configuration>
+	
+</ae:configurations>

@@ -203,9 +203,10 @@ CREATE TABLE `member`
     `address` TEXT NOT NULL,
     `website` VARCHAR(60),
     `phone` VARCHAR(60) NOT NULL,
-    `fax` VARCHAR(60) NOT NULL,
+    `fax` VARCHAR(60),
     `date` VARCHAR(255) NOT NULL,
     `publish` TINYINT(1) NOT NULL,
+    `desc` TEXT,
     PRIMARY KEY (`id`)
 ) ENGINE=MyISAM;
 
