@@ -27,17 +27,21 @@
 <div class="title">تماس ها</div>
 <ul class="menu">
 <li class=""><a href="<?php echo $ro->gen('admin.communication.contact.admin');?>">مدیریت تماس ها</a></li>
-<li class=""><a href="/news/comment/main-admin/page?id=1">مدیریت نظر سنجی</a></li>
 </ul>
 </div>
 <div class="left_menu_box">
-<div class="title">امنیت</div>
+<div class="title">کاربران</div>
 <ul class="menu">
-<li class=""><a href="">ایجاد کاربر جدید</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.user.create.add');?>">ایجاد کاربر جدید</a></li>
 <li class=""><a href="">ویرایش پروفایل</a></li>
+</ul>
+</div>
+<div class="left_menu_box">
+<div class="title">سایر</div>
+<ul class="menu">
 <li class=""><a target="_blank" href="<?php echo $ro->gen('index');?>">مشاهده سایت</a></li>
 <li class=""><a href="<?php echo $ro->gen('logout');?>">خروج</a></li>
 </ul>
 </div>
 </div>
-			</div>
+</div>

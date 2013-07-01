@@ -35,8 +35,8 @@
 			<td style="" class="first">
 			<label for="publisher">وضعیت انتشار: <em>*</em></label>
 				<select name="publisher">
-				<option value="true">اکنون منتشر شود</option>
-				<option value="false">اکنون منتشر نشود</option>
+				<option value="1">اکنون منتشر شود</option>
+				<option value="0">اکنون منتشر نشود</option>
 				</select>
 			</td>
 		</tr>

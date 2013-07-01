@@ -1,4 +1,4 @@
-#Sun Jun 30 00:31:27 PDT 2013
+#Mon Jul 01 10:02:00 PDT 2013
 eclipse.preferences.version=1
 encoding//app/modules/Admin/templates/Communication/Contact/AdminSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Communication/Contact/DeleteError.php=UTF-8
@@ -16,6 +16,7 @@ encoding//app/modules/Admin/templates/Post/Create/AddInput.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Delete/IndexError.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Edit/IndexInput.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Publish/AdminSuccess.php=UTF-8
+encoding//app/modules/Admin/templates/Post/Publish/PubError.php=UTF-8
 encoding//app/modules/Admin/templates/Widgets/FooterSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Widgets/HeaderSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Widgets/SidebarSuccess.php=UTF-8

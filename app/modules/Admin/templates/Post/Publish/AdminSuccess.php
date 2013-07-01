@@ -32,7 +32,7 @@
 			<td class="align_center last alt_col" style=""><?php echo $post['Id']?></td>
             <td class="first" style=""><?php echo $post['Subject'];   ?></td>
 			<td class="align_center alt_col" style="">
-			<a href="<?php echo $ro->gen('admin.post.publish.pub',array('id' => $post['Id']));?>">منتشر شده</a></td>
+			<a href="<?php echo $ro->gen('admin.post.publish.pub',array('id' => $post['Id']));?>">منتشر نشده</a></td>
 			<td class="align_center alt_col" style=""><?php echo $post['View']?></td>
 			<td class="align_center" style="">
 			<a href="<?php echo $ro->gen('admin.post.edit.index',array('id' => $post['Id']));?>">ویرایش</a>

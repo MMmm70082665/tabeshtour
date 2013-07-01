@@ -21,7 +21,7 @@ class Admin_Post_Edit_IndexAction extends agentAdminBaseAction
 	public function executeRead(AgaviRequestDataHolder $rd)
 	{
 		$id = $rd->getParameter('id');
-		$post = PostQuery::create()->findPk($id);
+		$post = PostQuery::create()->findPks($id);
 		$this->setAttribute('post', $post->toArray());
 		return 'Input';
 	}
