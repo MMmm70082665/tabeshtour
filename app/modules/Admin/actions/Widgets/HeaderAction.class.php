@@ -22,6 +22,10 @@ class Admin_Widgets_HeaderAction extends agentAdminBaseAction
 		$this->setAttribute('non_publisher', count($non_publish_post));
 		$non_publish_member = MemberQuery::create()->filterByPublish(false)->find();
 		$this->setAttribute('non_member', count($non_publish_member));
+		$non_tour = CountryQuery::create()->filterByPublish(false)->find();
+		$this->setAttribute('non_tour', count($non_tour));
+		$non_city = CityQuery::create()->filterByPublish(false)->find();
+		$this->setAttribute('non_city', count($non_city));
 		return 'Success';
 	}
 }

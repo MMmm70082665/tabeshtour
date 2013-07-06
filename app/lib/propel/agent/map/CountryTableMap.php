@@ -40,7 +40,8 @@ class CountryTableMap extends TableMap
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', true, 25, null);
-        $this->addColumn('date', 'Date', 'DATE', true, null, null);
+        $this->addColumn('date', 'Date', 'VARCHAR', true, 255, null);
+        $this->addColumn('publish', 'Publish', 'BOOLEAN', true, 1, null);
         // validators
     } // initialize()
 
@@ -49,7 +50,6 @@ class CountryTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('CountryInfo', 'CountryInfo', RelationMap::ONE_TO_MANY, array('id' => 'country_id', ), null, null, 'CountryInfos');
         $this->addRelation('City', 'City', RelationMap::ONE_TO_MANY, array('id' => 'country_id', ), null, null, 'Citys');
     } // buildRelations()
 

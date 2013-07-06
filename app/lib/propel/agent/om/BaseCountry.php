@@ -48,10 +48,10 @@ abstract class BaseCountry extends BaseObject implements Persistent
     protected $date;
 
     /**
-     * @var        PropelObjectCollection|CountryInfo[] Collection to store aggregation of CountryInfo objects.
+     * The value for the publish field.
+     * @var        boolean
      */
-    protected $collCountryInfos;
-    protected $collCountryInfosPartial;
+    protected $publish;
 
     /**
      * @var        PropelObjectCollection|City[] Collection to store aggregation of City objects.
@@ -72,12 +72,6 @@ abstract class BaseCountry extends BaseObject implements Persistent
      * @var        boolean
      */
     protected $alreadyInValidation = false;
-
-    /**
-     * An array of objects scheduled for deletion.
-     * @var		PropelObjectCollection
-     */
-    protected $countryInfosScheduledForDeletion = null;
 
     /**
      * An array of objects scheduled for deletion.
@@ -106,43 +100,23 @@ abstract class BaseCountry extends BaseObject implements Persistent
     }
 
     /**
-     * Get the [optionally formatted] temporal [date] column value.
+     * Get the [date] column value.
      *
-     *
-     * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00
-     * @throws PropelException - if unable to parse/validate the date/time value.
+     * @return string
      */
-    public function getDate($format = '%x')
+    public function getDate()
     {
-        if ($this->date === null) {
-            return null;
-        }
+        return $this->date;
+    }
 
-        if ($this->date === '0000-00-00') {
-            // while technically this is not a default value of null,
-            // this seems to be closest in meaning.
-            return null;
-        }
-
-        try {
-            $dt = new DateTime($this->date);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->date, true), $x);
-        }
-
-        if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        }
-
-        return $dt->format($format);
-
+    /**
+     * Get the [publish] column value.
+     *
+     * @return boolean
+     */
+    public function getPublish()
+    {
+        return $this->publish;
     }
 
     /**
@@ -188,27 +162,54 @@ abstract class BaseCountry extends BaseObject implements Persistent
     } // setName()
 
     /**
-     * Sets the value of [date] column to a normalized version of the date/time value specified.
+     * Set the value of [date] column.
      *
-     * @param mixed $v string, integer (timestamp), or DateTime value.
-     *               Empty strings are treated as null.
+     * @param string $v new value
      * @return Country The current object (for fluent API support)
      */
     public function setDate($v)
     {
-        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-        if ($this->date !== null || $dt !== null) {
-            $currentDateAsString = ($this->date !== null && $tmpDt = new DateTime($this->date)) ? $tmpDt->format('Y-m-d') : null;
-            $newDateAsString = $dt ? $dt->format('Y-m-d') : null;
-            if ($currentDateAsString !== $newDateAsString) {
-                $this->date = $newDateAsString;
-                $this->modifiedColumns[] = CountryPeer::DATE;
-            }
-        } // if either are not null
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->date !== $v) {
+            $this->date = $v;
+            $this->modifiedColumns[] = CountryPeer::DATE;
+        }
 
 
         return $this;
     } // setDate()
+
+    /**
+     * Sets the value of the [publish] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return Country The current object (for fluent API support)
+     */
+    public function setPublish($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->publish !== $v) {
+            $this->publish = $v;
+            $this->modifiedColumns[] = CountryPeer::PUBLISH;
+        }
+
+
+        return $this;
+    } // setPublish()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -245,6 +246,7 @@ abstract class BaseCountry extends BaseObject implements Persistent
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
             $this->date = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+            $this->publish = ($row[$startcol + 3] !== null) ? (boolean) $row[$startcol + 3] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -253,7 +255,7 @@ abstract class BaseCountry extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 3; // 3 = CountryPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 4; // 4 = CountryPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Country object", $e);
@@ -314,8 +316,6 @@ abstract class BaseCountry extends BaseObject implements Persistent
         $this->hydrate($row, 0, true); // rehydrate
 
         if ($deep) {  // also de-associate any related objects?
-
-            $this->collCountryInfos = null;
 
             $this->collCitys = null;
 
@@ -443,24 +443,6 @@ abstract class BaseCountry extends BaseObject implements Persistent
                 $this->resetModified();
             }
 
-            if ($this->countryInfosScheduledForDeletion !== null) {
-                if (!$this->countryInfosScheduledForDeletion->isEmpty()) {
-                    foreach ($this->countryInfosScheduledForDeletion as $countryInfo) {
-                        // need to save related object because we set the relation to null
-                        $countryInfo->save($con);
-                    }
-                    $this->countryInfosScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collCountryInfos !== null) {
-                foreach ($this->collCountryInfos as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
-            }
-
             if ($this->citysScheduledForDeletion !== null) {
                 if (!$this->citysScheduledForDeletion->isEmpty()) {
                     foreach ($this->citysScheduledForDeletion as $city) {
@@ -514,6 +496,9 @@ abstract class BaseCountry extends BaseObject implements Persistent
         if ($this->isColumnModified(CountryPeer::DATE)) {
             $modifiedColumns[':p' . $index++]  = '`date`';
         }
+        if ($this->isColumnModified(CountryPeer::PUBLISH)) {
+            $modifiedColumns[':p' . $index++]  = '`publish`';
+        }
 
         $sql = sprintf(
             'INSERT INTO `country` (%s) VALUES (%s)',
@@ -533,6 +518,9 @@ abstract class BaseCountry extends BaseObject implements Persistent
                         break;
                     case '`date`':
                         $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
+                        break;
+                    case '`publish`':
+                        $stmt->bindValue($identifier, (int) $this->publish, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -633,14 +621,6 @@ abstract class BaseCountry extends BaseObject implements Persistent
             }
 
 
-                if ($this->collCountryInfos !== null) {
-                    foreach ($this->collCountryInfos as $referrerFK) {
-                        if (!$referrerFK->validate($columns)) {
-                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-                        }
-                    }
-                }
-
                 if ($this->collCitys !== null) {
                     foreach ($this->collCitys as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -693,6 +673,9 @@ abstract class BaseCountry extends BaseObject implements Persistent
             case 2:
                 return $this->getDate();
                 break;
+            case 3:
+                return $this->getPublish();
+                break;
             default:
                 return null;
                 break;
@@ -725,11 +708,9 @@ abstract class BaseCountry extends BaseObject implements Persistent
             $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
             $keys[2] => $this->getDate(),
+            $keys[3] => $this->getPublish(),
         );
         if ($includeForeignObjects) {
-            if (null !== $this->collCountryInfos) {
-                $result['CountryInfos'] = $this->collCountryInfos->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
-            }
             if (null !== $this->collCitys) {
                 $result['Citys'] = $this->collCitys->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
@@ -776,6 +757,9 @@ abstract class BaseCountry extends BaseObject implements Persistent
             case 2:
                 $this->setDate($value);
                 break;
+            case 3:
+                $this->setPublish($value);
+                break;
         } // switch()
     }
 
@@ -803,6 +787,7 @@ abstract class BaseCountry extends BaseObject implements Persistent
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
         if (array_key_exists($keys[2], $arr)) $this->setDate($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setPublish($arr[$keys[3]]);
     }
 
     /**
@@ -817,6 +802,7 @@ abstract class BaseCountry extends BaseObject implements Persistent
         if ($this->isColumnModified(CountryPeer::ID)) $criteria->add(CountryPeer::ID, $this->id);
         if ($this->isColumnModified(CountryPeer::NAME)) $criteria->add(CountryPeer::NAME, $this->name);
         if ($this->isColumnModified(CountryPeer::DATE)) $criteria->add(CountryPeer::DATE, $this->date);
+        if ($this->isColumnModified(CountryPeer::PUBLISH)) $criteria->add(CountryPeer::PUBLISH, $this->publish);
 
         return $criteria;
     }
@@ -882,6 +868,7 @@ abstract class BaseCountry extends BaseObject implements Persistent
     {
         $copyObj->setName($this->getName());
         $copyObj->setDate($this->getDate());
+        $copyObj->setPublish($this->getPublish());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -889,12 +876,6 @@ abstract class BaseCountry extends BaseObject implements Persistent
             $copyObj->setNew(false);
             // store object hash to prevent cycle
             $this->startCopy = true;
-
-            foreach ($this->getCountryInfos() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addCountryInfo($relObj->copy($deepCopy));
-                }
-            }
 
             foreach ($this->getCitys() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
@@ -963,229 +944,9 @@ abstract class BaseCountry extends BaseObject implements Persistent
      */
     public function initRelation($relationName)
     {
-        if ('CountryInfo' == $relationName) {
-            $this->initCountryInfos();
-        }
         if ('City' == $relationName) {
             $this->initCitys();
         }
-    }
-
-    /**
-     * Clears out the collCountryInfos collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return Country The current object (for fluent API support)
-     * @see        addCountryInfos()
-     */
-    public function clearCountryInfos()
-    {
-        $this->collCountryInfos = null; // important to set this to null since that means it is uninitialized
-        $this->collCountryInfosPartial = null;
-
-        return $this;
-    }
-
-    /**
-     * reset is the collCountryInfos collection loaded partially
-     *
-     * @return void
-     */
-    public function resetPartialCountryInfos($v = true)
-    {
-        $this->collCountryInfosPartial = $v;
-    }
-
-    /**
-     * Initializes the collCountryInfos collection.
-     *
-     * By default this just sets the collCountryInfos collection to an empty array (like clearcollCountryInfos());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param boolean $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initCountryInfos($overrideExisting = true)
-    {
-        if (null !== $this->collCountryInfos && !$overrideExisting) {
-            return;
-        }
-        $this->collCountryInfos = new PropelObjectCollection();
-        $this->collCountryInfos->setModel('CountryInfo');
-    }
-
-    /**
-     * Gets an array of CountryInfo objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this Country is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @return PropelObjectCollection|CountryInfo[] List of CountryInfo objects
-     * @throws PropelException
-     */
-    public function getCountryInfos($criteria = null, PropelPDO $con = null)
-    {
-        $partial = $this->collCountryInfosPartial && !$this->isNew();
-        if (null === $this->collCountryInfos || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collCountryInfos) {
-                // return empty collection
-                $this->initCountryInfos();
-            } else {
-                $collCountryInfos = CountryInfoQuery::create(null, $criteria)
-                    ->filterByCountry($this)
-                    ->find($con);
-                if (null !== $criteria) {
-                    if (false !== $this->collCountryInfosPartial && count($collCountryInfos)) {
-                      $this->initCountryInfos(false);
-
-                      foreach($collCountryInfos as $obj) {
-                        if (false == $this->collCountryInfos->contains($obj)) {
-                          $this->collCountryInfos->append($obj);
-                        }
-                      }
-
-                      $this->collCountryInfosPartial = true;
-                    }
-
-                    return $collCountryInfos;
-                }
-
-                if($partial && $this->collCountryInfos) {
-                    foreach($this->collCountryInfos as $obj) {
-                        if($obj->isNew()) {
-                            $collCountryInfos[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collCountryInfos = $collCountryInfos;
-                $this->collCountryInfosPartial = false;
-            }
-        }
-
-        return $this->collCountryInfos;
-    }
-
-    /**
-     * Sets a collection of CountryInfo objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param PropelCollection $countryInfos A Propel collection.
-     * @param PropelPDO $con Optional connection object
-     * @return Country The current object (for fluent API support)
-     */
-    public function setCountryInfos(PropelCollection $countryInfos, PropelPDO $con = null)
-    {
-        $countryInfosToDelete = $this->getCountryInfos(new Criteria(), $con)->diff($countryInfos);
-
-        $this->countryInfosScheduledForDeletion = unserialize(serialize($countryInfosToDelete));
-
-        foreach ($countryInfosToDelete as $countryInfoRemoved) {
-            $countryInfoRemoved->setCountry(null);
-        }
-
-        $this->collCountryInfos = null;
-        foreach ($countryInfos as $countryInfo) {
-            $this->addCountryInfo($countryInfo);
-        }
-
-        $this->collCountryInfos = $countryInfos;
-        $this->collCountryInfosPartial = false;
-
-        return $this;
-    }
-
-    /**
-     * Returns the number of related CountryInfo objects.
-     *
-     * @param Criteria $criteria
-     * @param boolean $distinct
-     * @param PropelPDO $con
-     * @return int             Count of related CountryInfo objects.
-     * @throws PropelException
-     */
-    public function countCountryInfos(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-    {
-        $partial = $this->collCountryInfosPartial && !$this->isNew();
-        if (null === $this->collCountryInfos || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collCountryInfos) {
-                return 0;
-            }
-
-            if($partial && !$criteria) {
-                return count($this->getCountryInfos());
-            }
-            $query = CountryInfoQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCountry($this)
-                ->count($con);
-        }
-
-        return count($this->collCountryInfos);
-    }
-
-    /**
-     * Method called to associate a CountryInfo object to this object
-     * through the CountryInfo foreign key attribute.
-     *
-     * @param    CountryInfo $l CountryInfo
-     * @return Country The current object (for fluent API support)
-     */
-    public function addCountryInfo(CountryInfo $l)
-    {
-        if ($this->collCountryInfos === null) {
-            $this->initCountryInfos();
-            $this->collCountryInfosPartial = true;
-        }
-        if (!in_array($l, $this->collCountryInfos->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
-            $this->doAddCountryInfo($l);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param	CountryInfo $countryInfo The countryInfo object to add.
-     */
-    protected function doAddCountryInfo($countryInfo)
-    {
-        $this->collCountryInfos[]= $countryInfo;
-        $countryInfo->setCountry($this);
-    }
-
-    /**
-     * @param	CountryInfo $countryInfo The countryInfo object to remove.
-     * @return Country The current object (for fluent API support)
-     */
-    public function removeCountryInfo($countryInfo)
-    {
-        if ($this->getCountryInfos()->contains($countryInfo)) {
-            $this->collCountryInfos->remove($this->collCountryInfos->search($countryInfo));
-            if (null === $this->countryInfosScheduledForDeletion) {
-                $this->countryInfosScheduledForDeletion = clone $this->collCountryInfos;
-                $this->countryInfosScheduledForDeletion->clear();
-            }
-            $this->countryInfosScheduledForDeletion[]= $countryInfo;
-            $countryInfo->setCountry(null);
-        }
-
-        return $this;
     }
 
     /**
@@ -1413,6 +1174,7 @@ abstract class BaseCountry extends BaseObject implements Persistent
         $this->id = null;
         $this->name = null;
         $this->date = null;
+        $this->publish = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->clearAllReferences();
@@ -1433,11 +1195,6 @@ abstract class BaseCountry extends BaseObject implements Persistent
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collCountryInfos) {
-                foreach ($this->collCountryInfos as $o) {
-                    $o->clearAllReferences($deep);
-                }
-            }
             if ($this->collCitys) {
                 foreach ($this->collCitys as $o) {
                     $o->clearAllReferences($deep);
@@ -1445,10 +1202,6 @@ abstract class BaseCountry extends BaseObject implements Persistent
             }
         } // if ($deep)
 
-        if ($this->collCountryInfos instanceof PropelCollection) {
-            $this->collCountryInfos->clearIterator();
-        }
-        $this->collCountryInfos = null;
         if ($this->collCitys instanceof PropelCollection) {
             $this->collCitys->clearIterator();
         }

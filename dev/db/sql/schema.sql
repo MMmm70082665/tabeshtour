@@ -4,6 +4,20 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ---------------------------------------------------------------------
+-- user
+-- ---------------------------------------------------------------------
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user`
+(
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `username` VARCHAR(45) NOT NULL,
+    `password` VARCHAR(45) NOT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE=MyISAM;
+
+-- ---------------------------------------------------------------------
 -- country
 -- ---------------------------------------------------------------------
 
@@ -13,26 +27,9 @@ CREATE TABLE `country`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(25) NOT NULL,
-    `date` DATE NOT NULL,
+    `date` VARCHAR(255) NOT NULL,
+    `publish` TINYINT(1) NOT NULL,
     PRIMARY KEY (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- country_info
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `country_info`;
-
-CREATE TABLE `country_info`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `explaine` TEXT,
-    `country_id` INTEGER,
-    PRIMARY KEY (`id`),
-    INDEX `country_info_FI_1` (`country_id`),
-    CONSTRAINT `country_info_FK_1`
-        FOREIGN KEY (`country_id`)
-        REFERENCES `country` (`id`)
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------
@@ -45,31 +42,20 @@ CREATE TABLE `city`
 (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
-    `date` DATE NOT NULL,
     `country_id` INTEGER,
+    `publish` TINYINT(1) NOT NULL,
+    `date` DATE NOT NULL,
+    `desc` TEXT,
+    `useful_info` TEXT,
+    `place` TEXT,
+    `hotel` TEXT,
+    `restoran` TEXT,
+    `buy_center` TEXT,
     PRIMARY KEY (`id`),
     INDEX `city_FI_1` (`country_id`),
     CONSTRAINT `city_FK_1`
         FOREIGN KEY (`country_id`)
         REFERENCES `country` (`id`)
-) ENGINE=MyISAM;
-
--- ---------------------------------------------------------------------
--- city_info
--- ---------------------------------------------------------------------
-
-DROP TABLE IF EXISTS `city_info`;
-
-CREATE TABLE `city_info`
-(
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `explaine` TEXT,
-    `city_id` INTEGER,
-    PRIMARY KEY (`id`),
-    INDEX `city_info_FI_1` (`city_id`),
-    CONSTRAINT `city_info_FK_1`
-        FOREIGN KEY (`city_id`)
-        REFERENCES `city` (`id`)
 ) ENGINE=MyISAM;
 
 -- ---------------------------------------------------------------------

@@ -42,27 +42,63 @@ abstract class BaseCity extends BaseObject implements Persistent
     protected $name;
 
     /**
-     * The value for the date field.
-     * @var        string
-     */
-    protected $date;
-
-    /**
      * The value for the country_id field.
      * @var        int
      */
     protected $country_id;
 
     /**
+     * The value for the publish field.
+     * @var        boolean
+     */
+    protected $publish;
+
+    /**
+     * The value for the date field.
+     * @var        string
+     */
+    protected $date;
+
+    /**
+     * The value for the desc field.
+     * @var        string
+     */
+    protected $desc;
+
+    /**
+     * The value for the useful_info field.
+     * @var        string
+     */
+    protected $useful_info;
+
+    /**
+     * The value for the place field.
+     * @var        string
+     */
+    protected $place;
+
+    /**
+     * The value for the hotel field.
+     * @var        string
+     */
+    protected $hotel;
+
+    /**
+     * The value for the restoran field.
+     * @var        string
+     */
+    protected $restoran;
+
+    /**
+     * The value for the buy_center field.
+     * @var        string
+     */
+    protected $buy_center;
+
+    /**
      * @var        Country
      */
     protected $aCountry;
-
-    /**
-     * @var        PropelObjectCollection|CityInfo[] Collection to store aggregation of CityInfo objects.
-     */
-    protected $collCityInfos;
-    protected $collCityInfosPartial;
 
     /**
      * @var        PropelObjectCollection|RecordCity[] Collection to store aggregation of RecordCity objects.
@@ -88,12 +124,6 @@ abstract class BaseCity extends BaseObject implements Persistent
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
-    protected $cityInfosScheduledForDeletion = null;
-
-    /**
-     * An array of objects scheduled for deletion.
-     * @var		PropelObjectCollection
-     */
     protected $recordCitysScheduledForDeletion = null;
 
     /**
@@ -114,6 +144,26 @@ abstract class BaseCity extends BaseObject implements Persistent
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Get the [country_id] column value.
+     *
+     * @return int
+     */
+    public function getCountryId()
+    {
+        return $this->country_id;
+    }
+
+    /**
+     * Get the [publish] column value.
+     *
+     * @return boolean
+     */
+    public function getPublish()
+    {
+        return $this->publish;
     }
 
     /**
@@ -157,13 +207,63 @@ abstract class BaseCity extends BaseObject implements Persistent
     }
 
     /**
-     * Get the [country_id] column value.
+     * Get the [desc] column value.
      *
-     * @return int
+     * @return string
      */
-    public function getCountryId()
+    public function getDesc()
     {
-        return $this->country_id;
+        return $this->desc;
+    }
+
+    /**
+     * Get the [useful_info] column value.
+     *
+     * @return string
+     */
+    public function getUsefulInfo()
+    {
+        return $this->useful_info;
+    }
+
+    /**
+     * Get the [place] column value.
+     *
+     * @return string
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * Get the [hotel] column value.
+     *
+     * @return string
+     */
+    public function getHotel()
+    {
+        return $this->hotel;
+    }
+
+    /**
+     * Get the [restoran] column value.
+     *
+     * @return string
+     */
+    public function getRestoran()
+    {
+        return $this->restoran;
+    }
+
+    /**
+     * Get the [buy_center] column value.
+     *
+     * @return string
+     */
+    public function getBuyCenter()
+    {
+        return $this->buy_center;
     }
 
     /**
@@ -209,29 +309,6 @@ abstract class BaseCity extends BaseObject implements Persistent
     } // setName()
 
     /**
-     * Sets the value of [date] column to a normalized version of the date/time value specified.
-     *
-     * @param mixed $v string, integer (timestamp), or DateTime value.
-     *               Empty strings are treated as null.
-     * @return City The current object (for fluent API support)
-     */
-    public function setDate($v)
-    {
-        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-        if ($this->date !== null || $dt !== null) {
-            $currentDateAsString = ($this->date !== null && $tmpDt = new DateTime($this->date)) ? $tmpDt->format('Y-m-d') : null;
-            $newDateAsString = $dt ? $dt->format('Y-m-d') : null;
-            if ($currentDateAsString !== $newDateAsString) {
-                $this->date = $newDateAsString;
-                $this->modifiedColumns[] = CityPeer::DATE;
-            }
-        } // if either are not null
-
-
-        return $this;
-    } // setDate()
-
-    /**
      * Set the value of [country_id] column.
      *
      * @param int $v new value
@@ -255,6 +332,184 @@ abstract class BaseCity extends BaseObject implements Persistent
 
         return $this;
     } // setCountryId()
+
+    /**
+     * Sets the value of the [publish] column.
+     * Non-boolean arguments are converted using the following rules:
+     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
+     *
+     * @param boolean|integer|string $v The new value
+     * @return City The current object (for fluent API support)
+     */
+    public function setPublish($v)
+    {
+        if ($v !== null) {
+            if (is_string($v)) {
+                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
+            } else {
+                $v = (boolean) $v;
+            }
+        }
+
+        if ($this->publish !== $v) {
+            $this->publish = $v;
+            $this->modifiedColumns[] = CityPeer::PUBLISH;
+        }
+
+
+        return $this;
+    } // setPublish()
+
+    /**
+     * Sets the value of [date] column to a normalized version of the date/time value specified.
+     *
+     * @param mixed $v string, integer (timestamp), or DateTime value.
+     *               Empty strings are treated as null.
+     * @return City The current object (for fluent API support)
+     */
+    public function setDate($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->date !== null || $dt !== null) {
+            $currentDateAsString = ($this->date !== null && $tmpDt = new DateTime($this->date)) ? $tmpDt->format('Y-m-d') : null;
+            $newDateAsString = $dt ? $dt->format('Y-m-d') : null;
+            if ($currentDateAsString !== $newDateAsString) {
+                $this->date = $newDateAsString;
+                $this->modifiedColumns[] = CityPeer::DATE;
+            }
+        } // if either are not null
+
+
+        return $this;
+    } // setDate()
+
+    /**
+     * Set the value of [desc] column.
+     *
+     * @param string $v new value
+     * @return City The current object (for fluent API support)
+     */
+    public function setDesc($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->desc !== $v) {
+            $this->desc = $v;
+            $this->modifiedColumns[] = CityPeer::DESC;
+        }
+
+
+        return $this;
+    } // setDesc()
+
+    /**
+     * Set the value of [useful_info] column.
+     *
+     * @param string $v new value
+     * @return City The current object (for fluent API support)
+     */
+    public function setUsefulInfo($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->useful_info !== $v) {
+            $this->useful_info = $v;
+            $this->modifiedColumns[] = CityPeer::USEFUL_INFO;
+        }
+
+
+        return $this;
+    } // setUsefulInfo()
+
+    /**
+     * Set the value of [place] column.
+     *
+     * @param string $v new value
+     * @return City The current object (for fluent API support)
+     */
+    public function setPlace($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->place !== $v) {
+            $this->place = $v;
+            $this->modifiedColumns[] = CityPeer::PLACE;
+        }
+
+
+        return $this;
+    } // setPlace()
+
+    /**
+     * Set the value of [hotel] column.
+     *
+     * @param string $v new value
+     * @return City The current object (for fluent API support)
+     */
+    public function setHotel($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->hotel !== $v) {
+            $this->hotel = $v;
+            $this->modifiedColumns[] = CityPeer::HOTEL;
+        }
+
+
+        return $this;
+    } // setHotel()
+
+    /**
+     * Set the value of [restoran] column.
+     *
+     * @param string $v new value
+     * @return City The current object (for fluent API support)
+     */
+    public function setRestoran($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->restoran !== $v) {
+            $this->restoran = $v;
+            $this->modifiedColumns[] = CityPeer::RESTORAN;
+        }
+
+
+        return $this;
+    } // setRestoran()
+
+    /**
+     * Set the value of [buy_center] column.
+     *
+     * @param string $v new value
+     * @return City The current object (for fluent API support)
+     */
+    public function setBuyCenter($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->buy_center !== $v) {
+            $this->buy_center = $v;
+            $this->modifiedColumns[] = CityPeer::BUY_CENTER;
+        }
+
+
+        return $this;
+    } // setBuyCenter()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -290,8 +545,15 @@ abstract class BaseCity extends BaseObject implements Persistent
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-            $this->date = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->country_id = ($row[$startcol + 3] !== null) ? (int) $row[$startcol + 3] : null;
+            $this->country_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
+            $this->publish = ($row[$startcol + 3] !== null) ? (boolean) $row[$startcol + 3] : null;
+            $this->date = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->desc = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->useful_info = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->place = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->hotel = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
+            $this->restoran = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
+            $this->buy_center = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -300,7 +562,7 @@ abstract class BaseCity extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 4; // 4 = CityPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 11; // 11 = CityPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating City object", $e);
@@ -366,8 +628,6 @@ abstract class BaseCity extends BaseObject implements Persistent
         if ($deep) {  // also de-associate any related objects?
 
             $this->aCountry = null;
-            $this->collCityInfos = null;
-
             $this->collRecordCitys = null;
 
         } // if (deep)
@@ -506,24 +766,6 @@ abstract class BaseCity extends BaseObject implements Persistent
                 $this->resetModified();
             }
 
-            if ($this->cityInfosScheduledForDeletion !== null) {
-                if (!$this->cityInfosScheduledForDeletion->isEmpty()) {
-                    foreach ($this->cityInfosScheduledForDeletion as $cityInfo) {
-                        // need to save related object because we set the relation to null
-                        $cityInfo->save($con);
-                    }
-                    $this->cityInfosScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collCityInfos !== null) {
-                foreach ($this->collCityInfos as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
-            }
-
             if ($this->recordCitysScheduledForDeletion !== null) {
                 if (!$this->recordCitysScheduledForDeletion->isEmpty()) {
                     foreach ($this->recordCitysScheduledForDeletion as $recordCity) {
@@ -574,11 +816,32 @@ abstract class BaseCity extends BaseObject implements Persistent
         if ($this->isColumnModified(CityPeer::NAME)) {
             $modifiedColumns[':p' . $index++]  = '`name`';
         }
+        if ($this->isColumnModified(CityPeer::COUNTRY_ID)) {
+            $modifiedColumns[':p' . $index++]  = '`country_id`';
+        }
+        if ($this->isColumnModified(CityPeer::PUBLISH)) {
+            $modifiedColumns[':p' . $index++]  = '`publish`';
+        }
         if ($this->isColumnModified(CityPeer::DATE)) {
             $modifiedColumns[':p' . $index++]  = '`date`';
         }
-        if ($this->isColumnModified(CityPeer::COUNTRY_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`country_id`';
+        if ($this->isColumnModified(CityPeer::DESC)) {
+            $modifiedColumns[':p' . $index++]  = '`desc`';
+        }
+        if ($this->isColumnModified(CityPeer::USEFUL_INFO)) {
+            $modifiedColumns[':p' . $index++]  = '`useful_info`';
+        }
+        if ($this->isColumnModified(CityPeer::PLACE)) {
+            $modifiedColumns[':p' . $index++]  = '`place`';
+        }
+        if ($this->isColumnModified(CityPeer::HOTEL)) {
+            $modifiedColumns[':p' . $index++]  = '`hotel`';
+        }
+        if ($this->isColumnModified(CityPeer::RESTORAN)) {
+            $modifiedColumns[':p' . $index++]  = '`restoran`';
+        }
+        if ($this->isColumnModified(CityPeer::BUY_CENTER)) {
+            $modifiedColumns[':p' . $index++]  = '`buy_center`';
         }
 
         $sql = sprintf(
@@ -597,11 +860,32 @@ abstract class BaseCity extends BaseObject implements Persistent
                     case '`name`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
+                    case '`country_id`':
+                        $stmt->bindValue($identifier, $this->country_id, PDO::PARAM_INT);
+                        break;
+                    case '`publish`':
+                        $stmt->bindValue($identifier, (int) $this->publish, PDO::PARAM_INT);
+                        break;
                     case '`date`':
                         $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
                         break;
-                    case '`country_id`':
-                        $stmt->bindValue($identifier, $this->country_id, PDO::PARAM_INT);
+                    case '`desc`':
+                        $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
+                        break;
+                    case '`useful_info`':
+                        $stmt->bindValue($identifier, $this->useful_info, PDO::PARAM_STR);
+                        break;
+                    case '`place`':
+                        $stmt->bindValue($identifier, $this->place, PDO::PARAM_STR);
+                        break;
+                    case '`hotel`':
+                        $stmt->bindValue($identifier, $this->hotel, PDO::PARAM_STR);
+                        break;
+                    case '`restoran`':
+                        $stmt->bindValue($identifier, $this->restoran, PDO::PARAM_STR);
+                        break;
+                    case '`buy_center`':
+                        $stmt->bindValue($identifier, $this->buy_center, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -714,14 +998,6 @@ abstract class BaseCity extends BaseObject implements Persistent
             }
 
 
-                if ($this->collCityInfos !== null) {
-                    foreach ($this->collCityInfos as $referrerFK) {
-                        if (!$referrerFK->validate($columns)) {
-                            $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
-                        }
-                    }
-                }
-
                 if ($this->collRecordCitys !== null) {
                     foreach ($this->collRecordCitys as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
@@ -772,10 +1048,31 @@ abstract class BaseCity extends BaseObject implements Persistent
                 return $this->getName();
                 break;
             case 2:
-                return $this->getDate();
+                return $this->getCountryId();
                 break;
             case 3:
-                return $this->getCountryId();
+                return $this->getPublish();
+                break;
+            case 4:
+                return $this->getDate();
+                break;
+            case 5:
+                return $this->getDesc();
+                break;
+            case 6:
+                return $this->getUsefulInfo();
+                break;
+            case 7:
+                return $this->getPlace();
+                break;
+            case 8:
+                return $this->getHotel();
+                break;
+            case 9:
+                return $this->getRestoran();
+                break;
+            case 10:
+                return $this->getBuyCenter();
                 break;
             default:
                 return null;
@@ -808,15 +1105,19 @@ abstract class BaseCity extends BaseObject implements Persistent
         $result = array(
             $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
-            $keys[2] => $this->getDate(),
-            $keys[3] => $this->getCountryId(),
+            $keys[2] => $this->getCountryId(),
+            $keys[3] => $this->getPublish(),
+            $keys[4] => $this->getDate(),
+            $keys[5] => $this->getDesc(),
+            $keys[6] => $this->getUsefulInfo(),
+            $keys[7] => $this->getPlace(),
+            $keys[8] => $this->getHotel(),
+            $keys[9] => $this->getRestoran(),
+            $keys[10] => $this->getBuyCenter(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->aCountry) {
                 $result['Country'] = $this->aCountry->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
-            if (null !== $this->collCityInfos) {
-                $result['CityInfos'] = $this->collCityInfos->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
             if (null !== $this->collRecordCitys) {
                 $result['RecordCitys'] = $this->collRecordCitys->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
@@ -862,10 +1163,31 @@ abstract class BaseCity extends BaseObject implements Persistent
                 $this->setName($value);
                 break;
             case 2:
-                $this->setDate($value);
+                $this->setCountryId($value);
                 break;
             case 3:
-                $this->setCountryId($value);
+                $this->setPublish($value);
+                break;
+            case 4:
+                $this->setDate($value);
+                break;
+            case 5:
+                $this->setDesc($value);
+                break;
+            case 6:
+                $this->setUsefulInfo($value);
+                break;
+            case 7:
+                $this->setPlace($value);
+                break;
+            case 8:
+                $this->setHotel($value);
+                break;
+            case 9:
+                $this->setRestoran($value);
+                break;
+            case 10:
+                $this->setBuyCenter($value);
                 break;
         } // switch()
     }
@@ -893,8 +1215,15 @@ abstract class BaseCity extends BaseObject implements Persistent
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
-        if (array_key_exists($keys[2], $arr)) $this->setDate($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setCountryId($arr[$keys[3]]);
+        if (array_key_exists($keys[2], $arr)) $this->setCountryId($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setPublish($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setDate($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setDesc($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setUsefulInfo($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setPlace($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setHotel($arr[$keys[8]]);
+        if (array_key_exists($keys[9], $arr)) $this->setRestoran($arr[$keys[9]]);
+        if (array_key_exists($keys[10], $arr)) $this->setBuyCenter($arr[$keys[10]]);
     }
 
     /**
@@ -908,8 +1237,15 @@ abstract class BaseCity extends BaseObject implements Persistent
 
         if ($this->isColumnModified(CityPeer::ID)) $criteria->add(CityPeer::ID, $this->id);
         if ($this->isColumnModified(CityPeer::NAME)) $criteria->add(CityPeer::NAME, $this->name);
-        if ($this->isColumnModified(CityPeer::DATE)) $criteria->add(CityPeer::DATE, $this->date);
         if ($this->isColumnModified(CityPeer::COUNTRY_ID)) $criteria->add(CityPeer::COUNTRY_ID, $this->country_id);
+        if ($this->isColumnModified(CityPeer::PUBLISH)) $criteria->add(CityPeer::PUBLISH, $this->publish);
+        if ($this->isColumnModified(CityPeer::DATE)) $criteria->add(CityPeer::DATE, $this->date);
+        if ($this->isColumnModified(CityPeer::DESC)) $criteria->add(CityPeer::DESC, $this->desc);
+        if ($this->isColumnModified(CityPeer::USEFUL_INFO)) $criteria->add(CityPeer::USEFUL_INFO, $this->useful_info);
+        if ($this->isColumnModified(CityPeer::PLACE)) $criteria->add(CityPeer::PLACE, $this->place);
+        if ($this->isColumnModified(CityPeer::HOTEL)) $criteria->add(CityPeer::HOTEL, $this->hotel);
+        if ($this->isColumnModified(CityPeer::RESTORAN)) $criteria->add(CityPeer::RESTORAN, $this->restoran);
+        if ($this->isColumnModified(CityPeer::BUY_CENTER)) $criteria->add(CityPeer::BUY_CENTER, $this->buy_center);
 
         return $criteria;
     }
@@ -974,8 +1310,15 @@ abstract class BaseCity extends BaseObject implements Persistent
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
         $copyObj->setName($this->getName());
-        $copyObj->setDate($this->getDate());
         $copyObj->setCountryId($this->getCountryId());
+        $copyObj->setPublish($this->getPublish());
+        $copyObj->setDate($this->getDate());
+        $copyObj->setDesc($this->getDesc());
+        $copyObj->setUsefulInfo($this->getUsefulInfo());
+        $copyObj->setPlace($this->getPlace());
+        $copyObj->setHotel($this->getHotel());
+        $copyObj->setRestoran($this->getRestoran());
+        $copyObj->setBuyCenter($this->getBuyCenter());
 
         if ($deepCopy && !$this->startCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -983,12 +1326,6 @@ abstract class BaseCity extends BaseObject implements Persistent
             $copyObj->setNew(false);
             // store object hash to prevent cycle
             $this->startCopy = true;
-
-            foreach ($this->getCityInfos() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addCityInfo($relObj->copy($deepCopy));
-                }
-            }
 
             foreach ($this->getRecordCitys() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
@@ -1109,229 +1446,9 @@ abstract class BaseCity extends BaseObject implements Persistent
      */
     public function initRelation($relationName)
     {
-        if ('CityInfo' == $relationName) {
-            $this->initCityInfos();
-        }
         if ('RecordCity' == $relationName) {
             $this->initRecordCitys();
         }
-    }
-
-    /**
-     * Clears out the collCityInfos collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return City The current object (for fluent API support)
-     * @see        addCityInfos()
-     */
-    public function clearCityInfos()
-    {
-        $this->collCityInfos = null; // important to set this to null since that means it is uninitialized
-        $this->collCityInfosPartial = null;
-
-        return $this;
-    }
-
-    /**
-     * reset is the collCityInfos collection loaded partially
-     *
-     * @return void
-     */
-    public function resetPartialCityInfos($v = true)
-    {
-        $this->collCityInfosPartial = $v;
-    }
-
-    /**
-     * Initializes the collCityInfos collection.
-     *
-     * By default this just sets the collCityInfos collection to an empty array (like clearcollCityInfos());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param boolean $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initCityInfos($overrideExisting = true)
-    {
-        if (null !== $this->collCityInfos && !$overrideExisting) {
-            return;
-        }
-        $this->collCityInfos = new PropelObjectCollection();
-        $this->collCityInfos->setModel('CityInfo');
-    }
-
-    /**
-     * Gets an array of CityInfo objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this City is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param Criteria $criteria optional Criteria object to narrow the query
-     * @param PropelPDO $con optional connection object
-     * @return PropelObjectCollection|CityInfo[] List of CityInfo objects
-     * @throws PropelException
-     */
-    public function getCityInfos($criteria = null, PropelPDO $con = null)
-    {
-        $partial = $this->collCityInfosPartial && !$this->isNew();
-        if (null === $this->collCityInfos || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collCityInfos) {
-                // return empty collection
-                $this->initCityInfos();
-            } else {
-                $collCityInfos = CityInfoQuery::create(null, $criteria)
-                    ->filterByCity($this)
-                    ->find($con);
-                if (null !== $criteria) {
-                    if (false !== $this->collCityInfosPartial && count($collCityInfos)) {
-                      $this->initCityInfos(false);
-
-                      foreach($collCityInfos as $obj) {
-                        if (false == $this->collCityInfos->contains($obj)) {
-                          $this->collCityInfos->append($obj);
-                        }
-                      }
-
-                      $this->collCityInfosPartial = true;
-                    }
-
-                    return $collCityInfos;
-                }
-
-                if($partial && $this->collCityInfos) {
-                    foreach($this->collCityInfos as $obj) {
-                        if($obj->isNew()) {
-                            $collCityInfos[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collCityInfos = $collCityInfos;
-                $this->collCityInfosPartial = false;
-            }
-        }
-
-        return $this->collCityInfos;
-    }
-
-    /**
-     * Sets a collection of CityInfo objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param PropelCollection $cityInfos A Propel collection.
-     * @param PropelPDO $con Optional connection object
-     * @return City The current object (for fluent API support)
-     */
-    public function setCityInfos(PropelCollection $cityInfos, PropelPDO $con = null)
-    {
-        $cityInfosToDelete = $this->getCityInfos(new Criteria(), $con)->diff($cityInfos);
-
-        $this->cityInfosScheduledForDeletion = unserialize(serialize($cityInfosToDelete));
-
-        foreach ($cityInfosToDelete as $cityInfoRemoved) {
-            $cityInfoRemoved->setCity(null);
-        }
-
-        $this->collCityInfos = null;
-        foreach ($cityInfos as $cityInfo) {
-            $this->addCityInfo($cityInfo);
-        }
-
-        $this->collCityInfos = $cityInfos;
-        $this->collCityInfosPartial = false;
-
-        return $this;
-    }
-
-    /**
-     * Returns the number of related CityInfo objects.
-     *
-     * @param Criteria $criteria
-     * @param boolean $distinct
-     * @param PropelPDO $con
-     * @return int             Count of related CityInfo objects.
-     * @throws PropelException
-     */
-    public function countCityInfos(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
-    {
-        $partial = $this->collCityInfosPartial && !$this->isNew();
-        if (null === $this->collCityInfos || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collCityInfos) {
-                return 0;
-            }
-
-            if($partial && !$criteria) {
-                return count($this->getCityInfos());
-            }
-            $query = CityInfoQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterByCity($this)
-                ->count($con);
-        }
-
-        return count($this->collCityInfos);
-    }
-
-    /**
-     * Method called to associate a CityInfo object to this object
-     * through the CityInfo foreign key attribute.
-     *
-     * @param    CityInfo $l CityInfo
-     * @return City The current object (for fluent API support)
-     */
-    public function addCityInfo(CityInfo $l)
-    {
-        if ($this->collCityInfos === null) {
-            $this->initCityInfos();
-            $this->collCityInfosPartial = true;
-        }
-        if (!in_array($l, $this->collCityInfos->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
-            $this->doAddCityInfo($l);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param	CityInfo $cityInfo The cityInfo object to add.
-     */
-    protected function doAddCityInfo($cityInfo)
-    {
-        $this->collCityInfos[]= $cityInfo;
-        $cityInfo->setCity($this);
-    }
-
-    /**
-     * @param	CityInfo $cityInfo The cityInfo object to remove.
-     * @return City The current object (for fluent API support)
-     */
-    public function removeCityInfo($cityInfo)
-    {
-        if ($this->getCityInfos()->contains($cityInfo)) {
-            $this->collCityInfos->remove($this->collCityInfos->search($cityInfo));
-            if (null === $this->cityInfosScheduledForDeletion) {
-                $this->cityInfosScheduledForDeletion = clone $this->collCityInfos;
-                $this->cityInfosScheduledForDeletion->clear();
-            }
-            $this->cityInfosScheduledForDeletion[]= $cityInfo;
-            $cityInfo->setCity(null);
-        }
-
-        return $this;
     }
 
     /**
@@ -1558,8 +1675,15 @@ abstract class BaseCity extends BaseObject implements Persistent
     {
         $this->id = null;
         $this->name = null;
-        $this->date = null;
         $this->country_id = null;
+        $this->publish = null;
+        $this->date = null;
+        $this->desc = null;
+        $this->useful_info = null;
+        $this->place = null;
+        $this->hotel = null;
+        $this->restoran = null;
+        $this->buy_center = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->clearAllReferences();
@@ -1580,11 +1704,6 @@ abstract class BaseCity extends BaseObject implements Persistent
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collCityInfos) {
-                foreach ($this->collCityInfos as $o) {
-                    $o->clearAllReferences($deep);
-                }
-            }
             if ($this->collRecordCitys) {
                 foreach ($this->collRecordCitys as $o) {
                     $o->clearAllReferences($deep);
@@ -1592,10 +1711,6 @@ abstract class BaseCity extends BaseObject implements Persistent
             }
         } // if ($deep)
 
-        if ($this->collCityInfos instanceof PropelCollection) {
-            $this->collCityInfos->clearIterator();
-        }
-        $this->collCityInfos = null;
         if ($this->collRecordCitys instanceof PropelCollection) {
             $this->collRecordCitys->clearIterator();
         }

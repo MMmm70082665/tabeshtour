@@ -18,6 +18,17 @@ class Admin_Tour_Publish_PubAction extends agentAdminBaseAction
 	{
 		return 'Success';
 	}
+	public function executeRead(AgaviRequestDataHolder $rd)
+	{
+		$id = $rd->getParameter('id');
+		$object = CountryQuery::create()->findOneById($id);
+		if ($object->getPublish() == true)
+		$object->setPublish(false);
+		else 
+		$object->setPublish(true);
+		$object->save();
+		return 'Success';
+	}
 }
 
 ?>

@@ -16,6 +16,33 @@ class Admin_Masir_Create_AddAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
+		$tour = CountryQuery::create()->filterByPublish(true)->find();
+		$this->setAttribute('tour', $tour->toArray());
+		return 'Input';
+	}
+	public function executeWrite(AgaviWebRequestDataHolder $rd)
+	{
+        $shamsi = new jDateTime();
+		$name = $rd->getParameter('name');
+		$publish  = $rd->getParameter('publish');
+		$tour_id = $rd->getParameter('tour');
+		$desc = $rd->getParameter('desc');
+		$useful_info = $rd->getParameter('useful_info');
+		$restoran = $rd->getParameter('restoran');
+		$hotel = $rd->getParameter('hotel');
+		$place = $rd->getParameter('place');
+		$buy = $rd->getParameter('buy_center');
+		$obj = new City();
+		$obj->setName($name);
+		$obj->setPublish($publish);
+		$obj->setCountryId($tour_id);
+		$obj->setDesc($desc);
+		$obj->setUsefulInfo($useful_info);
+		$obj->setRestoran($restoran);
+		$obj->setHotel($hotel);
+		$obj->setPlace($place);
+		$obj->setBuyCenter($buy);
+        $obj->setDate($shamsi->date('d M Y',time()));
 		return 'Success';
 	}
 }

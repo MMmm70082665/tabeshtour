@@ -24,13 +24,13 @@ abstract class BaseCountryPeer
     const TM_CLASS = 'CountryTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 3;
+    const NUM_COLUMNS = 4;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 3;
+    const NUM_HYDRATE_COLUMNS = 4;
 
     /** the column name for the id field */
     const ID = 'country.id';
@@ -40,6 +40,9 @@ abstract class BaseCountryPeer
 
     /** the column name for the date field */
     const DATE = 'country.date';
+
+    /** the column name for the publish field */
+    const PUBLISH = 'country.publish';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -60,12 +63,12 @@ abstract class BaseCountryPeer
      * e.g. CountryPeer::$fieldNames[CountryPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'Date', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'date', ),
-        BasePeer::TYPE_COLNAME => array (CountryPeer::ID, CountryPeer::NAME, CountryPeer::DATE, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'DATE', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'date', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'Date', 'Publish', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'date', 'publish', ),
+        BasePeer::TYPE_COLNAME => array (CountryPeer::ID, CountryPeer::NAME, CountryPeer::DATE, CountryPeer::PUBLISH, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'DATE', 'PUBLISH', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'date', 'publish', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
     );
 
     /**
@@ -75,12 +78,12 @@ abstract class BaseCountryPeer
      * e.g. CountryPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'Date' => 2, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'date' => 2, ),
-        BasePeer::TYPE_COLNAME => array (CountryPeer::ID => 0, CountryPeer::NAME => 1, CountryPeer::DATE => 2, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'DATE' => 2, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'date' => 2, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'Date' => 2, 'Publish' => 3, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'date' => 2, 'publish' => 3, ),
+        BasePeer::TYPE_COLNAME => array (CountryPeer::ID => 0, CountryPeer::NAME => 1, CountryPeer::DATE => 2, CountryPeer::PUBLISH => 3, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'DATE' => 2, 'PUBLISH' => 3, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'date' => 2, 'publish' => 3, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
     );
 
     /**
@@ -157,10 +160,12 @@ abstract class BaseCountryPeer
             $criteria->addSelectColumn(CountryPeer::ID);
             $criteria->addSelectColumn(CountryPeer::NAME);
             $criteria->addSelectColumn(CountryPeer::DATE);
+            $criteria->addSelectColumn(CountryPeer::PUBLISH);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.name');
             $criteria->addSelectColumn($alias . '.date');
+            $criteria->addSelectColumn($alias . '.publish');
         }
     }
 

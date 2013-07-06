@@ -16,6 +16,9 @@ class Admin_Tour_Admin_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
+		$city = array();
+		$tour  = CountryQuery::create()->filterByPublish(true)->find();
+		$this->setAttribute('tour', $tour->toArray());
 		return 'Success';
 	}
 }

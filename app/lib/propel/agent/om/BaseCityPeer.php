@@ -24,13 +24,13 @@ abstract class BaseCityPeer
     const TM_CLASS = 'CityTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 4;
+    const NUM_COLUMNS = 11;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 4;
+    const NUM_HYDRATE_COLUMNS = 11;
 
     /** the column name for the id field */
     const ID = 'city.id';
@@ -38,11 +38,32 @@ abstract class BaseCityPeer
     /** the column name for the name field */
     const NAME = 'city.name';
 
+    /** the column name for the country_id field */
+    const COUNTRY_ID = 'city.country_id';
+
+    /** the column name for the publish field */
+    const PUBLISH = 'city.publish';
+
     /** the column name for the date field */
     const DATE = 'city.date';
 
-    /** the column name for the country_id field */
-    const COUNTRY_ID = 'city.country_id';
+    /** the column name for the desc field */
+    const DESC = 'city.desc';
+
+    /** the column name for the useful_info field */
+    const USEFUL_INFO = 'city.useful_info';
+
+    /** the column name for the place field */
+    const PLACE = 'city.place';
+
+    /** the column name for the hotel field */
+    const HOTEL = 'city.hotel';
+
+    /** the column name for the restoran field */
+    const RESTORAN = 'city.restoran';
+
+    /** the column name for the buy_center field */
+    const BUY_CENTER = 'city.buy_center';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -63,12 +84,12 @@ abstract class BaseCityPeer
      * e.g. CityPeer::$fieldNames[CityPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'Date', 'CountryId', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'date', 'countryId', ),
-        BasePeer::TYPE_COLNAME => array (CityPeer::ID, CityPeer::NAME, CityPeer::DATE, CityPeer::COUNTRY_ID, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'DATE', 'COUNTRY_ID', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'date', 'country_id', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'CountryId', 'Publish', 'Date', 'Desc', 'UsefulInfo', 'Place', 'Hotel', 'Restoran', 'BuyCenter', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'countryId', 'publish', 'date', 'desc', 'usefulInfo', 'place', 'hotel', 'restoran', 'buyCenter', ),
+        BasePeer::TYPE_COLNAME => array (CityPeer::ID, CityPeer::NAME, CityPeer::COUNTRY_ID, CityPeer::PUBLISH, CityPeer::DATE, CityPeer::DESC, CityPeer::USEFUL_INFO, CityPeer::PLACE, CityPeer::HOTEL, CityPeer::RESTORAN, CityPeer::BUY_CENTER, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'COUNTRY_ID', 'PUBLISH', 'DATE', 'DESC', 'USEFUL_INFO', 'PLACE', 'HOTEL', 'RESTORAN', 'BUY_CENTER', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'country_id', 'publish', 'date', 'desc', 'useful_info', 'place', 'hotel', 'restoran', 'buy_center', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -78,12 +99,12 @@ abstract class BaseCityPeer
      * e.g. CityPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'Date' => 2, 'CountryId' => 3, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'date' => 2, 'countryId' => 3, ),
-        BasePeer::TYPE_COLNAME => array (CityPeer::ID => 0, CityPeer::NAME => 1, CityPeer::DATE => 2, CityPeer::COUNTRY_ID => 3, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'DATE' => 2, 'COUNTRY_ID' => 3, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'date' => 2, 'country_id' => 3, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'CountryId' => 2, 'Publish' => 3, 'Date' => 4, 'Desc' => 5, 'UsefulInfo' => 6, 'Place' => 7, 'Hotel' => 8, 'Restoran' => 9, 'BuyCenter' => 10, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'countryId' => 2, 'publish' => 3, 'date' => 4, 'desc' => 5, 'usefulInfo' => 6, 'place' => 7, 'hotel' => 8, 'restoran' => 9, 'buyCenter' => 10, ),
+        BasePeer::TYPE_COLNAME => array (CityPeer::ID => 0, CityPeer::NAME => 1, CityPeer::COUNTRY_ID => 2, CityPeer::PUBLISH => 3, CityPeer::DATE => 4, CityPeer::DESC => 5, CityPeer::USEFUL_INFO => 6, CityPeer::PLACE => 7, CityPeer::HOTEL => 8, CityPeer::RESTORAN => 9, CityPeer::BUY_CENTER => 10, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'COUNTRY_ID' => 2, 'PUBLISH' => 3, 'DATE' => 4, 'DESC' => 5, 'USEFUL_INFO' => 6, 'PLACE' => 7, 'HOTEL' => 8, 'RESTORAN' => 9, 'BUY_CENTER' => 10, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'country_id' => 2, 'publish' => 3, 'date' => 4, 'desc' => 5, 'useful_info' => 6, 'place' => 7, 'hotel' => 8, 'restoran' => 9, 'buy_center' => 10, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -159,13 +180,27 @@ abstract class BaseCityPeer
         if (null === $alias) {
             $criteria->addSelectColumn(CityPeer::ID);
             $criteria->addSelectColumn(CityPeer::NAME);
-            $criteria->addSelectColumn(CityPeer::DATE);
             $criteria->addSelectColumn(CityPeer::COUNTRY_ID);
+            $criteria->addSelectColumn(CityPeer::PUBLISH);
+            $criteria->addSelectColumn(CityPeer::DATE);
+            $criteria->addSelectColumn(CityPeer::DESC);
+            $criteria->addSelectColumn(CityPeer::USEFUL_INFO);
+            $criteria->addSelectColumn(CityPeer::PLACE);
+            $criteria->addSelectColumn(CityPeer::HOTEL);
+            $criteria->addSelectColumn(CityPeer::RESTORAN);
+            $criteria->addSelectColumn(CityPeer::BUY_CENTER);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.name');
-            $criteria->addSelectColumn($alias . '.date');
             $criteria->addSelectColumn($alias . '.country_id');
+            $criteria->addSelectColumn($alias . '.publish');
+            $criteria->addSelectColumn($alias . '.date');
+            $criteria->addSelectColumn($alias . '.desc');
+            $criteria->addSelectColumn($alias . '.useful_info');
+            $criteria->addSelectColumn($alias . '.place');
+            $criteria->addSelectColumn($alias . '.hotel');
+            $criteria->addSelectColumn($alias . '.restoran');
+            $criteria->addSelectColumn($alias . '.buy_center');
         }
     }
 

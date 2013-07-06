@@ -16,7 +16,20 @@ class Admin_Tour_Create_AddAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
+		return 'Input';
+	}
+	public function executeWrite(AgaviWebRequestDataHolder $rd)
+	{
+		$shamsi = new jDateTime();
+		$name = $rd->getParameter('tour');
+		$pub = $rd->getParameter('publish');
+		$obj = new Country();
+		$obj->setName($name);
+		$obj->setPublish($pub);
+		$obj->setDate($shamsi->date('d M Y',time()));
+		$obj->save();
 		return 'Success';
+		
 	}
 }
 

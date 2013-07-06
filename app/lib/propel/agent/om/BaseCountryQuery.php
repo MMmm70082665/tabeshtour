@@ -9,18 +9,16 @@
  * @method CountryQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CountryQuery orderByName($order = Criteria::ASC) Order by the name column
  * @method CountryQuery orderByDate($order = Criteria::ASC) Order by the date column
+ * @method CountryQuery orderByPublish($order = Criteria::ASC) Order by the publish column
  *
  * @method CountryQuery groupById() Group by the id column
  * @method CountryQuery groupByName() Group by the name column
  * @method CountryQuery groupByDate() Group by the date column
+ * @method CountryQuery groupByPublish() Group by the publish column
  *
  * @method CountryQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method CountryQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method CountryQuery innerJoin($relation) Adds a INNER JOIN clause to the query
- *
- * @method CountryQuery leftJoinCountryInfo($relationAlias = null) Adds a LEFT JOIN clause to the query using the CountryInfo relation
- * @method CountryQuery rightJoinCountryInfo($relationAlias = null) Adds a RIGHT JOIN clause to the query using the CountryInfo relation
- * @method CountryQuery innerJoinCountryInfo($relationAlias = null) Adds a INNER JOIN clause to the query using the CountryInfo relation
  *
  * @method CountryQuery leftJoinCity($relationAlias = null) Adds a LEFT JOIN clause to the query using the City relation
  * @method CountryQuery rightJoinCity($relationAlias = null) Adds a RIGHT JOIN clause to the query using the City relation
@@ -31,10 +29,12 @@
  *
  * @method Country findOneByName(string $name) Return the first Country filtered by the name column
  * @method Country findOneByDate(string $date) Return the first Country filtered by the date column
+ * @method Country findOneByPublish(boolean $publish) Return the first Country filtered by the publish column
  *
  * @method array findById(int $id) Return Country objects filtered by the id column
  * @method array findByName(string $name) Return Country objects filtered by the name column
  * @method array findByDate(string $date) Return Country objects filtered by the date column
+ * @method array findByPublish(boolean $publish) Return Country objects filtered by the publish column
  *
  * @package    propel.generator.agent.om
  */
@@ -138,7 +138,7 @@ abstract class BaseCountryQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `date` FROM `country` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `name`, `date`, `publish` FROM `country` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -288,38 +288,24 @@ abstract class BaseCountryQuery extends ModelCriteria
      *
      * Example usage:
      * <code>
-     * $query->filterByDate('2011-03-14'); // WHERE date = '2011-03-14'
-     * $query->filterByDate('now'); // WHERE date = '2011-03-14'
-     * $query->filterByDate(array('max' => 'yesterday')); // WHERE date > '2011-03-13'
+     * $query->filterByDate('fooValue');   // WHERE date = 'fooValue'
+     * $query->filterByDate('%fooValue%'); // WHERE date LIKE '%fooValue%'
      * </code>
      *
-     * @param     mixed $date The value to use as filter.
-     *              Values can be integers (unix timestamps), DateTime objects, or strings.
-     *              Empty strings are treated as NULL.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $date The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CountryQuery The current query, for fluid interface
      */
     public function filterByDate($date = null, $comparison = null)
     {
-        if (is_array($date)) {
-            $useMinMax = false;
-            if (isset($date['min'])) {
-                $this->addUsingAlias(CountryPeer::DATE, $date['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($date['max'])) {
-                $this->addUsingAlias(CountryPeer::DATE, $date['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
+        if (null === $comparison) {
+            if (is_array($date)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $date)) {
+                $date = str_replace('*', '%', $date);
+                $comparison = Criteria::LIKE;
             }
         }
 
@@ -327,77 +313,30 @@ abstract class BaseCountryQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query by a related CountryInfo object
+     * Filter the query on the publish column
      *
-     * @param   CountryInfo|PropelObjectCollection $countryInfo  the related object to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByPublish(true); // WHERE publish = true
+     * $query->filterByPublish('yes'); // WHERE publish = true
+     * </code>
+     *
+     * @param     boolean|string $publish The value to use as filter.
+     *              Non-boolean arguments are converted using the following rules:
+     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
+     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
+     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return   CountryQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
-     */
-    public function filterByCountryInfo($countryInfo, $comparison = null)
-    {
-        if ($countryInfo instanceof CountryInfo) {
-            return $this
-                ->addUsingAlias(CountryPeer::ID, $countryInfo->getCountryId(), $comparison);
-        } elseif ($countryInfo instanceof PropelObjectCollection) {
-            return $this
-                ->useCountryInfoQuery()
-                ->filterByPrimaryKeys($countryInfo->getPrimaryKeys())
-                ->endUse();
-        } else {
-            throw new PropelException('filterByCountryInfo() only accepts arguments of type CountryInfo or PropelCollection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the CountryInfo relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return CountryQuery The current query, for fluid interface
      */
-    public function joinCountryInfo($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    public function filterByPublish($publish = null, $comparison = null)
     {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('CountryInfo');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
+        if (is_string($publish)) {
+            $publish = in_array(strtolower($publish), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
         }
 
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'CountryInfo');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the CountryInfo relation CountryInfo object
-     *
-     * @see       useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return   CountryInfoQuery A secondary query class using the current class as primary query
-     */
-    public function useCountryInfoQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        return $this
-            ->joinCountryInfo($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'CountryInfo', 'CountryInfoQuery');
+        return $this->addUsingAlias(CountryPeer::PUBLISH, $publish, $comparison);
     }
 
     /**

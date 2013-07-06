@@ -10,10 +10,10 @@
 <div class="left_menu_box">
 <div class="title">مدیریت تورها و مسیرها</div>
 <ul class="menu">
-<li class=""><a href="/news/menu/create/add">ایجاد تور</a></li>
-<li class=""><a href="/news/two-menu/create/add">ایجاد مسیر</a></li>
-<li class=""><a href="/news/menu/admin/index">مدیریت تورها</a></li>
-<li class=""><a href="/news/two-menu/admin/index">مدیریت مسیرها</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.tour.create.add');?>">ایجاد تور</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.masir.create.add');?>">ایجاد مسیر</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.tour.admin.index');?>">مدیریت تورها</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.masir.admin.index');?>">مدیریت مسیرها</a></li>
 </ul>
 </div>
 <div class="left_menu_box">
@@ -30,10 +30,9 @@
 </ul>
 </div>
 <div class="left_menu_box">
-<div class="title">کاربران</div>
+<div class="title">مدیر</div>
 <ul class="menu">
-<li class=""><a href="<?php echo $ro->gen('admin.user.create.add');?>">ایجاد کاربر جدید</a></li>
-<li class=""><a href="">ویرایش پروفایل</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.user.create.add');?>">ویرایش پروفایل</a></li>
 </ul>
 </div>
 <div class="left_menu_box">

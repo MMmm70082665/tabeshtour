@@ -16,6 +16,21 @@ class Admin_User_Create_AddAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
+		$user = UserQuery::create()->find();
+		$this->setAttribute('user', $user->toArray());
+		return 'Input';
+	}
+	public function executeWrite(AgaviWebRequestDataHolder $rd)
+	{
+		$username = $rd->getParameter('username');
+		$password = $rd->getParameter('password');
+		UserQuery::create()
+		->filterById(1)
+		->update(array(
+		'Username' => $username,
+		'Password' => $password
+		)
+		);
 		return 'Success';
 	}
 }

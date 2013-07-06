@@ -7,7 +7,24 @@
 	
 	<ae:configuration>
 		
-		<validators>
+		<validators method="write">
+		 	<validator class="string">
+        		<arguments>
+          			<argument>username</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+		<validator class="string">
+			<arguments>
+				<argument>password</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+       
 		</validators>
 		
 	</ae:configuration>

@@ -16,6 +16,8 @@ class Admin_Tour_Publish_AdminAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
+		$tour  = CountryQuery::create()->filterByPublish(false)->find();
+		$this->setAttribute('tour', $tour->toArray());
 		return 'Success';
 	}
 }
