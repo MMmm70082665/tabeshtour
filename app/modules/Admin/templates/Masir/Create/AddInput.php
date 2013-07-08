@@ -33,10 +33,10 @@
 				<select name="tour">
 				<option selected="selected">انتخاب</option>
 				<?php foreach ($t['tour'] as $tour):?>
-				<option value="<?php $tour['Id']; ?>"><?php echo $tour['Name']; ?></option>
+				<option value="<?php echo  $tour['Id']; ?>"><?php echo $tour['Name']; ?></option>
 				<?php endforeach;?>
 				</select>
-				<label for="publlish">وضعیت انتشار: <em>*</em></label>
+				<label for="publish">وضعیت انتشار: <em>*</em></label>
 				<select name="publish">
 				<option value="true">اکنون منتشر شود</option>
 				<option value="false">اکنون منتشر نشود</option>
@@ -51,7 +51,7 @@
 				</div>
 				<label for="useful_info">اطلاعات مفید:</label>
 				<div class="form_row">
-				<textarea cols="45" rows="5" id="suseful_info" name="useful_info" ></textarea>
+				<textarea cols="45" rows="5" id="useful_info" name="useful_info" ></textarea>
 				</div>
 			</td>
 		</tr>

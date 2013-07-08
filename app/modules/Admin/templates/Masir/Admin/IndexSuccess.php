@@ -31,25 +31,20 @@
 			<tr class="first">
 			<td class="align_center last alt_col" style=""><?php echo $post['Id']?></td>
             <td class="first" style=""><?php echo $post['Name'];   ?></td>
-            <td class="align_center alt_col" style=""></td>
+            <td class="align_center alt_col" style=""><?php echo  $t['tour_name']?></td>
 			<td class="align_center alt_col" style="">
 			<a href="<?php echo $ro->gen('admin.post.publish.pub',array('id' => $post['Id']));?>">فعال</a></td>
 			<td class="align_center" style="">
-			<a href="<?php echo $ro->gen('admin.post.edit.index',array('id' => $post['Id']));?>">ویرایش</a>
+			<a href="<?php echo $ro->gen('admin.masir.edit.index',array('id' => $post['Id']));?>">ویرایش</a>
 			</td>
 			<td class="align_center last alt_col" style="">
-			<a href="<?php echo $ro->gen('admin.post.delete.index',array('id' => $post['Id']));?>">حذف</a>
+			<a href="<?php echo $ro->gen('admin.masir.delete.index',array('id' => $post['Id']));?>">حذف</a>
 			</td>
                 </tr>
                 <?php endforeach; ?>
             </tbody>
 </table>
 </div>
-<div class="pagination clearfix">
-			<?php foreach ($t['page'] as $page):?>	
-                       <a href="<?php echo $ro->gen('admin.post.admin.index',array('id' => $page)); ?>"><?php echo $page ;?></a>
-            		            <?php endforeach;?>
-            		</div>
             		<?php endif;?>
 		</div>
 		</div>

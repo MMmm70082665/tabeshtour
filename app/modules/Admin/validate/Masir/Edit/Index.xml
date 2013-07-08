@@ -7,7 +7,15 @@
 	
 	<ae:configuration>
 		
-		<validators>
+		<validators method="read" >
+			<validator class="number">
+			<arguments>
+				<argument>id</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
 		</validators>
 		
 	</ae:configuration>

@@ -21,15 +21,18 @@
 <column name="country_id" type="INTEGER" required="false" />
 <column name="publish" type="BOOLEAN" required="true" />
 <column name="date" type="DATE" required="true" />
-<column name="desc" type="LONGVARCHAR" required="false" />
-<column name="useful_info" type="LONGVARCHAR" required="false" />
-<column name="place" type="LONGVARCHAR" required="false" />
-<column name="hotel" type="LONGVARCHAR" required="false" />
-<column name="restoran" type="LONGVARCHAR" required="false" />
-<column name="buy_center" type="LONGVARCHAR" required="false" />
+<column name="desc" type="BLOB" required="false" />
+<column name="useful_info" type="BLOB" required="false" />
+<column name="place" type="BLOB" required="false" />
+<column name="hotel" type="BLOB" required="false" />
+<column name="restoran" type="BLOB" required="false" />
+<column name="buy_center" type="BLOB" required="false" />
 <foreign-key foreignTable="country">
 <reference local="country_id" foreign="id"/>
 </foreign-key>
+<unique name="name">
+<unique-column name="name" />
+</unique>
 </table>
 
 <table name="record_city">

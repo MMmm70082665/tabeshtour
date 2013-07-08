@@ -22,27 +22,26 @@ class Admin_Masir_Create_AddAction extends agentAdminBaseAction
 	}
 	public function executeWrite(AgaviWebRequestDataHolder $rd)
 	{
-        $shamsi = new jDateTime();
 		$name = $rd->getParameter('name');
-		$publish  = $rd->getParameter('publish');
-		$tour_id = $rd->getParameter('tour');
+		$country_id = $rd->getParameter('tour');
+		$pub = $rd->getParameter('publish');
 		$desc = $rd->getParameter('desc');
-		$useful_info = $rd->getParameter('useful_info');
-		$restoran = $rd->getParameter('restoran');
+		$res = $rd->getParameter('restoran');
 		$hotel = $rd->getParameter('hotel');
 		$place = $rd->getParameter('place');
 		$buy = $rd->getParameter('buy_center');
+		$info = $rd->getParameter('useful_info');
 		$obj = new City();
 		$obj->setName($name);
-		$obj->setPublish($publish);
-		$obj->setCountryId($tour_id);
+		$obj->setCountryId($country_id);
+		$obj->setPublish($pub);
 		$obj->setDesc($desc);
-		$obj->setUsefulInfo($useful_info);
-		$obj->setRestoran($restoran);
+		$obj->setRestoran($res);
 		$obj->setHotel($hotel);
 		$obj->setPlace($place);
 		$obj->setBuyCenter($buy);
-        $obj->setDate($shamsi->date('d M Y',time()));
+		$obj->setUsefulInfo($info);
+		$obj->save();
 		return 'Success';
 	}
 }

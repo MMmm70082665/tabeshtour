@@ -16,7 +16,14 @@ class Admin_Masir_Edit_IndexAction extends agentAdminBaseAction
 	 */
 	public function getDefaultViewName()
 	{
-		return 'Success';
+		return 'Input';
+	}
+	public function executeRead(AgaviRequestDataHolder $rd)
+	{
+		$id = $rd->getParameter('id');
+		$city = CityQuery::create()->findPks($id);
+		$this->setAttribute('city', $city->toArray());
+		return 'Input';
 	}
 }
 
