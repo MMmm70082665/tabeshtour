@@ -49,14 +49,6 @@
 				</div>
 			</td>
 		</tr>
-		<tr>
-			<td style="" class="first">
-			<label for="tag">متاتگ Description:</label>
-				<div class="form_row">
-				<textarea cols="45" rows="5" id="tag" name="tag" ></textarea>
-				</div>
-			</td>
-		</tr>
 
 	</tbody>
 </table>

@@ -43,12 +43,12 @@ class CityTableMap extends TableMap
         $this->addForeignKey('country_id', 'CountryId', 'INTEGER', 'country', 'id', false, null, null);
         $this->addColumn('publish', 'Publish', 'BOOLEAN', true, 1, null);
         $this->addColumn('date', 'Date', 'DATE', true, null, null);
-        $this->addColumn('desc', 'Desc', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('useful_info', 'UsefulInfo', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('place', 'Place', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('hotel', 'Hotel', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('restoran', 'Restoran', 'LONGVARCHAR', false, null, null);
-        $this->addColumn('buy_center', 'BuyCenter', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('desc', 'Desc', 'BLOB', false, null, null);
+        $this->addColumn('useful_info', 'UsefulInfo', 'BLOB', false, null, null);
+        $this->addColumn('place', 'Place', 'BLOB', false, null, null);
+        $this->addColumn('hotel', 'Hotel', 'BLOB', false, null, null);
+        $this->addColumn('restoran', 'Restoran', 'BLOB', false, null, null);
+        $this->addColumn('buy_center', 'BuyCenter', 'BLOB', false, null, null);
         // validators
     } // initialize()
 

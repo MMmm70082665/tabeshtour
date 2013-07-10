@@ -32,11 +32,6 @@
 						<layer name="decorator">
 							<ae:parameter name="directory">%core.template_dir%</ae:parameter>
 							<ae:parameter name="template">Master</ae:parameter>
-							<slots>
-								<slot name="header" module="Widgets" action="Header" />
-								<slot name="sidebar" module="Widgets" action="Sidebar" />
-								<slot name="footer" module="Widgets" action="Footer" />
-							</slots>
 						</layer>
 					</layout>
 					

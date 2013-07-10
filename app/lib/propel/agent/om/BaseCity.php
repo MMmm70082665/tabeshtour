@@ -61,37 +61,37 @@ abstract class BaseCity extends BaseObject implements Persistent
 
     /**
      * The value for the desc field.
-     * @var        string
+     * @var        resource
      */
     protected $desc;
 
     /**
      * The value for the useful_info field.
-     * @var        string
+     * @var        resource
      */
     protected $useful_info;
 
     /**
      * The value for the place field.
-     * @var        string
+     * @var        resource
      */
     protected $place;
 
     /**
      * The value for the hotel field.
-     * @var        string
+     * @var        resource
      */
     protected $hotel;
 
     /**
      * The value for the restoran field.
-     * @var        string
+     * @var        resource
      */
     protected $restoran;
 
     /**
      * The value for the buy_center field.
-     * @var        string
+     * @var        resource
      */
     protected $buy_center;
 
@@ -209,7 +209,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [desc] column value.
      *
-     * @return string
+     * @return resource
      */
     public function getDesc()
     {
@@ -219,7 +219,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [useful_info] column value.
      *
-     * @return string
+     * @return resource
      */
     public function getUsefulInfo()
     {
@@ -229,7 +229,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [place] column value.
      *
-     * @return string
+     * @return resource
      */
     public function getPlace()
     {
@@ -239,7 +239,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [hotel] column value.
      *
-     * @return string
+     * @return resource
      */
     public function getHotel()
     {
@@ -249,7 +249,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [restoran] column value.
      *
-     * @return string
+     * @return resource
      */
     public function getRestoran()
     {
@@ -259,7 +259,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [buy_center] column value.
      *
-     * @return string
+     * @return resource
      */
     public function getBuyCenter()
     {
@@ -388,19 +388,22 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [desc] column.
      *
-     * @param string $v new value
+     * @param resource $v new value
      * @return City The current object (for fluent API support)
      */
     public function setDesc($v)
     {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->desc !== $v) {
+        // Because BLOB columns are streams in PDO we have to assume that they are
+        // always modified when a new value is passed in.  For example, the contents
+        // of the stream itself may have changed externally.
+        if (!is_resource($v) && $v !== null) {
+            $this->desc = fopen('php://memory', 'r+');
+            fwrite($this->desc, $v);
+            rewind($this->desc);
+        } else { // it's already a stream
             $this->desc = $v;
-            $this->modifiedColumns[] = CityPeer::DESC;
         }
+        $this->modifiedColumns[] = CityPeer::DESC;
 
 
         return $this;
@@ -409,19 +412,22 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [useful_info] column.
      *
-     * @param string $v new value
+     * @param resource $v new value
      * @return City The current object (for fluent API support)
      */
     public function setUsefulInfo($v)
     {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->useful_info !== $v) {
+        // Because BLOB columns are streams in PDO we have to assume that they are
+        // always modified when a new value is passed in.  For example, the contents
+        // of the stream itself may have changed externally.
+        if (!is_resource($v) && $v !== null) {
+            $this->useful_info = fopen('php://memory', 'r+');
+            fwrite($this->useful_info, $v);
+            rewind($this->useful_info);
+        } else { // it's already a stream
             $this->useful_info = $v;
-            $this->modifiedColumns[] = CityPeer::USEFUL_INFO;
         }
+        $this->modifiedColumns[] = CityPeer::USEFUL_INFO;
 
 
         return $this;
@@ -430,19 +436,22 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [place] column.
      *
-     * @param string $v new value
+     * @param resource $v new value
      * @return City The current object (for fluent API support)
      */
     public function setPlace($v)
     {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->place !== $v) {
+        // Because BLOB columns are streams in PDO we have to assume that they are
+        // always modified when a new value is passed in.  For example, the contents
+        // of the stream itself may have changed externally.
+        if (!is_resource($v) && $v !== null) {
+            $this->place = fopen('php://memory', 'r+');
+            fwrite($this->place, $v);
+            rewind($this->place);
+        } else { // it's already a stream
             $this->place = $v;
-            $this->modifiedColumns[] = CityPeer::PLACE;
         }
+        $this->modifiedColumns[] = CityPeer::PLACE;
 
 
         return $this;
@@ -451,19 +460,22 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [hotel] column.
      *
-     * @param string $v new value
+     * @param resource $v new value
      * @return City The current object (for fluent API support)
      */
     public function setHotel($v)
     {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->hotel !== $v) {
+        // Because BLOB columns are streams in PDO we have to assume that they are
+        // always modified when a new value is passed in.  For example, the contents
+        // of the stream itself may have changed externally.
+        if (!is_resource($v) && $v !== null) {
+            $this->hotel = fopen('php://memory', 'r+');
+            fwrite($this->hotel, $v);
+            rewind($this->hotel);
+        } else { // it's already a stream
             $this->hotel = $v;
-            $this->modifiedColumns[] = CityPeer::HOTEL;
         }
+        $this->modifiedColumns[] = CityPeer::HOTEL;
 
 
         return $this;
@@ -472,19 +484,22 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [restoran] column.
      *
-     * @param string $v new value
+     * @param resource $v new value
      * @return City The current object (for fluent API support)
      */
     public function setRestoran($v)
     {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->restoran !== $v) {
+        // Because BLOB columns are streams in PDO we have to assume that they are
+        // always modified when a new value is passed in.  For example, the contents
+        // of the stream itself may have changed externally.
+        if (!is_resource($v) && $v !== null) {
+            $this->restoran = fopen('php://memory', 'r+');
+            fwrite($this->restoran, $v);
+            rewind($this->restoran);
+        } else { // it's already a stream
             $this->restoran = $v;
-            $this->modifiedColumns[] = CityPeer::RESTORAN;
         }
+        $this->modifiedColumns[] = CityPeer::RESTORAN;
 
 
         return $this;
@@ -493,19 +508,22 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [buy_center] column.
      *
-     * @param string $v new value
+     * @param resource $v new value
      * @return City The current object (for fluent API support)
      */
     public function setBuyCenter($v)
     {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->buy_center !== $v) {
+        // Because BLOB columns are streams in PDO we have to assume that they are
+        // always modified when a new value is passed in.  For example, the contents
+        // of the stream itself may have changed externally.
+        if (!is_resource($v) && $v !== null) {
+            $this->buy_center = fopen('php://memory', 'r+');
+            fwrite($this->buy_center, $v);
+            rewind($this->buy_center);
+        } else { // it's already a stream
             $this->buy_center = $v;
-            $this->modifiedColumns[] = CityPeer::BUY_CENTER;
         }
+        $this->modifiedColumns[] = CityPeer::BUY_CENTER;
 
 
         return $this;
@@ -548,12 +566,48 @@ abstract class BaseCity extends BaseObject implements Persistent
             $this->country_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
             $this->publish = ($row[$startcol + 3] !== null) ? (boolean) $row[$startcol + 3] : null;
             $this->date = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            $this->desc = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
-            $this->useful_info = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
-            $this->place = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
-            $this->hotel = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
-            $this->restoran = ($row[$startcol + 9] !== null) ? (string) $row[$startcol + 9] : null;
-            $this->buy_center = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+            if ($row[$startcol + 5] !== null) {
+                $this->desc = fopen('php://memory', 'r+');
+                fwrite($this->desc, $row[$startcol + 5]);
+                rewind($this->desc);
+            } else {
+                $this->desc = null;
+            }
+            if ($row[$startcol + 6] !== null) {
+                $this->useful_info = fopen('php://memory', 'r+');
+                fwrite($this->useful_info, $row[$startcol + 6]);
+                rewind($this->useful_info);
+            } else {
+                $this->useful_info = null;
+            }
+            if ($row[$startcol + 7] !== null) {
+                $this->place = fopen('php://memory', 'r+');
+                fwrite($this->place, $row[$startcol + 7]);
+                rewind($this->place);
+            } else {
+                $this->place = null;
+            }
+            if ($row[$startcol + 8] !== null) {
+                $this->hotel = fopen('php://memory', 'r+');
+                fwrite($this->hotel, $row[$startcol + 8]);
+                rewind($this->hotel);
+            } else {
+                $this->hotel = null;
+            }
+            if ($row[$startcol + 9] !== null) {
+                $this->restoran = fopen('php://memory', 'r+');
+                fwrite($this->restoran, $row[$startcol + 9]);
+                rewind($this->restoran);
+            } else {
+                $this->restoran = null;
+            }
+            if ($row[$startcol + 10] !== null) {
+                $this->buy_center = fopen('php://memory', 'r+');
+                fwrite($this->buy_center, $row[$startcol + 10]);
+                rewind($this->buy_center);
+            } else {
+                $this->buy_center = null;
+            }
             $this->resetModified();
 
             $this->setNew(false);
@@ -763,6 +817,36 @@ abstract class BaseCity extends BaseObject implements Persistent
                     $this->doUpdate($con);
                 }
                 $affectedRows += 1;
+                // Rewind the desc LOB column, since PDO does not rewind after inserting value.
+                if ($this->desc !== null && is_resource($this->desc)) {
+                    rewind($this->desc);
+                }
+
+                // Rewind the useful_info LOB column, since PDO does not rewind after inserting value.
+                if ($this->useful_info !== null && is_resource($this->useful_info)) {
+                    rewind($this->useful_info);
+                }
+
+                // Rewind the place LOB column, since PDO does not rewind after inserting value.
+                if ($this->place !== null && is_resource($this->place)) {
+                    rewind($this->place);
+                }
+
+                // Rewind the hotel LOB column, since PDO does not rewind after inserting value.
+                if ($this->hotel !== null && is_resource($this->hotel)) {
+                    rewind($this->hotel);
+                }
+
+                // Rewind the restoran LOB column, since PDO does not rewind after inserting value.
+                if ($this->restoran !== null && is_resource($this->restoran)) {
+                    rewind($this->restoran);
+                }
+
+                // Rewind the buy_center LOB column, since PDO does not rewind after inserting value.
+                if ($this->buy_center !== null && is_resource($this->buy_center)) {
+                    rewind($this->buy_center);
+                }
+
                 $this->resetModified();
             }
 
@@ -870,22 +954,40 @@ abstract class BaseCity extends BaseObject implements Persistent
                         $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
                         break;
                     case '`desc`':
-                        $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
+                        if (is_resource($this->desc)) {
+                            rewind($this->desc);
+                        }
+                        $stmt->bindValue($identifier, $this->desc, PDO::PARAM_LOB);
                         break;
                     case '`useful_info`':
-                        $stmt->bindValue($identifier, $this->useful_info, PDO::PARAM_STR);
+                        if (is_resource($this->useful_info)) {
+                            rewind($this->useful_info);
+                        }
+                        $stmt->bindValue($identifier, $this->useful_info, PDO::PARAM_LOB);
                         break;
                     case '`place`':
-                        $stmt->bindValue($identifier, $this->place, PDO::PARAM_STR);
+                        if (is_resource($this->place)) {
+                            rewind($this->place);
+                        }
+                        $stmt->bindValue($identifier, $this->place, PDO::PARAM_LOB);
                         break;
                     case '`hotel`':
-                        $stmt->bindValue($identifier, $this->hotel, PDO::PARAM_STR);
+                        if (is_resource($this->hotel)) {
+                            rewind($this->hotel);
+                        }
+                        $stmt->bindValue($identifier, $this->hotel, PDO::PARAM_LOB);
                         break;
                     case '`restoran`':
-                        $stmt->bindValue($identifier, $this->restoran, PDO::PARAM_STR);
+                        if (is_resource($this->restoran)) {
+                            rewind($this->restoran);
+                        }
+                        $stmt->bindValue($identifier, $this->restoran, PDO::PARAM_LOB);
                         break;
                     case '`buy_center`':
-                        $stmt->bindValue($identifier, $this->buy_center, PDO::PARAM_STR);
+                        if (is_resource($this->buy_center)) {
+                            rewind($this->buy_center);
+                        }
+                        $stmt->bindValue($identifier, $this->buy_center, PDO::PARAM_LOB);
                         break;
                 }
             }

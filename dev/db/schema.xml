@@ -6,19 +6,15 @@
 <column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
 <column name="username" type="VARCHAR" size="45" required="true" />
 <column name="password" type="VARCHAR" size="45" required="true" />
-</table>
-
-<table name="country">
-<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"  />
-<column name="name" type="VARCHAR" size="25" required="true" />
-<column name="date" type="VARCHAR" required="true" />
-<column name="publish" type="BOOLEAN" required="true" />
+<unique name="username">
+  <unique-column name="username"/>
+</unique>
 </table>
 
 <table name="city">
 <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
 <column name="name" type="VARCHAR" size="45" required="true" />
-<column name="country_id" type="INTEGER" required="false" />
+<column name="country" type="VARCHAR" required="true" />
 <column name="publish" type="BOOLEAN" required="true" />
 <column name="date" type="DATE" required="true" />
 <column name="desc" type="BLOB" required="false" />
@@ -27,41 +23,23 @@
 <column name="hotel" type="BLOB" required="false" />
 <column name="restoran" type="BLOB" required="false" />
 <column name="buy_center" type="BLOB" required="false" />
-<foreign-key foreignTable="country">
-<reference local="country_id" foreign="id"/>
-</foreign-key>
-<unique name="name">
-<unique-column name="name" />
-</unique>
 </table>
 
 <table name="record_city">
 <column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
-<column name="day_counter" type="INTEGER" required="true" />
+<column name="package_code" type="VARCHAR" required="true" />
+<column name="cost" type="VARCHAR" required="true" />
+<column name="begin_time" type="VARCHAR" required="true" />
+<column name="end_time" type="VARCHAR" required="true" />
 <column name="status"  type="BOOLEAN" required="true" />
+<column name="mabda" type="VARCHAR" required="true" />
+<column name="maghsad" type="VARCHAR" required="true" />
+<column name="sky_kind" type="VARCHAR" required="true" />
+<column name="khadamat" type="LONGVARCHAR" required="true" />
+<column name="desc" type="LONGVARCHAR" required="true" />
 <column name="city_id" type="INTEGER" required="false" />
 <foreign-key foreignTable="city">
 <reference local="city_id" foreign="id"/>
-</foreign-key>
-</table>
-
-<table name="option">
-<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
-<column name="record_id" type="INTEGER" required="false" />
-<foreign-key foreignTable="record_city">
-<reference local="record_id" foreign="id"/>
-</foreign-key>
-</table>
-
-<table name="airplane_info">
-<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
-<column name="office_name" type="VARCHAR" size="45" required="true" />
-<column name="address" type="LONGVARCHAR" required="true" />
-<column name="website" type="VARCHAR" size="60" required="false" />
-<column name="explaine" type="LONGVARCHAR" required="true" />
-<column name="record_id" type="INTEGER" required="false" />
-<foreign-key foreignTable="record_city">
-<reference local="record_id" foreign="id"/>
 </foreign-key>
 </table>
 
@@ -70,37 +48,23 @@
 <column name="name" type="VARCHAR" size="45" required="true" />
 <column name="family" type="VARCHAR" size="45" required="true" />
 <column name="address" type="LONGVARCHAR" required="true" />
-<column name="mobile" type="VARCHAR" size="11" required="false" />
+<column name="telphone" type="VARCHAR" size="11" required="false" />
+<column name="mobile" type="VARCHAR" size="11" required="true" />
+<column name="date" type="VARCHAR" required="true" />
 <column name="record_id" type="INTEGER" required="false" />
 <foreign-key foreignTable="record_city">
 <reference local="record_id" foreign="id"/>
 </foreign-key>
 </table>
 
-<table name="post"> 
-<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
-<column name="subject" type="VARCHAR" required="true" />
-<column name="long_desc" type="LONGVARCHAR" required="true" />
-<column name="short_desc" type="LONGVARCHAR" required="false" />
-<column name="publisher" type="BOOLEAN" required="true" />
-<column name="date" type="VARCHAR" required="true" />
-<column name="tag" type="LONGVARCHAR" required="false" />
-<column name="order" type="INTEGER" required="true" />
-<column name="view" type="INTEGER" required="false" />
+<table name="slider"> 
+<column name="id" type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
+<column name="img" type="BLOB" required="false" />
+<column name="text" type="VARCHAR" required="false" />
+<column name="postion" type="TINYINT" required="true" />
 </table>
 
-<table name="tiket">
-<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
-<column name="name" type="VARCHAR" required="true" />
-<column name="email" type="VARCHAR" size="60" required="true" />
-<column name="mobile" type="VARCHAR" size="11" required="false" />
-<column name="order" type="BOOLEAN" required="true" />
-<column name="desc" type="LONGVARCHAR" required="true" />
-<column name="date" type="VARCHAR" required="true" />
-<column name="publish" type="BOOLEAN" required="true" />
-<column name="subject" type="VARCHAR" required="true"/>
-</table>
-<table name="member">
+<table name="partners">
 <column name="id"  type="INTEGER" required="true" autoIncrement="true" primaryKey="true" />
 <column name="office" type="VARCHAR" required="true" />
 <column name="address" type="LONGVARCHAR" required="true" />
@@ -111,4 +75,39 @@
 <column name="publish" type="BOOLEAN" required="true" />
 <column name="desc" type="LONGVARCHAR" required="false" />
 </table>
+
+<table name="news"> 
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="subject" type="VARCHAR" required="true" />
+<column name="long_desc" type="LONGVARCHAR" required="true" />
+<column name="short_desc" type="LONGVARCHAR" required="false" />
+<column name="publish" type="BOOLEAN" required="true" />
+<column name="date" type="VARCHAR" required="true" />
+</table>
+
+<table name="tiket">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true" />
+<column name="name" type="VARCHAR" required="true" />
+<column name="subject" type="VARCHAR" required="true"/>
+<column name="email" type="VARCHAR" size="60" required="true" />
+<column name="mobile" type="VARCHAR" size="11" required="false" />
+<column name="desc" type="LONGVARCHAR" required="true" />
+<column name="date" type="VARCHAR" required="true" />
+<column name="publish" type="BOOLEAN" required="true" />
+</table>
+
+
+<table name="comment">
+<column name="id" type="INTEGER" required="true" primaryKey="true" autoIncrement="true"/>
+<column name="name" type="VARCHAR" size="50" required="true" />
+<column name="email" type="VARCHAR" size="60" required="false" />
+<column name="date" type="VARCHAR" required="true" />
+<column name="desc" type="LONGVARCHAR" required="true" />
+<column name="answer" type="LONGVARCHAR" required="false" />
+<column name="publish" type="BOOLEAN" required="true" />
+<column name="city_id" type="INTEGER" required="true" />
+<foreign-key foreignTable="city">
+  		<reference local="city_id" foreign="id"/>
+</foreign-key>
+ </table>
 </database>

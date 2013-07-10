@@ -49,24 +49,24 @@
  * @method City findOneByCountryId(int $country_id) Return the first City filtered by the country_id column
  * @method City findOneByPublish(boolean $publish) Return the first City filtered by the publish column
  * @method City findOneByDate(string $date) Return the first City filtered by the date column
- * @method City findOneByDesc(string $desc) Return the first City filtered by the desc column
- * @method City findOneByUsefulInfo(string $useful_info) Return the first City filtered by the useful_info column
- * @method City findOneByPlace(string $place) Return the first City filtered by the place column
- * @method City findOneByHotel(string $hotel) Return the first City filtered by the hotel column
- * @method City findOneByRestoran(string $restoran) Return the first City filtered by the restoran column
- * @method City findOneByBuyCenter(string $buy_center) Return the first City filtered by the buy_center column
+ * @method City findOneByDesc(resource $desc) Return the first City filtered by the desc column
+ * @method City findOneByUsefulInfo(resource $useful_info) Return the first City filtered by the useful_info column
+ * @method City findOneByPlace(resource $place) Return the first City filtered by the place column
+ * @method City findOneByHotel(resource $hotel) Return the first City filtered by the hotel column
+ * @method City findOneByRestoran(resource $restoran) Return the first City filtered by the restoran column
+ * @method City findOneByBuyCenter(resource $buy_center) Return the first City filtered by the buy_center column
  *
  * @method array findById(int $id) Return City objects filtered by the id column
  * @method array findByName(string $name) Return City objects filtered by the name column
  * @method array findByCountryId(int $country_id) Return City objects filtered by the country_id column
  * @method array findByPublish(boolean $publish) Return City objects filtered by the publish column
  * @method array findByDate(string $date) Return City objects filtered by the date column
- * @method array findByDesc(string $desc) Return City objects filtered by the desc column
- * @method array findByUsefulInfo(string $useful_info) Return City objects filtered by the useful_info column
- * @method array findByPlace(string $place) Return City objects filtered by the place column
- * @method array findByHotel(string $hotel) Return City objects filtered by the hotel column
- * @method array findByRestoran(string $restoran) Return City objects filtered by the restoran column
- * @method array findByBuyCenter(string $buy_center) Return City objects filtered by the buy_center column
+ * @method array findByDesc(resource $desc) Return City objects filtered by the desc column
+ * @method array findByUsefulInfo(resource $useful_info) Return City objects filtered by the useful_info column
+ * @method array findByPlace(resource $place) Return City objects filtered by the place column
+ * @method array findByHotel(resource $hotel) Return City objects filtered by the hotel column
+ * @method array findByRestoran(resource $restoran) Return City objects filtered by the restoran column
+ * @method array findByBuyCenter(resource $buy_center) Return City objects filtered by the buy_center column
  *
  * @package    propel.generator.agent.om
  */
@@ -431,28 +431,13 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the desc column
      *
-     * Example usage:
-     * <code>
-     * $query->filterByDesc('fooValue');   // WHERE desc = 'fooValue'
-     * $query->filterByDesc('%fooValue%'); // WHERE desc LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $desc The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     mixed $desc The value to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByDesc($desc = null, $comparison = null)
     {
-        if (null === $comparison) {
-            if (is_array($desc)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $desc)) {
-                $desc = str_replace('*', '%', $desc);
-                $comparison = Criteria::LIKE;
-            }
-        }
 
         return $this->addUsingAlias(CityPeer::DESC, $desc, $comparison);
     }
@@ -460,28 +445,13 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the useful_info column
      *
-     * Example usage:
-     * <code>
-     * $query->filterByUsefulInfo('fooValue');   // WHERE useful_info = 'fooValue'
-     * $query->filterByUsefulInfo('%fooValue%'); // WHERE useful_info LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $usefulInfo The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     mixed $usefulInfo The value to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByUsefulInfo($usefulInfo = null, $comparison = null)
     {
-        if (null === $comparison) {
-            if (is_array($usefulInfo)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $usefulInfo)) {
-                $usefulInfo = str_replace('*', '%', $usefulInfo);
-                $comparison = Criteria::LIKE;
-            }
-        }
 
         return $this->addUsingAlias(CityPeer::USEFUL_INFO, $usefulInfo, $comparison);
     }
@@ -489,28 +459,13 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the place column
      *
-     * Example usage:
-     * <code>
-     * $query->filterByPlace('fooValue');   // WHERE place = 'fooValue'
-     * $query->filterByPlace('%fooValue%'); // WHERE place LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $place The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     mixed $place The value to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByPlace($place = null, $comparison = null)
     {
-        if (null === $comparison) {
-            if (is_array($place)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $place)) {
-                $place = str_replace('*', '%', $place);
-                $comparison = Criteria::LIKE;
-            }
-        }
 
         return $this->addUsingAlias(CityPeer::PLACE, $place, $comparison);
     }
@@ -518,28 +473,13 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the hotel column
      *
-     * Example usage:
-     * <code>
-     * $query->filterByHotel('fooValue');   // WHERE hotel = 'fooValue'
-     * $query->filterByHotel('%fooValue%'); // WHERE hotel LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $hotel The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     mixed $hotel The value to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByHotel($hotel = null, $comparison = null)
     {
-        if (null === $comparison) {
-            if (is_array($hotel)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $hotel)) {
-                $hotel = str_replace('*', '%', $hotel);
-                $comparison = Criteria::LIKE;
-            }
-        }
 
         return $this->addUsingAlias(CityPeer::HOTEL, $hotel, $comparison);
     }
@@ -547,28 +487,13 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the restoran column
      *
-     * Example usage:
-     * <code>
-     * $query->filterByRestoran('fooValue');   // WHERE restoran = 'fooValue'
-     * $query->filterByRestoran('%fooValue%'); // WHERE restoran LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $restoran The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     mixed $restoran The value to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByRestoran($restoran = null, $comparison = null)
     {
-        if (null === $comparison) {
-            if (is_array($restoran)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $restoran)) {
-                $restoran = str_replace('*', '%', $restoran);
-                $comparison = Criteria::LIKE;
-            }
-        }
 
         return $this->addUsingAlias(CityPeer::RESTORAN, $restoran, $comparison);
     }
@@ -576,28 +501,13 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the buy_center column
      *
-     * Example usage:
-     * <code>
-     * $query->filterByBuyCenter('fooValue');   // WHERE buy_center = 'fooValue'
-     * $query->filterByBuyCenter('%fooValue%'); // WHERE buy_center LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $buyCenter The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     mixed $buyCenter The value to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByBuyCenter($buyCenter = null, $comparison = null)
     {
-        if (null === $comparison) {
-            if (is_array($buyCenter)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $buyCenter)) {
-                $buyCenter = str_replace('*', '%', $buyCenter);
-                $comparison = Criteria::LIKE;
-            }
-        }
 
         return $this->addUsingAlias(CityPeer::BUY_CENTER, $buyCenter, $comparison);
     }

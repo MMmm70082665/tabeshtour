@@ -11,7 +11,7 @@ $conf = array (
       array (
         'dsn' => 'mysql:host=localhost;dbname=travel',
         'user' => 'root',
-        'password' => '70082665',
+        'password' => '',
       ),
     ),
     'default' => 'travel',

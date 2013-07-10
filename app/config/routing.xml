@@ -64,25 +64,6 @@
 			</route>
 			</route>
 			
-			<route name=".tour" pattern="^/tour" action="Tour">
-			<route name=".create" pattern="^/create" action=".Create">
-			<route name=".add" pattern="^/new$" action=".Add" />
-			</route>
-			<route name=".admin" pattern="^/administrator" action=".Admin">
-			<route name=".index" pattern="^/page$" action=".Index" />
-			</route>
-			<route name=".delete" pattern="^/delete" action=".Delete">
-			<route name=".index" pattern="^/index/(id:\d+)$" action=".Index" />
-			</route>
-			<route name=".edit" pattern="^/edit" action=".Edit">
-			<route name=".index" pattern="^/index/(id:\d+)$" action=".Index" />
-			</route>
-			<route name=".publish" pattern="^/publish" action=".Publish">
-			<route name=".admin" pattern="^/admin$" action=".Admin" />
-			<route name=".pub" pattern="^/pub/(id:\d+)$" action=".Pub" />
-			</route>
-			</route>
-			
 			<route name=".masir" pattern="^/masir" action="Masir">
 			<route name=".create" pattern="^/create" action=".Create">
 			<route name=".add" pattern="^/new$" action=".Add" />

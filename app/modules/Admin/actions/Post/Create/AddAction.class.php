@@ -33,9 +33,7 @@ class Admin_Post_Create_AddAction extends agentAdminBaseAction
 		$obj->setLongDesc($long_desc);
 		$obj->setShortDesc($short_desc);
 		$obj->setPublisher($pub);
-		$obj->setTag($tag);
         $obj->setDate($shamsi->date('d M Y',time()));
-        $obj->setView(1);
         $obj->setOrder($order);
 		$obj->save();
 		return 'Success';
