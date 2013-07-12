@@ -25,6 +25,32 @@ class Admin_Masir_Edit_IndexAction extends agentAdminBaseAction
 		$this->setAttribute('city', $city->toArray());
 		return 'Input';
 	}
+public function executeWrite(AgaviWebRequestDataHolder $rd)
+	{
+		$id = $rd->getParameter('id');
+		$city = $rd->getParameter('city');
+		$country= $rd->getParameter('country');
+		$desc = $rd->getParameter('desc');
+		$res = $rd->getParameter('restoran');
+		$hotel = $rd->getParameter('hotel');
+		$place = $rd->getParameter('place');
+		$buy = $rd->getParameter('buy_center');
+		$info = $rd->getParameter('useful_info');
+		$object = CityQuery::create()->filterById($id)
+		->update(
+		array(
+		'City' => $city,
+		'Country' => $country,
+		'Desc' => $desc,
+		'Restoran' => $res,
+		'Hotel' => $hotel,
+		'Place' => $place,
+		'BuyCenter' => $buy,
+		'UsefulInfo' => $info
+		)   
+		);
+		return 'Success';
+	}
 }
 
 ?>

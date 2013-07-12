@@ -1,4 +1,4 @@
-#Thu Jul 11 12:03:39 PDT 2013
+#Fri Jul 12 01:41:25 PDT 2013
 eclipse.preferences.version=1
 encoding//app/modules/Admin/templates/Comment/Admin/IndexSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Comment/Publish/AdminSuccess.php=UTF-8
@@ -9,6 +9,7 @@ encoding//app/modules/Admin/templates/Communication/Contact/NewSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/IndexSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Masir/Admin/IndexSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Masir/Create/AddInput.php=UTF-8
+encoding//app/modules/Admin/templates/Masir/Delete/IndexError.php=UTF-8
 encoding//app/modules/Admin/templates/Masir/Edit/IndexInput.php=UTF-8
 encoding//app/modules/Admin/templates/Member/Admin/IndexSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Member/Create/AddInput.php=UTF-8

@@ -6,16 +6,84 @@
 >
 	
 	<ae:configuration>
-		
-		<validators method="read" >
-			<validator class="number">
+		<validators method="read">
+		<validator class="number" name="id">
 			<arguments>
 				<argument>id</argument>
+			</arguments>
+		</validator>
+		</validators>
+		<validators method="write">
+		<validator class="number" name="id">
+			<arguments>
+				<argument>id</argument>
+			</arguments>
+		</validator>
+		 	<validator class="string">
+        		<arguments>
+          			<argument>country</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+			<arguments>
+				<argument>city</argument>
 			</arguments>
 			    <ae:parameters>
          			 <ae:parameter name="required">true</ae:parameter>
           		</ae:parameters>
 		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>desc</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+        		<arguments>
+          			<argument>useful_info</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>place</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>buy_center</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>restoran</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>hotel</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+       
 		</validators>
 		
 	</ae:configuration>

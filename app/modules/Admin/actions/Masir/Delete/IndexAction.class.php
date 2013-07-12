@@ -18,6 +18,13 @@ class Admin_Masir_Delete_IndexAction extends agentAdminBaseAction
 	{
 		return 'Success';
 	}
+		public function executeRead(AgaviRequestDataHolder $rd)
+	{
+		$id = $rd->getParameter('id');
+		$object = CityQuery::create()->findById($id);
+		$object->delete();
+		return 'Success';
+	}
 }
 
 ?>

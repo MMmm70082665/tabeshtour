@@ -1,36 +1,24 @@
 <div id="content">
 <div class="breadcrumb">
-<span class="active">ویرایش مسیر</span>
+<span class="active">سفرنامه</span>
 </div>
 <div id="inner">
-<?php foreach ($t['city'] as $city):?>
+<?php foreach ($t['city'] as $city) :?>
 <form method="post" action="<?php echo $ro->gen('admin.masir.edit.index',array('id' => $city['Id']));?>">
 <div class="border_wrapper">
-<div class="title">ویرایش مسیر</div>
+<div class="title">ویرایش  سفرنامه  </div>
 <table cellspacing="0" class="general form_container ">
 	<tbody>
 		<tr class="alt_row">
 			<td style="" class="first">
-				<label for="name">نام شهر:  <em>*</em></label>
+			<label for="country">نام کشور:  <em>*</em></label>
 					<div class="form_row">
-						<input value="<?php echo $city['Name'];?>" type="text" id="name" class="text_input2" name="name">
+						<input value="<?php echo $city['Country'];?>" type="text" id="country" class="text_input2r" name="country">
 					</div>
-			</td>
-		</tr>
-				<tr class="alt_row">
-			<td style="" class="first">
-				<label for="tour">تور: <em>*</em></label>
-				<select name="tour">
-				<option selected="selected">انتخاب</option>
-				<?php foreach ($t['tour'] as $tour):?>
-				<option value="<?php $tour['Id']; ?>"><?php echo $tour['Name']; ?></option>
-				<?php endforeach;?>
-				</select>
-				<label for="publish">وضعیت انتشار: <em>*</em></label>
-				<select name="publish">
-				<option value="true">اکنون منتشر شود</option>
-				<option value="false">اکنون منتشر نشود</option>
-				</select>
+				<label for="city">نام شهر:  <em>*</em></label>
+					<div class="form_row">
+						<input value="<?php echo $city['City'];?>" type="text" id="city" class="text_input2r" name="city">
+					</div>
 			</td>
 		</tr>
 				<tr>
@@ -64,14 +52,14 @@
 			<td style="" class="first">
 			<label for="restoran">رستوران ها:</label>
 				<div class="form_row">
-				<textarea cols="45" rows="5" id="restoran" name="restoran" ><?php echo $city['Restoran']?></textarea>
+				<textarea cols="45" rows="5" id="restoran" name="restoran" ><?php echo $city['Restoran'];?></textarea>
 				</div>
 			</td>
 		</tr>	<tr>
 			<td style="" class="first">
 			<label for="place">جاذبه ها:</label>
 				<div class="form_row">
-				<textarea cols="45" rows="5" id="place" name="place" ><?php echo $city['Place']?></textarea>
+				<textarea cols="45" rows="5" id="place" name="place" ><?php echo $city['Place'];?></textarea>
 				</div>
 			</td>
 		</tr>	

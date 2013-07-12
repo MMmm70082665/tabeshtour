@@ -11,16 +11,14 @@
 <table cellspacing="0" class="general">
 	<thead>
 		<tr>
-			<th width="5%" class="align_center" style="">شماره</th>
 			<th width="10%" class="align_center" style="">کشور</th>
-			<th width="5%" class="align_center" style="">شهر</th>
+			<th width="15%" class="align_center" style="">شهر</th>
 			<th width="15%" class="align_center last" style="" colspan="2">گزینه ها</th>
 		</tr>
 	</thead>
             <tbody>
               <?php foreach ($t['masir'] as $post): ?>
 			<tr class="first">
-			<td class="align_center last alt_col" style=""><?php echo $post['Id']?></td>
             <td class="align_center alt_col" style=""><?php echo $post['Country'];   ?></td>
             <td class="align_center alt_col" style=""><?php echo  $post['City']?></td>
 			<td class="align_center" style="">
