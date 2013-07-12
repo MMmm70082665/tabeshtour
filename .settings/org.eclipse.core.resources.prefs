@@ -1,5 +1,7 @@
-#Tue Jul 09 19:40:06 PDT 2013
+#Thu Jul 11 12:03:39 PDT 2013
 eclipse.preferences.version=1
+encoding//app/modules/Admin/templates/Comment/Admin/IndexSuccess.php=UTF-8
+encoding//app/modules/Admin/templates/Comment/Publish/AdminSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Communication/Contact/AdminSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Communication/Contact/DeleteError.php=UTF-8
 encoding//app/modules/Admin/templates/Communication/Contact/EllowError.php=UTF-8
@@ -12,14 +14,14 @@ encoding//app/modules/Admin/templates/Member/Admin/IndexSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Member/Create/AddInput.php=UTF-8
 encoding//app/modules/Admin/templates/Member/Delete/IndexError.php=UTF-8
 encoding//app/modules/Admin/templates/Member/Edit/IndexInput.php=UTF-8
-encoding//app/modules/Admin/templates/Member/Notactive/IndexSuccess.php=UTF-8
-encoding//app/modules/Admin/templates/Member/Publish/PubError.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Admin/indexSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Create/AddInput.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Delete/IndexError.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Edit/IndexInput.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Publish/AdminSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Post/Publish/PubError.php=UTF-8
+encoding//app/modules/Admin/templates/Tour/Admin/IndexSuccess.php=UTF-8
+encoding//app/modules/Admin/templates/Tour/Create/AddInput.php=UTF-8
 encoding//app/modules/Admin/templates/User/Create/AddInput.php=UTF-8
 encoding//app/modules/Admin/templates/User/Create/AddSuccess.php=UTF-8
 encoding//app/modules/Admin/templates/Widgets/FooterSuccess.php=UTF-8

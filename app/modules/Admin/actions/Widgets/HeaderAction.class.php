@@ -18,15 +18,18 @@ class Admin_Widgets_HeaderAction extends agentAdminBaseAction
 	{
 		$new_tiket = TiketQuery::create()->filterByPublish(false)->find();
 		$this->setAttribute('new_tiket', count($new_tiket));
-		$non_publish_post = PostQuery::create()->filterByPublisher(false)->find();
-		$this->setAttribute('non_publisher', count($non_publish_post));
-		$non_publish_member = MemberQuery::create()->filterByPublish(false)->find();
-		$this->setAttribute('non_member', count($non_publish_member));
-		$non_tour = CountryQuery::create()->filterByPublish(false)->find();
-		$this->setAttribute('non_tour', count($non_tour));
-		$non_city = CityQuery::create()->filterByPublish(false)->find();
-		$this->setAttribute('non_city', count($non_city));
+		
+		$non_news = NewsQuery::create()->filterByPublish(false)->find();
+		$this->setAttribute('non_news', count($non_news));
+		
+		$close_tour = TourQuery::create()->filterByStatus(false)->find();
+		$this->setAttribute('close_tour', count($close_tour));
+		
+		$tour_comment = TourCommentQuery::create()->filterByPublish(false)->find();
+		$this->setAttribute('tour_comment', count($tour_comment));
+		
 		return 'Success';
+		
 	}
 }
 

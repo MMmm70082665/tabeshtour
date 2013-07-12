@@ -8,23 +8,21 @@
  *
  * @method TiketQuery orderById($order = Criteria::ASC) Order by the id column
  * @method TiketQuery orderByName($order = Criteria::ASC) Order by the name column
+ * @method TiketQuery orderBySubject($order = Criteria::ASC) Order by the subject column
  * @method TiketQuery orderByEmail($order = Criteria::ASC) Order by the email column
  * @method TiketQuery orderByMobile($order = Criteria::ASC) Order by the mobile column
- * @method TiketQuery orderByOrder($order = Criteria::ASC) Order by the order column
  * @method TiketQuery orderByDesc($order = Criteria::ASC) Order by the desc column
  * @method TiketQuery orderByDate($order = Criteria::ASC) Order by the date column
  * @method TiketQuery orderByPublish($order = Criteria::ASC) Order by the publish column
- * @method TiketQuery orderBySubject($order = Criteria::ASC) Order by the subject column
  *
  * @method TiketQuery groupById() Group by the id column
  * @method TiketQuery groupByName() Group by the name column
+ * @method TiketQuery groupBySubject() Group by the subject column
  * @method TiketQuery groupByEmail() Group by the email column
  * @method TiketQuery groupByMobile() Group by the mobile column
- * @method TiketQuery groupByOrder() Group by the order column
  * @method TiketQuery groupByDesc() Group by the desc column
  * @method TiketQuery groupByDate() Group by the date column
  * @method TiketQuery groupByPublish() Group by the publish column
- * @method TiketQuery groupBySubject() Group by the subject column
  *
  * @method TiketQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method TiketQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -34,23 +32,21 @@
  * @method Tiket findOneOrCreate(PropelPDO $con = null) Return the first Tiket matching the query, or a new Tiket object populated from the query conditions when no match is found
  *
  * @method Tiket findOneByName(string $name) Return the first Tiket filtered by the name column
+ * @method Tiket findOneBySubject(string $subject) Return the first Tiket filtered by the subject column
  * @method Tiket findOneByEmail(string $email) Return the first Tiket filtered by the email column
  * @method Tiket findOneByMobile(string $mobile) Return the first Tiket filtered by the mobile column
- * @method Tiket findOneByOrder(boolean $order) Return the first Tiket filtered by the order column
  * @method Tiket findOneByDesc(string $desc) Return the first Tiket filtered by the desc column
  * @method Tiket findOneByDate(string $date) Return the first Tiket filtered by the date column
  * @method Tiket findOneByPublish(boolean $publish) Return the first Tiket filtered by the publish column
- * @method Tiket findOneBySubject(string $subject) Return the first Tiket filtered by the subject column
  *
  * @method array findById(int $id) Return Tiket objects filtered by the id column
  * @method array findByName(string $name) Return Tiket objects filtered by the name column
+ * @method array findBySubject(string $subject) Return Tiket objects filtered by the subject column
  * @method array findByEmail(string $email) Return Tiket objects filtered by the email column
  * @method array findByMobile(string $mobile) Return Tiket objects filtered by the mobile column
- * @method array findByOrder(boolean $order) Return Tiket objects filtered by the order column
  * @method array findByDesc(string $desc) Return Tiket objects filtered by the desc column
  * @method array findByDate(string $date) Return Tiket objects filtered by the date column
  * @method array findByPublish(boolean $publish) Return Tiket objects filtered by the publish column
- * @method array findBySubject(string $subject) Return Tiket objects filtered by the subject column
  *
  * @package    propel.generator.agent.om
  */
@@ -154,7 +150,7 @@ abstract class BaseTiketQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `email`, `mobile`, `order`, `desc`, `date`, `publish`, `subject` FROM `tiket` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `name`, `subject`, `email`, `mobile`, `desc`, `date`, `publish` FROM `tiket` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -300,6 +296,35 @@ abstract class BaseTiketQuery extends ModelCriteria
     }
 
     /**
+     * Filter the query on the subject column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterBySubject('fooValue');   // WHERE subject = 'fooValue'
+     * $query->filterBySubject('%fooValue%'); // WHERE subject LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $subject The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return TiketQuery The current query, for fluid interface
+     */
+    public function filterBySubject($subject = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($subject)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $subject)) {
+                $subject = str_replace('*', '%', $subject);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(TiketPeer::SUBJECT, $subject, $comparison);
+    }
+
+    /**
      * Filter the query on the email column
      *
      * Example usage:
@@ -355,33 +380,6 @@ abstract class BaseTiketQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(TiketPeer::MOBILE, $mobile, $comparison);
-    }
-
-    /**
-     * Filter the query on the order column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByOrder(true); // WHERE order = true
-     * $query->filterByOrder('yes'); // WHERE order = true
-     * </code>
-     *
-     * @param     boolean|string $order The value to use as filter.
-     *              Non-boolean arguments are converted using the following rules:
-     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return TiketQuery The current query, for fluid interface
-     */
-    public function filterByOrder($order = null, $comparison = null)
-    {
-        if (is_string($order)) {
-            $order = in_array(strtolower($order), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-        }
-
-        return $this->addUsingAlias(TiketPeer::ORDER, $order, $comparison);
     }
 
     /**
@@ -467,35 +465,6 @@ abstract class BaseTiketQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(TiketPeer::PUBLISH, $publish, $comparison);
-    }
-
-    /**
-     * Filter the query on the subject column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterBySubject('fooValue');   // WHERE subject = 'fooValue'
-     * $query->filterBySubject('%fooValue%'); // WHERE subject LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $subject The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return TiketQuery The current query, for fluid interface
-     */
-    public function filterBySubject($subject = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($subject)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $subject)) {
-                $subject = str_replace('*', '%', $subject);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(TiketPeer::SUBJECT, $subject, $comparison);
     }
 
     /**

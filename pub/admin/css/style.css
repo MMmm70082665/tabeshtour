@@ -416,7 +416,18 @@ input.text_input {
     width: 550px;
     color: #D82727;
 }
-input.text_input2 {
+input.text_input2l {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #0F5C8E;
+    font-size: 13px;
+    font-family: BKoodak;
+    padding: 2px;
+    border-radius:5px;
+    width: 200px;
+    color: #D82727;
+    direction: ltr;
+}
+input.text_input2r {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #0F5C8E;
     font-size: 13px;
@@ -425,6 +436,7 @@ input.text_input2 {
     border-radius:5px;
     width: 200px;
     color: #D82727;
+    direction:rtl;
 }
 textarea {
     background: none repeat scroll 0 0 #FFFFFF;

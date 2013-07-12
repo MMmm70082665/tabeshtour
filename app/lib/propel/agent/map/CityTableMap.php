@@ -40,15 +40,13 @@ class CityTableMap extends TableMap
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', true, 45, null);
-        $this->addForeignKey('country_id', 'CountryId', 'INTEGER', 'country', 'id', false, null, null);
-        $this->addColumn('publish', 'Publish', 'BOOLEAN', true, 1, null);
-        $this->addColumn('date', 'Date', 'DATE', true, null, null);
-        $this->addColumn('desc', 'Desc', 'BLOB', false, null, null);
-        $this->addColumn('useful_info', 'UsefulInfo', 'BLOB', false, null, null);
-        $this->addColumn('place', 'Place', 'BLOB', false, null, null);
-        $this->addColumn('hotel', 'Hotel', 'BLOB', false, null, null);
-        $this->addColumn('restoran', 'Restoran', 'BLOB', false, null, null);
-        $this->addColumn('buy_center', 'BuyCenter', 'BLOB', false, null, null);
+        $this->addColumn('country', 'Country', 'VARCHAR', true, 255, null);
+        $this->addColumn('desc', 'Desc', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('useful_info', 'UsefulInfo', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('place', 'Place', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('hotel', 'Hotel', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('restoran', 'Restoran', 'LONGVARCHAR', false, null, null);
+        $this->addColumn('buy_center', 'BuyCenter', 'LONGVARCHAR', false, null, null);
         // validators
     } // initialize()
 
@@ -57,8 +55,7 @@ class CityTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Country', 'Country', RelationMap::MANY_TO_ONE, array('country_id' => 'id', ), null, null);
-        $this->addRelation('RecordCity', 'RecordCity', RelationMap::ONE_TO_MANY, array('id' => 'city_id', ), null, null, 'RecordCitys');
+        $this->addRelation('Tour', 'Tour', RelationMap::ONE_TO_MANY, array('id' => 'city_id', ), null, null, 'Tours');
     } // buildRelations()
 
 } // CityTableMap

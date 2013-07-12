@@ -65,15 +65,6 @@
 				</div>
 			</td>
 		</tr>
-								<tr class="alt_row">
-			<td style="" class="first">
-			<label for="publish">وضعیت انتشار: <em>*</em></label>
-				<select name="publish">
-				<option value="1">اکنون فعال شود</option>
-				<option value="0">اکنون فعال نشود</option>
-				</select>
-			</td>
-		</tr>
 
 	</tbody>
 </table>

@@ -16,14 +16,6 @@
          			 <ae:parameter name="required">true</ae:parameter>
           		</ae:parameters>
       		</validator>
-		<validator class="string">
-			<arguments>
-				<argument>publish</argument>
-			</arguments>
-			    <ae:parameters>
-         			 <ae:parameter name="required">true</ae:parameter>
-          		</ae:parameters>
-		</validator>
       		<validator class="string">
         		<arguments>
           			<argument>desc</argument>

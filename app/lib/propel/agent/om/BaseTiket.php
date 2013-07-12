@@ -42,6 +42,12 @@ abstract class BaseTiket extends BaseObject implements Persistent
     protected $name;
 
     /**
+     * The value for the subject field.
+     * @var        string
+     */
+    protected $subject;
+
+    /**
      * The value for the email field.
      * @var        string
      */
@@ -52,12 +58,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
      * @var        string
      */
     protected $mobile;
-
-    /**
-     * The value for the order field.
-     * @var        boolean
-     */
-    protected $order;
 
     /**
      * The value for the desc field.
@@ -76,12 +76,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
      * @var        boolean
      */
     protected $publish;
-
-    /**
-     * The value for the subject field.
-     * @var        string
-     */
-    protected $subject;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -118,6 +112,16 @@ abstract class BaseTiket extends BaseObject implements Persistent
     }
 
     /**
+     * Get the [subject] column value.
+     *
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
+    }
+
+    /**
      * Get the [email] column value.
      *
      * @return string
@@ -135,16 +139,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
     public function getMobile()
     {
         return $this->mobile;
-    }
-
-    /**
-     * Get the [order] column value.
-     *
-     * @return boolean
-     */
-    public function getOrder()
-    {
-        return $this->order;
     }
 
     /**
@@ -175,16 +169,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
     public function getPublish()
     {
         return $this->publish;
-    }
-
-    /**
-     * Get the [subject] column value.
-     *
-     * @return string
-     */
-    public function getSubject()
-    {
-        return $this->subject;
     }
 
     /**
@@ -230,6 +214,27 @@ abstract class BaseTiket extends BaseObject implements Persistent
     } // setName()
 
     /**
+     * Set the value of [subject] column.
+     *
+     * @param string $v new value
+     * @return Tiket The current object (for fluent API support)
+     */
+    public function setSubject($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->subject !== $v) {
+            $this->subject = $v;
+            $this->modifiedColumns[] = TiketPeer::SUBJECT;
+        }
+
+
+        return $this;
+    } // setSubject()
+
+    /**
      * Set the value of [email] column.
      *
      * @param string $v new value
@@ -270,35 +275,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
 
         return $this;
     } // setMobile()
-
-    /**
-     * Sets the value of the [order] column.
-     * Non-boolean arguments are converted using the following rules:
-     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     *
-     * @param boolean|integer|string $v The new value
-     * @return Tiket The current object (for fluent API support)
-     */
-    public function setOrder($v)
-    {
-        if ($v !== null) {
-            if (is_string($v)) {
-                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-            } else {
-                $v = (boolean) $v;
-            }
-        }
-
-        if ($this->order !== $v) {
-            $this->order = $v;
-            $this->modifiedColumns[] = TiketPeer::ORDER;
-        }
-
-
-        return $this;
-    } // setOrder()
 
     /**
      * Set the value of [desc] column.
@@ -372,27 +348,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
     } // setPublish()
 
     /**
-     * Set the value of [subject] column.
-     *
-     * @param string $v new value
-     * @return Tiket The current object (for fluent API support)
-     */
-    public function setSubject($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->subject !== $v) {
-            $this->subject = $v;
-            $this->modifiedColumns[] = TiketPeer::SUBJECT;
-        }
-
-
-        return $this;
-    } // setSubject()
-
-    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -426,13 +381,12 @@ abstract class BaseTiket extends BaseObject implements Persistent
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-            $this->email = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
-            $this->mobile = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
-            $this->order = ($row[$startcol + 4] !== null) ? (boolean) $row[$startcol + 4] : null;
+            $this->subject = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+            $this->email = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->mobile = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
             $this->desc = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
             $this->date = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
             $this->publish = ($row[$startcol + 7] !== null) ? (boolean) $row[$startcol + 7] : null;
-            $this->subject = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -441,7 +395,7 @@ abstract class BaseTiket extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 9; // 9 = TiketPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 8; // 8 = TiketPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating Tiket object", $e);
@@ -659,14 +613,14 @@ abstract class BaseTiket extends BaseObject implements Persistent
         if ($this->isColumnModified(TiketPeer::NAME)) {
             $modifiedColumns[':p' . $index++]  = '`name`';
         }
+        if ($this->isColumnModified(TiketPeer::SUBJECT)) {
+            $modifiedColumns[':p' . $index++]  = '`subject`';
+        }
         if ($this->isColumnModified(TiketPeer::EMAIL)) {
             $modifiedColumns[':p' . $index++]  = '`email`';
         }
         if ($this->isColumnModified(TiketPeer::MOBILE)) {
             $modifiedColumns[':p' . $index++]  = '`mobile`';
-        }
-        if ($this->isColumnModified(TiketPeer::ORDER)) {
-            $modifiedColumns[':p' . $index++]  = '`order`';
         }
         if ($this->isColumnModified(TiketPeer::DESC)) {
             $modifiedColumns[':p' . $index++]  = '`desc`';
@@ -676,9 +630,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
         }
         if ($this->isColumnModified(TiketPeer::PUBLISH)) {
             $modifiedColumns[':p' . $index++]  = '`publish`';
-        }
-        if ($this->isColumnModified(TiketPeer::SUBJECT)) {
-            $modifiedColumns[':p' . $index++]  = '`subject`';
         }
 
         $sql = sprintf(
@@ -697,14 +648,14 @@ abstract class BaseTiket extends BaseObject implements Persistent
                     case '`name`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
+                    case '`subject`':
+                        $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
+                        break;
                     case '`email`':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
                         break;
                     case '`mobile`':
                         $stmt->bindValue($identifier, $this->mobile, PDO::PARAM_STR);
-                        break;
-                    case '`order`':
-                        $stmt->bindValue($identifier, (int) $this->order, PDO::PARAM_INT);
                         break;
                     case '`desc`':
                         $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
@@ -714,9 +665,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
                         break;
                     case '`publish`':
                         $stmt->bindValue($identifier, (int) $this->publish, PDO::PARAM_INT);
-                        break;
-                    case '`subject`':
-                        $stmt->bindValue($identifier, $this->subject, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -859,13 +807,13 @@ abstract class BaseTiket extends BaseObject implements Persistent
                 return $this->getName();
                 break;
             case 2:
-                return $this->getEmail();
+                return $this->getSubject();
                 break;
             case 3:
-                return $this->getMobile();
+                return $this->getEmail();
                 break;
             case 4:
-                return $this->getOrder();
+                return $this->getMobile();
                 break;
             case 5:
                 return $this->getDesc();
@@ -875,9 +823,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
                 break;
             case 7:
                 return $this->getPublish();
-                break;
-            case 8:
-                return $this->getSubject();
                 break;
             default:
                 return null;
@@ -909,13 +854,12 @@ abstract class BaseTiket extends BaseObject implements Persistent
         $result = array(
             $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
-            $keys[2] => $this->getEmail(),
-            $keys[3] => $this->getMobile(),
-            $keys[4] => $this->getOrder(),
+            $keys[2] => $this->getSubject(),
+            $keys[3] => $this->getEmail(),
+            $keys[4] => $this->getMobile(),
             $keys[5] => $this->getDesc(),
             $keys[6] => $this->getDate(),
             $keys[7] => $this->getPublish(),
-            $keys[8] => $this->getSubject(),
         );
 
         return $result;
@@ -957,13 +901,13 @@ abstract class BaseTiket extends BaseObject implements Persistent
                 $this->setName($value);
                 break;
             case 2:
-                $this->setEmail($value);
+                $this->setSubject($value);
                 break;
             case 3:
-                $this->setMobile($value);
+                $this->setEmail($value);
                 break;
             case 4:
-                $this->setOrder($value);
+                $this->setMobile($value);
                 break;
             case 5:
                 $this->setDesc($value);
@@ -973,9 +917,6 @@ abstract class BaseTiket extends BaseObject implements Persistent
                 break;
             case 7:
                 $this->setPublish($value);
-                break;
-            case 8:
-                $this->setSubject($value);
                 break;
         } // switch()
     }
@@ -1003,13 +944,12 @@ abstract class BaseTiket extends BaseObject implements Persistent
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
-        if (array_key_exists($keys[2], $arr)) $this->setEmail($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setMobile($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setOrder($arr[$keys[4]]);
+        if (array_key_exists($keys[2], $arr)) $this->setSubject($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setEmail($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setMobile($arr[$keys[4]]);
         if (array_key_exists($keys[5], $arr)) $this->setDesc($arr[$keys[5]]);
         if (array_key_exists($keys[6], $arr)) $this->setDate($arr[$keys[6]]);
         if (array_key_exists($keys[7], $arr)) $this->setPublish($arr[$keys[7]]);
-        if (array_key_exists($keys[8], $arr)) $this->setSubject($arr[$keys[8]]);
     }
 
     /**
@@ -1023,13 +963,12 @@ abstract class BaseTiket extends BaseObject implements Persistent
 
         if ($this->isColumnModified(TiketPeer::ID)) $criteria->add(TiketPeer::ID, $this->id);
         if ($this->isColumnModified(TiketPeer::NAME)) $criteria->add(TiketPeer::NAME, $this->name);
+        if ($this->isColumnModified(TiketPeer::SUBJECT)) $criteria->add(TiketPeer::SUBJECT, $this->subject);
         if ($this->isColumnModified(TiketPeer::EMAIL)) $criteria->add(TiketPeer::EMAIL, $this->email);
         if ($this->isColumnModified(TiketPeer::MOBILE)) $criteria->add(TiketPeer::MOBILE, $this->mobile);
-        if ($this->isColumnModified(TiketPeer::ORDER)) $criteria->add(TiketPeer::ORDER, $this->order);
         if ($this->isColumnModified(TiketPeer::DESC)) $criteria->add(TiketPeer::DESC, $this->desc);
         if ($this->isColumnModified(TiketPeer::DATE)) $criteria->add(TiketPeer::DATE, $this->date);
         if ($this->isColumnModified(TiketPeer::PUBLISH)) $criteria->add(TiketPeer::PUBLISH, $this->publish);
-        if ($this->isColumnModified(TiketPeer::SUBJECT)) $criteria->add(TiketPeer::SUBJECT, $this->subject);
 
         return $criteria;
     }
@@ -1094,13 +1033,12 @@ abstract class BaseTiket extends BaseObject implements Persistent
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
         $copyObj->setName($this->getName());
+        $copyObj->setSubject($this->getSubject());
         $copyObj->setEmail($this->getEmail());
         $copyObj->setMobile($this->getMobile());
-        $copyObj->setOrder($this->getOrder());
         $copyObj->setDesc($this->getDesc());
         $copyObj->setDate($this->getDate());
         $copyObj->setPublish($this->getPublish());
-        $copyObj->setSubject($this->getSubject());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setId(NULL); // this is a auto-increment column, so set to default value
@@ -1154,13 +1092,12 @@ abstract class BaseTiket extends BaseObject implements Persistent
     {
         $this->id = null;
         $this->name = null;
+        $this->subject = null;
         $this->email = null;
         $this->mobile = null;
-        $this->order = null;
         $this->desc = null;
         $this->date = null;
         $this->publish = null;
-        $this->subject = null;
         $this->alreadyInSave = false;
         $this->alreadyInValidation = false;
         $this->clearAllReferences();

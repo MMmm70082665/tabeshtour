@@ -8,9 +8,7 @@
  *
  * @method CityQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CityQuery orderByName($order = Criteria::ASC) Order by the name column
- * @method CityQuery orderByCountryId($order = Criteria::ASC) Order by the country_id column
- * @method CityQuery orderByPublish($order = Criteria::ASC) Order by the publish column
- * @method CityQuery orderByDate($order = Criteria::ASC) Order by the date column
+ * @method CityQuery orderByCountry($order = Criteria::ASC) Order by the country column
  * @method CityQuery orderByDesc($order = Criteria::ASC) Order by the desc column
  * @method CityQuery orderByUsefulInfo($order = Criteria::ASC) Order by the useful_info column
  * @method CityQuery orderByPlace($order = Criteria::ASC) Order by the place column
@@ -20,9 +18,7 @@
  *
  * @method CityQuery groupById() Group by the id column
  * @method CityQuery groupByName() Group by the name column
- * @method CityQuery groupByCountryId() Group by the country_id column
- * @method CityQuery groupByPublish() Group by the publish column
- * @method CityQuery groupByDate() Group by the date column
+ * @method CityQuery groupByCountry() Group by the country column
  * @method CityQuery groupByDesc() Group by the desc column
  * @method CityQuery groupByUsefulInfo() Group by the useful_info column
  * @method CityQuery groupByPlace() Group by the place column
@@ -34,39 +30,31 @@
  * @method CityQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
  * @method CityQuery innerJoin($relation) Adds a INNER JOIN clause to the query
  *
- * @method CityQuery leftJoinCountry($relationAlias = null) Adds a LEFT JOIN clause to the query using the Country relation
- * @method CityQuery rightJoinCountry($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Country relation
- * @method CityQuery innerJoinCountry($relationAlias = null) Adds a INNER JOIN clause to the query using the Country relation
- *
- * @method CityQuery leftJoinRecordCity($relationAlias = null) Adds a LEFT JOIN clause to the query using the RecordCity relation
- * @method CityQuery rightJoinRecordCity($relationAlias = null) Adds a RIGHT JOIN clause to the query using the RecordCity relation
- * @method CityQuery innerJoinRecordCity($relationAlias = null) Adds a INNER JOIN clause to the query using the RecordCity relation
+ * @method CityQuery leftJoinTour($relationAlias = null) Adds a LEFT JOIN clause to the query using the Tour relation
+ * @method CityQuery rightJoinTour($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Tour relation
+ * @method CityQuery innerJoinTour($relationAlias = null) Adds a INNER JOIN clause to the query using the Tour relation
  *
  * @method City findOne(PropelPDO $con = null) Return the first City matching the query
  * @method City findOneOrCreate(PropelPDO $con = null) Return the first City matching the query, or a new City object populated from the query conditions when no match is found
  *
  * @method City findOneByName(string $name) Return the first City filtered by the name column
- * @method City findOneByCountryId(int $country_id) Return the first City filtered by the country_id column
- * @method City findOneByPublish(boolean $publish) Return the first City filtered by the publish column
- * @method City findOneByDate(string $date) Return the first City filtered by the date column
- * @method City findOneByDesc(resource $desc) Return the first City filtered by the desc column
- * @method City findOneByUsefulInfo(resource $useful_info) Return the first City filtered by the useful_info column
- * @method City findOneByPlace(resource $place) Return the first City filtered by the place column
- * @method City findOneByHotel(resource $hotel) Return the first City filtered by the hotel column
- * @method City findOneByRestoran(resource $restoran) Return the first City filtered by the restoran column
- * @method City findOneByBuyCenter(resource $buy_center) Return the first City filtered by the buy_center column
+ * @method City findOneByCountry(string $country) Return the first City filtered by the country column
+ * @method City findOneByDesc(string $desc) Return the first City filtered by the desc column
+ * @method City findOneByUsefulInfo(string $useful_info) Return the first City filtered by the useful_info column
+ * @method City findOneByPlace(string $place) Return the first City filtered by the place column
+ * @method City findOneByHotel(string $hotel) Return the first City filtered by the hotel column
+ * @method City findOneByRestoran(string $restoran) Return the first City filtered by the restoran column
+ * @method City findOneByBuyCenter(string $buy_center) Return the first City filtered by the buy_center column
  *
  * @method array findById(int $id) Return City objects filtered by the id column
  * @method array findByName(string $name) Return City objects filtered by the name column
- * @method array findByCountryId(int $country_id) Return City objects filtered by the country_id column
- * @method array findByPublish(boolean $publish) Return City objects filtered by the publish column
- * @method array findByDate(string $date) Return City objects filtered by the date column
- * @method array findByDesc(resource $desc) Return City objects filtered by the desc column
- * @method array findByUsefulInfo(resource $useful_info) Return City objects filtered by the useful_info column
- * @method array findByPlace(resource $place) Return City objects filtered by the place column
- * @method array findByHotel(resource $hotel) Return City objects filtered by the hotel column
- * @method array findByRestoran(resource $restoran) Return City objects filtered by the restoran column
- * @method array findByBuyCenter(resource $buy_center) Return City objects filtered by the buy_center column
+ * @method array findByCountry(string $country) Return City objects filtered by the country column
+ * @method array findByDesc(string $desc) Return City objects filtered by the desc column
+ * @method array findByUsefulInfo(string $useful_info) Return City objects filtered by the useful_info column
+ * @method array findByPlace(string $place) Return City objects filtered by the place column
+ * @method array findByHotel(string $hotel) Return City objects filtered by the hotel column
+ * @method array findByRestoran(string $restoran) Return City objects filtered by the restoran column
+ * @method array findByBuyCenter(string $buy_center) Return City objects filtered by the buy_center column
  *
  * @package    propel.generator.agent.om
  */
@@ -170,7 +158,7 @@ abstract class BaseCityQuery extends ModelCriteria
      */
     protected function findPkSimple($key, $con)
     {
-        $sql = 'SELECT `id`, `name`, `country_id`, `publish`, `date`, `desc`, `useful_info`, `place`, `hotel`, `restoran`, `buy_center` FROM `city` WHERE `id` = :p0';
+        $sql = 'SELECT `id`, `name`, `country`, `desc`, `useful_info`, `place`, `hotel`, `restoran`, `buy_center` FROM `city` WHERE `id` = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -316,128 +304,59 @@ abstract class BaseCityQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the country_id column
+     * Filter the query on the country column
      *
      * Example usage:
      * <code>
-     * $query->filterByCountryId(1234); // WHERE country_id = 1234
-     * $query->filterByCountryId(array(12, 34)); // WHERE country_id IN (12, 34)
-     * $query->filterByCountryId(array('min' => 12)); // WHERE country_id > 12
+     * $query->filterByCountry('fooValue');   // WHERE country = 'fooValue'
+     * $query->filterByCountry('%fooValue%'); // WHERE country LIKE '%fooValue%'
      * </code>
      *
-     * @see       filterByCountry()
-     *
-     * @param     mixed $countryId The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $country The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
-    public function filterByCountryId($countryId = null, $comparison = null)
+    public function filterByCountry($country = null, $comparison = null)
     {
-        if (is_array($countryId)) {
-            $useMinMax = false;
-            if (isset($countryId['min'])) {
-                $this->addUsingAlias(CityPeer::COUNTRY_ID, $countryId['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($countryId['max'])) {
-                $this->addUsingAlias(CityPeer::COUNTRY_ID, $countryId['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
+        if (null === $comparison) {
+            if (is_array($country)) {
                 $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $country)) {
+                $country = str_replace('*', '%', $country);
+                $comparison = Criteria::LIKE;
             }
         }
 
-        return $this->addUsingAlias(CityPeer::COUNTRY_ID, $countryId, $comparison);
-    }
-
-    /**
-     * Filter the query on the publish column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByPublish(true); // WHERE publish = true
-     * $query->filterByPublish('yes'); // WHERE publish = true
-     * </code>
-     *
-     * @param     boolean|string $publish The value to use as filter.
-     *              Non-boolean arguments are converted using the following rules:
-     *                * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *                * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     *              Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return CityQuery The current query, for fluid interface
-     */
-    public function filterByPublish($publish = null, $comparison = null)
-    {
-        if (is_string($publish)) {
-            $publish = in_array(strtolower($publish), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-        }
-
-        return $this->addUsingAlias(CityPeer::PUBLISH, $publish, $comparison);
-    }
-
-    /**
-     * Filter the query on the date column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByDate('2011-03-14'); // WHERE date = '2011-03-14'
-     * $query->filterByDate('now'); // WHERE date = '2011-03-14'
-     * $query->filterByDate(array('max' => 'yesterday')); // WHERE date > '2011-03-13'
-     * </code>
-     *
-     * @param     mixed $date The value to use as filter.
-     *              Values can be integers (unix timestamps), DateTime objects, or strings.
-     *              Empty strings are treated as NULL.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return CityQuery The current query, for fluid interface
-     */
-    public function filterByDate($date = null, $comparison = null)
-    {
-        if (is_array($date)) {
-            $useMinMax = false;
-            if (isset($date['min'])) {
-                $this->addUsingAlias(CityPeer::DATE, $date['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($date['max'])) {
-                $this->addUsingAlias(CityPeer::DATE, $date['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        return $this->addUsingAlias(CityPeer::DATE, $date, $comparison);
+        return $this->addUsingAlias(CityPeer::COUNTRY, $country, $comparison);
     }
 
     /**
      * Filter the query on the desc column
      *
-     * @param     mixed $desc The value to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByDesc('fooValue');   // WHERE desc = 'fooValue'
+     * $query->filterByDesc('%fooValue%'); // WHERE desc LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $desc The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByDesc($desc = null, $comparison = null)
     {
+        if (null === $comparison) {
+            if (is_array($desc)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $desc)) {
+                $desc = str_replace('*', '%', $desc);
+                $comparison = Criteria::LIKE;
+            }
+        }
 
         return $this->addUsingAlias(CityPeer::DESC, $desc, $comparison);
     }
@@ -445,13 +364,28 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the useful_info column
      *
-     * @param     mixed $usefulInfo The value to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByUsefulInfo('fooValue');   // WHERE useful_info = 'fooValue'
+     * $query->filterByUsefulInfo('%fooValue%'); // WHERE useful_info LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $usefulInfo The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByUsefulInfo($usefulInfo = null, $comparison = null)
     {
+        if (null === $comparison) {
+            if (is_array($usefulInfo)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $usefulInfo)) {
+                $usefulInfo = str_replace('*', '%', $usefulInfo);
+                $comparison = Criteria::LIKE;
+            }
+        }
 
         return $this->addUsingAlias(CityPeer::USEFUL_INFO, $usefulInfo, $comparison);
     }
@@ -459,13 +393,28 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the place column
      *
-     * @param     mixed $place The value to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByPlace('fooValue');   // WHERE place = 'fooValue'
+     * $query->filterByPlace('%fooValue%'); // WHERE place LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $place The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByPlace($place = null, $comparison = null)
     {
+        if (null === $comparison) {
+            if (is_array($place)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $place)) {
+                $place = str_replace('*', '%', $place);
+                $comparison = Criteria::LIKE;
+            }
+        }
 
         return $this->addUsingAlias(CityPeer::PLACE, $place, $comparison);
     }
@@ -473,13 +422,28 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the hotel column
      *
-     * @param     mixed $hotel The value to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByHotel('fooValue');   // WHERE hotel = 'fooValue'
+     * $query->filterByHotel('%fooValue%'); // WHERE hotel LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $hotel The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByHotel($hotel = null, $comparison = null)
     {
+        if (null === $comparison) {
+            if (is_array($hotel)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $hotel)) {
+                $hotel = str_replace('*', '%', $hotel);
+                $comparison = Criteria::LIKE;
+            }
+        }
 
         return $this->addUsingAlias(CityPeer::HOTEL, $hotel, $comparison);
     }
@@ -487,13 +451,28 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the restoran column
      *
-     * @param     mixed $restoran The value to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByRestoran('fooValue');   // WHERE restoran = 'fooValue'
+     * $query->filterByRestoran('%fooValue%'); // WHERE restoran LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $restoran The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByRestoran($restoran = null, $comparison = null)
     {
+        if (null === $comparison) {
+            if (is_array($restoran)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $restoran)) {
+                $restoran = str_replace('*', '%', $restoran);
+                $comparison = Criteria::LIKE;
+            }
+        }
 
         return $this->addUsingAlias(CityPeer::RESTORAN, $restoran, $comparison);
     }
@@ -501,129 +480,68 @@ abstract class BaseCityQuery extends ModelCriteria
     /**
      * Filter the query on the buy_center column
      *
-     * @param     mixed $buyCenter The value to use as filter
+     * Example usage:
+     * <code>
+     * $query->filterByBuyCenter('fooValue');   // WHERE buy_center = 'fooValue'
+     * $query->filterByBuyCenter('%fooValue%'); // WHERE buy_center LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $buyCenter The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return CityQuery The current query, for fluid interface
      */
     public function filterByBuyCenter($buyCenter = null, $comparison = null)
     {
+        if (null === $comparison) {
+            if (is_array($buyCenter)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $buyCenter)) {
+                $buyCenter = str_replace('*', '%', $buyCenter);
+                $comparison = Criteria::LIKE;
+            }
+        }
 
         return $this->addUsingAlias(CityPeer::BUY_CENTER, $buyCenter, $comparison);
     }
 
     /**
-     * Filter the query by a related Country object
+     * Filter the query by a related Tour object
      *
-     * @param   Country|PropelObjectCollection $country The related object(s) to use as filter
+     * @param   Tour|PropelObjectCollection $tour  the related object to use as filter
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return   CityQuery The current query, for fluid interface
      * @throws   PropelException - if the provided filter is invalid.
      */
-    public function filterByCountry($country, $comparison = null)
+    public function filterByTour($tour, $comparison = null)
     {
-        if ($country instanceof Country) {
+        if ($tour instanceof Tour) {
             return $this
-                ->addUsingAlias(CityPeer::COUNTRY_ID, $country->getId(), $comparison);
-        } elseif ($country instanceof PropelObjectCollection) {
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-
+                ->addUsingAlias(CityPeer::ID, $tour->getCityId(), $comparison);
+        } elseif ($tour instanceof PropelObjectCollection) {
             return $this
-                ->addUsingAlias(CityPeer::COUNTRY_ID, $country->toKeyValue('PrimaryKey', 'Id'), $comparison);
-        } else {
-            throw new PropelException('filterByCountry() only accepts arguments of type Country or PropelCollection');
-        }
-    }
-
-    /**
-     * Adds a JOIN clause to the query using the Country relation
-     *
-     * @param     string $relationAlias optional alias for the relation
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return CityQuery The current query, for fluid interface
-     */
-    public function joinCountry($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('Country');
-
-        // create a ModelJoin object for this join
-        $join = new ModelJoin();
-        $join->setJoinType($joinType);
-        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
-        if ($previousJoin = $this->getPreviousJoin()) {
-            $join->setPreviousJoin($previousJoin);
-        }
-
-        // add the ModelJoin to the current object
-        if ($relationAlias) {
-            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
-            $this->addJoinObject($join, $relationAlias);
-        } else {
-            $this->addJoinObject($join, 'Country');
-        }
-
-        return $this;
-    }
-
-    /**
-     * Use the Country relation Country object
-     *
-     * @see       useQuery()
-     *
-     * @param     string $relationAlias optional alias for the relation,
-     *                                   to be used as main alias in the secondary query
-     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
-     *
-     * @return   CountryQuery A secondary query class using the current class as primary query
-     */
-    public function useCountryQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
-    {
-        return $this
-            ->joinCountry($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'Country', 'CountryQuery');
-    }
-
-    /**
-     * Filter the query by a related RecordCity object
-     *
-     * @param   RecordCity|PropelObjectCollection $recordCity  the related object to use as filter
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return   CityQuery The current query, for fluid interface
-     * @throws   PropelException - if the provided filter is invalid.
-     */
-    public function filterByRecordCity($recordCity, $comparison = null)
-    {
-        if ($recordCity instanceof RecordCity) {
-            return $this
-                ->addUsingAlias(CityPeer::ID, $recordCity->getCityId(), $comparison);
-        } elseif ($recordCity instanceof PropelObjectCollection) {
-            return $this
-                ->useRecordCityQuery()
-                ->filterByPrimaryKeys($recordCity->getPrimaryKeys())
+                ->useTourQuery()
+                ->filterByPrimaryKeys($tour->getPrimaryKeys())
                 ->endUse();
         } else {
-            throw new PropelException('filterByRecordCity() only accepts arguments of type RecordCity or PropelCollection');
+            throw new PropelException('filterByTour() only accepts arguments of type Tour or PropelCollection');
         }
     }
 
     /**
-     * Adds a JOIN clause to the query using the RecordCity relation
+     * Adds a JOIN clause to the query using the Tour relation
      *
      * @param     string $relationAlias optional alias for the relation
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
      * @return CityQuery The current query, for fluid interface
      */
-    public function joinRecordCity($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    public function joinTour($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
     {
         $tableMap = $this->getTableMap();
-        $relationMap = $tableMap->getRelation('RecordCity');
+        $relationMap = $tableMap->getRelation('Tour');
 
         // create a ModelJoin object for this join
         $join = new ModelJoin();
@@ -638,14 +556,14 @@ abstract class BaseCityQuery extends ModelCriteria
             $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
             $this->addJoinObject($join, $relationAlias);
         } else {
-            $this->addJoinObject($join, 'RecordCity');
+            $this->addJoinObject($join, 'Tour');
         }
 
         return $this;
     }
 
     /**
-     * Use the RecordCity relation RecordCity object
+     * Use the Tour relation Tour object
      *
      * @see       useQuery()
      *
@@ -653,13 +571,13 @@ abstract class BaseCityQuery extends ModelCriteria
      *                                   to be used as main alias in the secondary query
      * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
      *
-     * @return   RecordCityQuery A secondary query class using the current class as primary query
+     * @return   TourQuery A secondary query class using the current class as primary query
      */
-    public function useRecordCityQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
+    public function useTourQuery($relationAlias = null, $joinType = Criteria::LEFT_JOIN)
     {
         return $this
-            ->joinRecordCity($relationAlias, $joinType)
-            ->useQuery($relationAlias ? $relationAlias : 'RecordCity', 'RecordCityQuery');
+            ->joinTour($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Tour', 'TourQuery');
     }
 
     /**

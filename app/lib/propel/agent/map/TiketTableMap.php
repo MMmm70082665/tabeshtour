@@ -40,13 +40,12 @@ class TiketTableMap extends TableMap
         // columns
         $this->addPrimaryKey('id', 'Id', 'INTEGER', true, null, null);
         $this->addColumn('name', 'Name', 'VARCHAR', true, 255, null);
+        $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
         $this->addColumn('email', 'Email', 'VARCHAR', true, 60, null);
         $this->addColumn('mobile', 'Mobile', 'VARCHAR', false, 11, null);
-        $this->addColumn('order', 'Order', 'BOOLEAN', true, 1, null);
         $this->addColumn('desc', 'Desc', 'LONGVARCHAR', true, null, null);
         $this->addColumn('date', 'Date', 'VARCHAR', true, 255, null);
         $this->addColumn('publish', 'Publish', 'BOOLEAN', true, 1, null);
-        $this->addColumn('subject', 'Subject', 'VARCHAR', true, 255, null);
         // validators
     } // initialize()
 

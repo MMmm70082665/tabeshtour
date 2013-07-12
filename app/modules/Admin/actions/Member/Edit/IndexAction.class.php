@@ -21,7 +21,7 @@ class Admin_Member_Edit_IndexAction extends agentAdminBaseAction
 	public function executeRead(AgaviRequestDataHolder $rd)
 	{
 		$id = $rd->getParameter('id');
-		$member = MemberQuery::create()->findPks($id);
+		$member = PartnersQuery::create()->findPks($id);
 		$this->setAttribute('member', $member->toArray());
 		return 'Input';
 	}
@@ -34,16 +34,14 @@ class Admin_Member_Edit_IndexAction extends agentAdminBaseAction
 		$fax = $rd->getParameter('fax');
 		$desc = $rd->getParameter('desc');
 		$address = $rd->getParameter('address');
-		$pub = $rd->getParameter('publish');
-		MemberQuery::create()->filterById($id)
+		PartnersQuery::create()->filterById($id)
 		->update(array(
 		'Office' => $office,
 		'Website' => $website,
 		'Phone' => $phone,
 		'Fax' => $fax,
 		'Desc' => $desc,
-		'Address' => $address,
-		'Publish' => $pub
+		'Address' => $address
 		)
 		);
 		

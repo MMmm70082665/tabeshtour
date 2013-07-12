@@ -28,11 +28,11 @@ class Admin_Post_Create_AddAction extends agentAdminBaseAction
 		$short_desc = $rd->getParameter('short_desc');
 		$tag = $rd->getParameter('tag');
 		$pub = $rd->getParameter('publisher');
-		$obj = new Post();
+		$obj = new News();
 		$obj->setSubject($subject);
 		$obj->setLongDesc($long_desc);
 		$obj->setShortDesc($short_desc);
-		$obj->setPublisher($pub);
+		$obj->setPublish($pub);
         $obj->setDate($shamsi->date('d M Y',time()));
         $obj->setOrder($order);
 		$obj->save();

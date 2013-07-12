@@ -27,13 +27,11 @@ class Admin_Member_Create_AddAction extends agentAdminBaseAction
 		$fax = $rd->getParameter('fax');
 		$desc = $rd->getParameter('desc');
 		$address = $rd->getParameter('address');
-		$pub = $rd->getParameter('publish');
-		$obj = new Member();
+		$obj = new Partners();
 		$obj->setOffice($office);
 		$obj->setWebsite($website);
 		$obj->setFax($fax);
 		$obj->setPhone($phone);
-		$obj->setPublish($pub);
 		$obj->setDesc($desc);
 		$obj->setAddress($address);
 		$obj->setDate($shamsi->date('d M Y',time()));

@@ -21,7 +21,7 @@ class Admin_Member_Delete_IndexAction extends agentAdminBaseAction
 	public function executeRead(AgaviRequestDataHolder $rd)
 	{
 		$id = $rd->getParameter('id');
-		$object = MemberQuery::create()->findById($id);
+		$object = PartnersQuery::create()->findById($id);
 		$object->delete();
 		return 'Success';
 	}

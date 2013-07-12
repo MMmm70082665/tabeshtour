@@ -42,69 +42,52 @@ abstract class BaseCity extends BaseObject implements Persistent
     protected $name;
 
     /**
-     * The value for the country_id field.
-     * @var        int
-     */
-    protected $country_id;
-
-    /**
-     * The value for the publish field.
-     * @var        boolean
-     */
-    protected $publish;
-
-    /**
-     * The value for the date field.
+     * The value for the country field.
      * @var        string
      */
-    protected $date;
+    protected $country;
 
     /**
      * The value for the desc field.
-     * @var        resource
+     * @var        string
      */
     protected $desc;
 
     /**
      * The value for the useful_info field.
-     * @var        resource
+     * @var        string
      */
     protected $useful_info;
 
     /**
      * The value for the place field.
-     * @var        resource
+     * @var        string
      */
     protected $place;
 
     /**
      * The value for the hotel field.
-     * @var        resource
+     * @var        string
      */
     protected $hotel;
 
     /**
      * The value for the restoran field.
-     * @var        resource
+     * @var        string
      */
     protected $restoran;
 
     /**
      * The value for the buy_center field.
-     * @var        resource
+     * @var        string
      */
     protected $buy_center;
 
     /**
-     * @var        Country
+     * @var        PropelObjectCollection|Tour[] Collection to store aggregation of Tour objects.
      */
-    protected $aCountry;
-
-    /**
-     * @var        PropelObjectCollection|RecordCity[] Collection to store aggregation of RecordCity objects.
-     */
-    protected $collRecordCitys;
-    protected $collRecordCitysPartial;
+    protected $collTours;
+    protected $collToursPartial;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -124,7 +107,7 @@ abstract class BaseCity extends BaseObject implements Persistent
      * An array of objects scheduled for deletion.
      * @var		PropelObjectCollection
      */
-    protected $recordCitysScheduledForDeletion = null;
+    protected $toursScheduledForDeletion = null;
 
     /**
      * Get the [id] column value.
@@ -147,69 +130,19 @@ abstract class BaseCity extends BaseObject implements Persistent
     }
 
     /**
-     * Get the [country_id] column value.
+     * Get the [country] column value.
      *
-     * @return int
+     * @return string
      */
-    public function getCountryId()
+    public function getCountry()
     {
-        return $this->country_id;
-    }
-
-    /**
-     * Get the [publish] column value.
-     *
-     * @return boolean
-     */
-    public function getPublish()
-    {
-        return $this->publish;
-    }
-
-    /**
-     * Get the [optionally formatted] temporal [date] column value.
-     *
-     *
-     * @param string $format The date/time format string (either date()-style or strftime()-style).
-     *				 If format is null, then the raw DateTime object will be returned.
-     * @return mixed Formatted date/time value as string or DateTime object (if format is null), null if column is null, and 0 if column value is 0000-00-00
-     * @throws PropelException - if unable to parse/validate the date/time value.
-     */
-    public function getDate($format = '%x')
-    {
-        if ($this->date === null) {
-            return null;
-        }
-
-        if ($this->date === '0000-00-00') {
-            // while technically this is not a default value of null,
-            // this seems to be closest in meaning.
-            return null;
-        }
-
-        try {
-            $dt = new DateTime($this->date);
-        } catch (Exception $x) {
-            throw new PropelException("Internally stored date/time/timestamp value could not be converted to DateTime: " . var_export($this->date, true), $x);
-        }
-
-        if ($format === null) {
-            // Because propel.useDateTimeClass is true, we return a DateTime object.
-            return $dt;
-        }
-
-        if (strpos($format, '%') !== false) {
-            return strftime($format, $dt->format('U'));
-        }
-
-        return $dt->format($format);
-
+        return $this->country;
     }
 
     /**
      * Get the [desc] column value.
      *
-     * @return resource
+     * @return string
      */
     public function getDesc()
     {
@@ -219,7 +152,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [useful_info] column value.
      *
-     * @return resource
+     * @return string
      */
     public function getUsefulInfo()
     {
@@ -229,7 +162,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [place] column value.
      *
-     * @return resource
+     * @return string
      */
     public function getPlace()
     {
@@ -239,7 +172,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [hotel] column value.
      *
-     * @return resource
+     * @return string
      */
     public function getHotel()
     {
@@ -249,7 +182,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [restoran] column value.
      *
-     * @return resource
+     * @return string
      */
     public function getRestoran()
     {
@@ -259,7 +192,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Get the [buy_center] column value.
      *
-     * @return resource
+     * @return string
      */
     public function getBuyCenter()
     {
@@ -309,101 +242,42 @@ abstract class BaseCity extends BaseObject implements Persistent
     } // setName()
 
     /**
-     * Set the value of [country_id] column.
+     * Set the value of [country] column.
      *
-     * @param int $v new value
+     * @param string $v new value
      * @return City The current object (for fluent API support)
      */
-    public function setCountryId($v)
+    public function setCountry($v)
     {
         if ($v !== null) {
-            $v = (int) $v;
+            $v = (string) $v;
         }
 
-        if ($this->country_id !== $v) {
-            $this->country_id = $v;
-            $this->modifiedColumns[] = CityPeer::COUNTRY_ID;
-        }
-
-        if ($this->aCountry !== null && $this->aCountry->getId() !== $v) {
-            $this->aCountry = null;
+        if ($this->country !== $v) {
+            $this->country = $v;
+            $this->modifiedColumns[] = CityPeer::COUNTRY;
         }
 
 
         return $this;
-    } // setCountryId()
-
-    /**
-     * Sets the value of the [publish] column.
-     * Non-boolean arguments are converted using the following rules:
-     *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
-     *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
-     * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     *
-     * @param boolean|integer|string $v The new value
-     * @return City The current object (for fluent API support)
-     */
-    public function setPublish($v)
-    {
-        if ($v !== null) {
-            if (is_string($v)) {
-                $v = in_array(strtolower($v), array('false', 'off', '-', 'no', 'n', '0', '')) ? false : true;
-            } else {
-                $v = (boolean) $v;
-            }
-        }
-
-        if ($this->publish !== $v) {
-            $this->publish = $v;
-            $this->modifiedColumns[] = CityPeer::PUBLISH;
-        }
-
-
-        return $this;
-    } // setPublish()
-
-    /**
-     * Sets the value of [date] column to a normalized version of the date/time value specified.
-     *
-     * @param mixed $v string, integer (timestamp), or DateTime value.
-     *               Empty strings are treated as null.
-     * @return City The current object (for fluent API support)
-     */
-    public function setDate($v)
-    {
-        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-        if ($this->date !== null || $dt !== null) {
-            $currentDateAsString = ($this->date !== null && $tmpDt = new DateTime($this->date)) ? $tmpDt->format('Y-m-d') : null;
-            $newDateAsString = $dt ? $dt->format('Y-m-d') : null;
-            if ($currentDateAsString !== $newDateAsString) {
-                $this->date = $newDateAsString;
-                $this->modifiedColumns[] = CityPeer::DATE;
-            }
-        } // if either are not null
-
-
-        return $this;
-    } // setDate()
+    } // setCountry()
 
     /**
      * Set the value of [desc] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return City The current object (for fluent API support)
      */
     public function setDesc($v)
     {
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->desc = fopen('php://memory', 'r+');
-            fwrite($this->desc, $v);
-            rewind($this->desc);
-        } else { // it's already a stream
-            $this->desc = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[] = CityPeer::DESC;
+
+        if ($this->desc !== $v) {
+            $this->desc = $v;
+            $this->modifiedColumns[] = CityPeer::DESC;
+        }
 
 
         return $this;
@@ -412,22 +286,19 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [useful_info] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return City The current object (for fluent API support)
      */
     public function setUsefulInfo($v)
     {
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->useful_info = fopen('php://memory', 'r+');
-            fwrite($this->useful_info, $v);
-            rewind($this->useful_info);
-        } else { // it's already a stream
-            $this->useful_info = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[] = CityPeer::USEFUL_INFO;
+
+        if ($this->useful_info !== $v) {
+            $this->useful_info = $v;
+            $this->modifiedColumns[] = CityPeer::USEFUL_INFO;
+        }
 
 
         return $this;
@@ -436,22 +307,19 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [place] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return City The current object (for fluent API support)
      */
     public function setPlace($v)
     {
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->place = fopen('php://memory', 'r+');
-            fwrite($this->place, $v);
-            rewind($this->place);
-        } else { // it's already a stream
-            $this->place = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[] = CityPeer::PLACE;
+
+        if ($this->place !== $v) {
+            $this->place = $v;
+            $this->modifiedColumns[] = CityPeer::PLACE;
+        }
 
 
         return $this;
@@ -460,22 +328,19 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [hotel] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return City The current object (for fluent API support)
      */
     public function setHotel($v)
     {
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->hotel = fopen('php://memory', 'r+');
-            fwrite($this->hotel, $v);
-            rewind($this->hotel);
-        } else { // it's already a stream
-            $this->hotel = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[] = CityPeer::HOTEL;
+
+        if ($this->hotel !== $v) {
+            $this->hotel = $v;
+            $this->modifiedColumns[] = CityPeer::HOTEL;
+        }
 
 
         return $this;
@@ -484,22 +349,19 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [restoran] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return City The current object (for fluent API support)
      */
     public function setRestoran($v)
     {
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->restoran = fopen('php://memory', 'r+');
-            fwrite($this->restoran, $v);
-            rewind($this->restoran);
-        } else { // it's already a stream
-            $this->restoran = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[] = CityPeer::RESTORAN;
+
+        if ($this->restoran !== $v) {
+            $this->restoran = $v;
+            $this->modifiedColumns[] = CityPeer::RESTORAN;
+        }
 
 
         return $this;
@@ -508,22 +370,19 @@ abstract class BaseCity extends BaseObject implements Persistent
     /**
      * Set the value of [buy_center] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return City The current object (for fluent API support)
      */
     public function setBuyCenter($v)
     {
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->buy_center = fopen('php://memory', 'r+');
-            fwrite($this->buy_center, $v);
-            rewind($this->buy_center);
-        } else { // it's already a stream
-            $this->buy_center = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[] = CityPeer::BUY_CENTER;
+
+        if ($this->buy_center !== $v) {
+            $this->buy_center = $v;
+            $this->modifiedColumns[] = CityPeer::BUY_CENTER;
+        }
 
 
         return $this;
@@ -563,51 +422,13 @@ abstract class BaseCity extends BaseObject implements Persistent
 
             $this->id = ($row[$startcol + 0] !== null) ? (int) $row[$startcol + 0] : null;
             $this->name = ($row[$startcol + 1] !== null) ? (string) $row[$startcol + 1] : null;
-            $this->country_id = ($row[$startcol + 2] !== null) ? (int) $row[$startcol + 2] : null;
-            $this->publish = ($row[$startcol + 3] !== null) ? (boolean) $row[$startcol + 3] : null;
-            $this->date = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
-            if ($row[$startcol + 5] !== null) {
-                $this->desc = fopen('php://memory', 'r+');
-                fwrite($this->desc, $row[$startcol + 5]);
-                rewind($this->desc);
-            } else {
-                $this->desc = null;
-            }
-            if ($row[$startcol + 6] !== null) {
-                $this->useful_info = fopen('php://memory', 'r+');
-                fwrite($this->useful_info, $row[$startcol + 6]);
-                rewind($this->useful_info);
-            } else {
-                $this->useful_info = null;
-            }
-            if ($row[$startcol + 7] !== null) {
-                $this->place = fopen('php://memory', 'r+');
-                fwrite($this->place, $row[$startcol + 7]);
-                rewind($this->place);
-            } else {
-                $this->place = null;
-            }
-            if ($row[$startcol + 8] !== null) {
-                $this->hotel = fopen('php://memory', 'r+');
-                fwrite($this->hotel, $row[$startcol + 8]);
-                rewind($this->hotel);
-            } else {
-                $this->hotel = null;
-            }
-            if ($row[$startcol + 9] !== null) {
-                $this->restoran = fopen('php://memory', 'r+');
-                fwrite($this->restoran, $row[$startcol + 9]);
-                rewind($this->restoran);
-            } else {
-                $this->restoran = null;
-            }
-            if ($row[$startcol + 10] !== null) {
-                $this->buy_center = fopen('php://memory', 'r+');
-                fwrite($this->buy_center, $row[$startcol + 10]);
-                rewind($this->buy_center);
-            } else {
-                $this->buy_center = null;
-            }
+            $this->country = ($row[$startcol + 2] !== null) ? (string) $row[$startcol + 2] : null;
+            $this->desc = ($row[$startcol + 3] !== null) ? (string) $row[$startcol + 3] : null;
+            $this->useful_info = ($row[$startcol + 4] !== null) ? (string) $row[$startcol + 4] : null;
+            $this->place = ($row[$startcol + 5] !== null) ? (string) $row[$startcol + 5] : null;
+            $this->hotel = ($row[$startcol + 6] !== null) ? (string) $row[$startcol + 6] : null;
+            $this->restoran = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
+            $this->buy_center = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -616,7 +437,7 @@ abstract class BaseCity extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
             $this->postHydrate($row, $startcol, $rehydrate);
-            return $startcol + 11; // 11 = CityPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 9; // 9 = CityPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating City object", $e);
@@ -639,9 +460,6 @@ abstract class BaseCity extends BaseObject implements Persistent
     public function ensureConsistency()
     {
 
-        if ($this->aCountry !== null && $this->country_id !== $this->aCountry->getId()) {
-            $this->aCountry = null;
-        }
     } // ensureConsistency
 
     /**
@@ -681,8 +499,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aCountry = null;
-            $this->collRecordCitys = null;
+            $this->collTours = null;
 
         } // if (deep)
     }
@@ -797,18 +614,6 @@ abstract class BaseCity extends BaseObject implements Persistent
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
 
-            // We call the save method on the following object(s) if they
-            // were passed to this object by their coresponding set
-            // method.  This object relates to these object(s) by a
-            // foreign key reference.
-
-            if ($this->aCountry !== null) {
-                if ($this->aCountry->isModified() || $this->aCountry->isNew()) {
-                    $affectedRows += $this->aCountry->save($con);
-                }
-                $this->setCountry($this->aCountry);
-            }
-
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
                 if ($this->isNew()) {
@@ -817,51 +622,21 @@ abstract class BaseCity extends BaseObject implements Persistent
                     $this->doUpdate($con);
                 }
                 $affectedRows += 1;
-                // Rewind the desc LOB column, since PDO does not rewind after inserting value.
-                if ($this->desc !== null && is_resource($this->desc)) {
-                    rewind($this->desc);
-                }
-
-                // Rewind the useful_info LOB column, since PDO does not rewind after inserting value.
-                if ($this->useful_info !== null && is_resource($this->useful_info)) {
-                    rewind($this->useful_info);
-                }
-
-                // Rewind the place LOB column, since PDO does not rewind after inserting value.
-                if ($this->place !== null && is_resource($this->place)) {
-                    rewind($this->place);
-                }
-
-                // Rewind the hotel LOB column, since PDO does not rewind after inserting value.
-                if ($this->hotel !== null && is_resource($this->hotel)) {
-                    rewind($this->hotel);
-                }
-
-                // Rewind the restoran LOB column, since PDO does not rewind after inserting value.
-                if ($this->restoran !== null && is_resource($this->restoran)) {
-                    rewind($this->restoran);
-                }
-
-                // Rewind the buy_center LOB column, since PDO does not rewind after inserting value.
-                if ($this->buy_center !== null && is_resource($this->buy_center)) {
-                    rewind($this->buy_center);
-                }
-
                 $this->resetModified();
             }
 
-            if ($this->recordCitysScheduledForDeletion !== null) {
-                if (!$this->recordCitysScheduledForDeletion->isEmpty()) {
-                    foreach ($this->recordCitysScheduledForDeletion as $recordCity) {
+            if ($this->toursScheduledForDeletion !== null) {
+                if (!$this->toursScheduledForDeletion->isEmpty()) {
+                    foreach ($this->toursScheduledForDeletion as $tour) {
                         // need to save related object because we set the relation to null
-                        $recordCity->save($con);
+                        $tour->save($con);
                     }
-                    $this->recordCitysScheduledForDeletion = null;
+                    $this->toursScheduledForDeletion = null;
                 }
             }
 
-            if ($this->collRecordCitys !== null) {
-                foreach ($this->collRecordCitys as $referrerFK) {
+            if ($this->collTours !== null) {
+                foreach ($this->collTours as $referrerFK) {
                     if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
                         $affectedRows += $referrerFK->save($con);
                     }
@@ -900,14 +675,8 @@ abstract class BaseCity extends BaseObject implements Persistent
         if ($this->isColumnModified(CityPeer::NAME)) {
             $modifiedColumns[':p' . $index++]  = '`name`';
         }
-        if ($this->isColumnModified(CityPeer::COUNTRY_ID)) {
-            $modifiedColumns[':p' . $index++]  = '`country_id`';
-        }
-        if ($this->isColumnModified(CityPeer::PUBLISH)) {
-            $modifiedColumns[':p' . $index++]  = '`publish`';
-        }
-        if ($this->isColumnModified(CityPeer::DATE)) {
-            $modifiedColumns[':p' . $index++]  = '`date`';
+        if ($this->isColumnModified(CityPeer::COUNTRY)) {
+            $modifiedColumns[':p' . $index++]  = '`country`';
         }
         if ($this->isColumnModified(CityPeer::DESC)) {
             $modifiedColumns[':p' . $index++]  = '`desc`';
@@ -944,50 +713,26 @@ abstract class BaseCity extends BaseObject implements Persistent
                     case '`name`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`country_id`':
-                        $stmt->bindValue($identifier, $this->country_id, PDO::PARAM_INT);
-                        break;
-                    case '`publish`':
-                        $stmt->bindValue($identifier, (int) $this->publish, PDO::PARAM_INT);
-                        break;
-                    case '`date`':
-                        $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
+                    case '`country`':
+                        $stmt->bindValue($identifier, $this->country, PDO::PARAM_STR);
                         break;
                     case '`desc`':
-                        if (is_resource($this->desc)) {
-                            rewind($this->desc);
-                        }
-                        $stmt->bindValue($identifier, $this->desc, PDO::PARAM_LOB);
+                        $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
                         break;
                     case '`useful_info`':
-                        if (is_resource($this->useful_info)) {
-                            rewind($this->useful_info);
-                        }
-                        $stmt->bindValue($identifier, $this->useful_info, PDO::PARAM_LOB);
+                        $stmt->bindValue($identifier, $this->useful_info, PDO::PARAM_STR);
                         break;
                     case '`place`':
-                        if (is_resource($this->place)) {
-                            rewind($this->place);
-                        }
-                        $stmt->bindValue($identifier, $this->place, PDO::PARAM_LOB);
+                        $stmt->bindValue($identifier, $this->place, PDO::PARAM_STR);
                         break;
                     case '`hotel`':
-                        if (is_resource($this->hotel)) {
-                            rewind($this->hotel);
-                        }
-                        $stmt->bindValue($identifier, $this->hotel, PDO::PARAM_LOB);
+                        $stmt->bindValue($identifier, $this->hotel, PDO::PARAM_STR);
                         break;
                     case '`restoran`':
-                        if (is_resource($this->restoran)) {
-                            rewind($this->restoran);
-                        }
-                        $stmt->bindValue($identifier, $this->restoran, PDO::PARAM_LOB);
+                        $stmt->bindValue($identifier, $this->restoran, PDO::PARAM_STR);
                         break;
                     case '`buy_center`':
-                        if (is_resource($this->buy_center)) {
-                            rewind($this->buy_center);
-                        }
-                        $stmt->bindValue($identifier, $this->buy_center, PDO::PARAM_LOB);
+                        $stmt->bindValue($identifier, $this->buy_center, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1083,25 +828,13 @@ abstract class BaseCity extends BaseObject implements Persistent
             $failureMap = array();
 
 
-            // We call the validate method on the following object(s) if they
-            // were passed to this object by their coresponding set
-            // method.  This object relates to these object(s) by a
-            // foreign key reference.
-
-            if ($this->aCountry !== null) {
-                if (!$this->aCountry->validate($columns)) {
-                    $failureMap = array_merge($failureMap, $this->aCountry->getValidationFailures());
-                }
-            }
-
-
             if (($retval = CityPeer::doValidate($this, $columns)) !== true) {
                 $failureMap = array_merge($failureMap, $retval);
             }
 
 
-                if ($this->collRecordCitys !== null) {
-                    foreach ($this->collRecordCitys as $referrerFK) {
+                if ($this->collTours !== null) {
+                    foreach ($this->collTours as $referrerFK) {
                         if (!$referrerFK->validate($columns)) {
                             $failureMap = array_merge($failureMap, $referrerFK->getValidationFailures());
                         }
@@ -1150,30 +883,24 @@ abstract class BaseCity extends BaseObject implements Persistent
                 return $this->getName();
                 break;
             case 2:
-                return $this->getCountryId();
+                return $this->getCountry();
                 break;
             case 3:
-                return $this->getPublish();
-                break;
-            case 4:
-                return $this->getDate();
-                break;
-            case 5:
                 return $this->getDesc();
                 break;
-            case 6:
+            case 4:
                 return $this->getUsefulInfo();
                 break;
-            case 7:
+            case 5:
                 return $this->getPlace();
                 break;
-            case 8:
+            case 6:
                 return $this->getHotel();
                 break;
-            case 9:
+            case 7:
                 return $this->getRestoran();
                 break;
-            case 10:
+            case 8:
                 return $this->getBuyCenter();
                 break;
             default:
@@ -1207,22 +934,17 @@ abstract class BaseCity extends BaseObject implements Persistent
         $result = array(
             $keys[0] => $this->getId(),
             $keys[1] => $this->getName(),
-            $keys[2] => $this->getCountryId(),
-            $keys[3] => $this->getPublish(),
-            $keys[4] => $this->getDate(),
-            $keys[5] => $this->getDesc(),
-            $keys[6] => $this->getUsefulInfo(),
-            $keys[7] => $this->getPlace(),
-            $keys[8] => $this->getHotel(),
-            $keys[9] => $this->getRestoran(),
-            $keys[10] => $this->getBuyCenter(),
+            $keys[2] => $this->getCountry(),
+            $keys[3] => $this->getDesc(),
+            $keys[4] => $this->getUsefulInfo(),
+            $keys[5] => $this->getPlace(),
+            $keys[6] => $this->getHotel(),
+            $keys[7] => $this->getRestoran(),
+            $keys[8] => $this->getBuyCenter(),
         );
         if ($includeForeignObjects) {
-            if (null !== $this->aCountry) {
-                $result['Country'] = $this->aCountry->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
-            if (null !== $this->collRecordCitys) {
-                $result['RecordCitys'] = $this->collRecordCitys->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+            if (null !== $this->collTours) {
+                $result['Tours'] = $this->collTours->toArray(null, true, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
             }
         }
 
@@ -1265,30 +987,24 @@ abstract class BaseCity extends BaseObject implements Persistent
                 $this->setName($value);
                 break;
             case 2:
-                $this->setCountryId($value);
+                $this->setCountry($value);
                 break;
             case 3:
-                $this->setPublish($value);
-                break;
-            case 4:
-                $this->setDate($value);
-                break;
-            case 5:
                 $this->setDesc($value);
                 break;
-            case 6:
+            case 4:
                 $this->setUsefulInfo($value);
                 break;
-            case 7:
+            case 5:
                 $this->setPlace($value);
                 break;
-            case 8:
+            case 6:
                 $this->setHotel($value);
                 break;
-            case 9:
+            case 7:
                 $this->setRestoran($value);
                 break;
-            case 10:
+            case 8:
                 $this->setBuyCenter($value);
                 break;
         } // switch()
@@ -1317,15 +1033,13 @@ abstract class BaseCity extends BaseObject implements Persistent
 
         if (array_key_exists($keys[0], $arr)) $this->setId($arr[$keys[0]]);
         if (array_key_exists($keys[1], $arr)) $this->setName($arr[$keys[1]]);
-        if (array_key_exists($keys[2], $arr)) $this->setCountryId($arr[$keys[2]]);
-        if (array_key_exists($keys[3], $arr)) $this->setPublish($arr[$keys[3]]);
-        if (array_key_exists($keys[4], $arr)) $this->setDate($arr[$keys[4]]);
-        if (array_key_exists($keys[5], $arr)) $this->setDesc($arr[$keys[5]]);
-        if (array_key_exists($keys[6], $arr)) $this->setUsefulInfo($arr[$keys[6]]);
-        if (array_key_exists($keys[7], $arr)) $this->setPlace($arr[$keys[7]]);
-        if (array_key_exists($keys[8], $arr)) $this->setHotel($arr[$keys[8]]);
-        if (array_key_exists($keys[9], $arr)) $this->setRestoran($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setBuyCenter($arr[$keys[10]]);
+        if (array_key_exists($keys[2], $arr)) $this->setCountry($arr[$keys[2]]);
+        if (array_key_exists($keys[3], $arr)) $this->setDesc($arr[$keys[3]]);
+        if (array_key_exists($keys[4], $arr)) $this->setUsefulInfo($arr[$keys[4]]);
+        if (array_key_exists($keys[5], $arr)) $this->setPlace($arr[$keys[5]]);
+        if (array_key_exists($keys[6], $arr)) $this->setHotel($arr[$keys[6]]);
+        if (array_key_exists($keys[7], $arr)) $this->setRestoran($arr[$keys[7]]);
+        if (array_key_exists($keys[8], $arr)) $this->setBuyCenter($arr[$keys[8]]);
     }
 
     /**
@@ -1339,9 +1053,7 @@ abstract class BaseCity extends BaseObject implements Persistent
 
         if ($this->isColumnModified(CityPeer::ID)) $criteria->add(CityPeer::ID, $this->id);
         if ($this->isColumnModified(CityPeer::NAME)) $criteria->add(CityPeer::NAME, $this->name);
-        if ($this->isColumnModified(CityPeer::COUNTRY_ID)) $criteria->add(CityPeer::COUNTRY_ID, $this->country_id);
-        if ($this->isColumnModified(CityPeer::PUBLISH)) $criteria->add(CityPeer::PUBLISH, $this->publish);
-        if ($this->isColumnModified(CityPeer::DATE)) $criteria->add(CityPeer::DATE, $this->date);
+        if ($this->isColumnModified(CityPeer::COUNTRY)) $criteria->add(CityPeer::COUNTRY, $this->country);
         if ($this->isColumnModified(CityPeer::DESC)) $criteria->add(CityPeer::DESC, $this->desc);
         if ($this->isColumnModified(CityPeer::USEFUL_INFO)) $criteria->add(CityPeer::USEFUL_INFO, $this->useful_info);
         if ($this->isColumnModified(CityPeer::PLACE)) $criteria->add(CityPeer::PLACE, $this->place);
@@ -1412,9 +1124,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
         $copyObj->setName($this->getName());
-        $copyObj->setCountryId($this->getCountryId());
-        $copyObj->setPublish($this->getPublish());
-        $copyObj->setDate($this->getDate());
+        $copyObj->setCountry($this->getCountry());
         $copyObj->setDesc($this->getDesc());
         $copyObj->setUsefulInfo($this->getUsefulInfo());
         $copyObj->setPlace($this->getPlace());
@@ -1429,9 +1139,9 @@ abstract class BaseCity extends BaseObject implements Persistent
             // store object hash to prevent cycle
             $this->startCopy = true;
 
-            foreach ($this->getRecordCitys() as $relObj) {
+            foreach ($this->getTours() as $relObj) {
                 if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addRecordCity($relObj->copy($deepCopy));
+                    $copyObj->addTour($relObj->copy($deepCopy));
                 }
             }
 
@@ -1485,58 +1195,6 @@ abstract class BaseCity extends BaseObject implements Persistent
         return self::$peer;
     }
 
-    /**
-     * Declares an association between this object and a Country object.
-     *
-     * @param             Country $v
-     * @return City The current object (for fluent API support)
-     * @throws PropelException
-     */
-    public function setCountry(Country $v = null)
-    {
-        if ($v === null) {
-            $this->setCountryId(NULL);
-        } else {
-            $this->setCountryId($v->getId());
-        }
-
-        $this->aCountry = $v;
-
-        // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the Country object, it will not be re-added.
-        if ($v !== null) {
-            $v->addCity($this);
-        }
-
-
-        return $this;
-    }
-
-
-    /**
-     * Get the associated Country object
-     *
-     * @param PropelPDO $con Optional Connection object.
-     * @param $doQuery Executes a query to get the object if required
-     * @return Country The associated Country object.
-     * @throws PropelException
-     */
-    public function getCountry(PropelPDO $con = null, $doQuery = true)
-    {
-        if ($this->aCountry === null && ($this->country_id !== null) && $doQuery) {
-            $this->aCountry = CountryQuery::create()->findPk($this->country_id, $con);
-            /* The following can be used additionally to
-                guarantee the related object contains a reference
-                to this object.  This level of coupling may, however, be
-                undesirable since it could result in an only partially populated collection
-                in the referenced object.
-                $this->aCountry->addCitys($this);
-             */
-        }
-
-        return $this->aCountry;
-    }
-
 
     /**
      * Initializes a collection based on the name of a relation.
@@ -1548,42 +1206,42 @@ abstract class BaseCity extends BaseObject implements Persistent
      */
     public function initRelation($relationName)
     {
-        if ('RecordCity' == $relationName) {
-            $this->initRecordCitys();
+        if ('Tour' == $relationName) {
+            $this->initTours();
         }
     }
 
     /**
-     * Clears out the collRecordCitys collection
+     * Clears out the collTours collection
      *
      * This does not modify the database; however, it will remove any associated objects, causing
      * them to be refetched by subsequent calls to accessor method.
      *
      * @return City The current object (for fluent API support)
-     * @see        addRecordCitys()
+     * @see        addTours()
      */
-    public function clearRecordCitys()
+    public function clearTours()
     {
-        $this->collRecordCitys = null; // important to set this to null since that means it is uninitialized
-        $this->collRecordCitysPartial = null;
+        $this->collTours = null; // important to set this to null since that means it is uninitialized
+        $this->collToursPartial = null;
 
         return $this;
     }
 
     /**
-     * reset is the collRecordCitys collection loaded partially
+     * reset is the collTours collection loaded partially
      *
      * @return void
      */
-    public function resetPartialRecordCitys($v = true)
+    public function resetPartialTours($v = true)
     {
-        $this->collRecordCitysPartial = $v;
+        $this->collToursPartial = $v;
     }
 
     /**
-     * Initializes the collRecordCitys collection.
+     * Initializes the collTours collection.
      *
-     * By default this just sets the collRecordCitys collection to an empty array (like clearcollRecordCitys());
+     * By default this just sets the collTours collection to an empty array (like clearcollTours());
      * however, you may wish to override this method in your stub class to provide setting appropriate
      * to your application -- for example, setting the initial array to the values stored in database.
      *
@@ -1592,17 +1250,17 @@ abstract class BaseCity extends BaseObject implements Persistent
      *
      * @return void
      */
-    public function initRecordCitys($overrideExisting = true)
+    public function initTours($overrideExisting = true)
     {
-        if (null !== $this->collRecordCitys && !$overrideExisting) {
+        if (null !== $this->collTours && !$overrideExisting) {
             return;
         }
-        $this->collRecordCitys = new PropelObjectCollection();
-        $this->collRecordCitys->setModel('RecordCity');
+        $this->collTours = new PropelObjectCollection();
+        $this->collTours->setModel('Tour');
     }
 
     /**
-     * Gets an array of RecordCity objects which contain a foreign key that references this object.
+     * Gets an array of Tour objects which contain a foreign key that references this object.
      *
      * If the $criteria is not null, it is used to always fetch the results from the database.
      * Otherwise the results are fetched from the database the first time, then cached.
@@ -1612,104 +1270,104 @@ abstract class BaseCity extends BaseObject implements Persistent
      *
      * @param Criteria $criteria optional Criteria object to narrow the query
      * @param PropelPDO $con optional connection object
-     * @return PropelObjectCollection|RecordCity[] List of RecordCity objects
+     * @return PropelObjectCollection|Tour[] List of Tour objects
      * @throws PropelException
      */
-    public function getRecordCitys($criteria = null, PropelPDO $con = null)
+    public function getTours($criteria = null, PropelPDO $con = null)
     {
-        $partial = $this->collRecordCitysPartial && !$this->isNew();
-        if (null === $this->collRecordCitys || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collRecordCitys) {
+        $partial = $this->collToursPartial && !$this->isNew();
+        if (null === $this->collTours || null !== $criteria  || $partial) {
+            if ($this->isNew() && null === $this->collTours) {
                 // return empty collection
-                $this->initRecordCitys();
+                $this->initTours();
             } else {
-                $collRecordCitys = RecordCityQuery::create(null, $criteria)
+                $collTours = TourQuery::create(null, $criteria)
                     ->filterByCity($this)
                     ->find($con);
                 if (null !== $criteria) {
-                    if (false !== $this->collRecordCitysPartial && count($collRecordCitys)) {
-                      $this->initRecordCitys(false);
+                    if (false !== $this->collToursPartial && count($collTours)) {
+                      $this->initTours(false);
 
-                      foreach($collRecordCitys as $obj) {
-                        if (false == $this->collRecordCitys->contains($obj)) {
-                          $this->collRecordCitys->append($obj);
+                      foreach($collTours as $obj) {
+                        if (false == $this->collTours->contains($obj)) {
+                          $this->collTours->append($obj);
                         }
                       }
 
-                      $this->collRecordCitysPartial = true;
+                      $this->collToursPartial = true;
                     }
 
-                    return $collRecordCitys;
+                    return $collTours;
                 }
 
-                if($partial && $this->collRecordCitys) {
-                    foreach($this->collRecordCitys as $obj) {
+                if($partial && $this->collTours) {
+                    foreach($this->collTours as $obj) {
                         if($obj->isNew()) {
-                            $collRecordCitys[] = $obj;
+                            $collTours[] = $obj;
                         }
                     }
                 }
 
-                $this->collRecordCitys = $collRecordCitys;
-                $this->collRecordCitysPartial = false;
+                $this->collTours = $collTours;
+                $this->collToursPartial = false;
             }
         }
 
-        return $this->collRecordCitys;
+        return $this->collTours;
     }
 
     /**
-     * Sets a collection of RecordCity objects related by a one-to-many relationship
+     * Sets a collection of Tour objects related by a one-to-many relationship
      * to the current object.
      * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
      * and new objects from the given Propel collection.
      *
-     * @param PropelCollection $recordCitys A Propel collection.
+     * @param PropelCollection $tours A Propel collection.
      * @param PropelPDO $con Optional connection object
      * @return City The current object (for fluent API support)
      */
-    public function setRecordCitys(PropelCollection $recordCitys, PropelPDO $con = null)
+    public function setTours(PropelCollection $tours, PropelPDO $con = null)
     {
-        $recordCitysToDelete = $this->getRecordCitys(new Criteria(), $con)->diff($recordCitys);
+        $toursToDelete = $this->getTours(new Criteria(), $con)->diff($tours);
 
-        $this->recordCitysScheduledForDeletion = unserialize(serialize($recordCitysToDelete));
+        $this->toursScheduledForDeletion = unserialize(serialize($toursToDelete));
 
-        foreach ($recordCitysToDelete as $recordCityRemoved) {
-            $recordCityRemoved->setCity(null);
+        foreach ($toursToDelete as $tourRemoved) {
+            $tourRemoved->setCity(null);
         }
 
-        $this->collRecordCitys = null;
-        foreach ($recordCitys as $recordCity) {
-            $this->addRecordCity($recordCity);
+        $this->collTours = null;
+        foreach ($tours as $tour) {
+            $this->addTour($tour);
         }
 
-        $this->collRecordCitys = $recordCitys;
-        $this->collRecordCitysPartial = false;
+        $this->collTours = $tours;
+        $this->collToursPartial = false;
 
         return $this;
     }
 
     /**
-     * Returns the number of related RecordCity objects.
+     * Returns the number of related Tour objects.
      *
      * @param Criteria $criteria
      * @param boolean $distinct
      * @param PropelPDO $con
-     * @return int             Count of related RecordCity objects.
+     * @return int             Count of related Tour objects.
      * @throws PropelException
      */
-    public function countRecordCitys(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
+    public function countTours(Criteria $criteria = null, $distinct = false, PropelPDO $con = null)
     {
-        $partial = $this->collRecordCitysPartial && !$this->isNew();
-        if (null === $this->collRecordCitys || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collRecordCitys) {
+        $partial = $this->collToursPartial && !$this->isNew();
+        if (null === $this->collTours || null !== $criteria || $partial) {
+            if ($this->isNew() && null === $this->collTours) {
                 return 0;
             }
 
             if($partial && !$criteria) {
-                return count($this->getRecordCitys());
+                return count($this->getTours());
             }
-            $query = RecordCityQuery::create(null, $criteria);
+            $query = TourQuery::create(null, $criteria);
             if ($distinct) {
                 $query->distinct();
             }
@@ -1719,52 +1377,52 @@ abstract class BaseCity extends BaseObject implements Persistent
                 ->count($con);
         }
 
-        return count($this->collRecordCitys);
+        return count($this->collTours);
     }
 
     /**
-     * Method called to associate a RecordCity object to this object
-     * through the RecordCity foreign key attribute.
+     * Method called to associate a Tour object to this object
+     * through the Tour foreign key attribute.
      *
-     * @param    RecordCity $l RecordCity
+     * @param    Tour $l Tour
      * @return City The current object (for fluent API support)
      */
-    public function addRecordCity(RecordCity $l)
+    public function addTour(Tour $l)
     {
-        if ($this->collRecordCitys === null) {
-            $this->initRecordCitys();
-            $this->collRecordCitysPartial = true;
+        if ($this->collTours === null) {
+            $this->initTours();
+            $this->collToursPartial = true;
         }
-        if (!in_array($l, $this->collRecordCitys->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
-            $this->doAddRecordCity($l);
+        if (!in_array($l, $this->collTours->getArrayCopy(), true)) { // only add it if the **same** object is not already associated
+            $this->doAddTour($l);
         }
 
         return $this;
     }
 
     /**
-     * @param	RecordCity $recordCity The recordCity object to add.
+     * @param	Tour $tour The tour object to add.
      */
-    protected function doAddRecordCity($recordCity)
+    protected function doAddTour($tour)
     {
-        $this->collRecordCitys[]= $recordCity;
-        $recordCity->setCity($this);
+        $this->collTours[]= $tour;
+        $tour->setCity($this);
     }
 
     /**
-     * @param	RecordCity $recordCity The recordCity object to remove.
+     * @param	Tour $tour The tour object to remove.
      * @return City The current object (for fluent API support)
      */
-    public function removeRecordCity($recordCity)
+    public function removeTour($tour)
     {
-        if ($this->getRecordCitys()->contains($recordCity)) {
-            $this->collRecordCitys->remove($this->collRecordCitys->search($recordCity));
-            if (null === $this->recordCitysScheduledForDeletion) {
-                $this->recordCitysScheduledForDeletion = clone $this->collRecordCitys;
-                $this->recordCitysScheduledForDeletion->clear();
+        if ($this->getTours()->contains($tour)) {
+            $this->collTours->remove($this->collTours->search($tour));
+            if (null === $this->toursScheduledForDeletion) {
+                $this->toursScheduledForDeletion = clone $this->collTours;
+                $this->toursScheduledForDeletion->clear();
             }
-            $this->recordCitysScheduledForDeletion[]= $recordCity;
-            $recordCity->setCity(null);
+            $this->toursScheduledForDeletion[]= $tour;
+            $tour->setCity(null);
         }
 
         return $this;
@@ -1777,9 +1435,7 @@ abstract class BaseCity extends BaseObject implements Persistent
     {
         $this->id = null;
         $this->name = null;
-        $this->country_id = null;
-        $this->publish = null;
-        $this->date = null;
+        $this->country = null;
         $this->desc = null;
         $this->useful_info = null;
         $this->place = null;
@@ -1806,18 +1462,17 @@ abstract class BaseCity extends BaseObject implements Persistent
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collRecordCitys) {
-                foreach ($this->collRecordCitys as $o) {
+            if ($this->collTours) {
+                foreach ($this->collTours as $o) {
                     $o->clearAllReferences($deep);
                 }
             }
         } // if ($deep)
 
-        if ($this->collRecordCitys instanceof PropelCollection) {
-            $this->collRecordCitys->clearIterator();
+        if ($this->collTours instanceof PropelCollection) {
+            $this->collTours->clearIterator();
         }
-        $this->collRecordCitys = null;
-        $this->aCountry = null;
+        $this->collTours = null;
     }
 
     /**

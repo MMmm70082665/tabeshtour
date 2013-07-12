@@ -21,7 +21,7 @@ class Admin_Post_Delete_IndexAction extends agentAdminBaseAction
 	public function executeRead(AgaviRequestDataHolder $rd)
 	{
 		$id = $rd->getParameter('id');
-		$object = PostQuery::create()->findById($id);
+		$object = NewsQuery::create()->findById($id);
 		$object->delete();
 		return 'Success';
 	}

@@ -1,7 +1,10 @@
 <div id="content">
 <div class="breadcrumb">
 <span class="active">مدیریت تماس ها</span>
+<?php if (count($t['tiket']) == 0):?>
+<?php  echo  ".:: هیچی تماسی موجود نیست ::."?>
 </div>
+<?php else :?>
            <div id="inner">
 
           
@@ -32,5 +35,6 @@
 </div>
 <?php endforeach;?>
 </div>
+<?php endif;?>
 </div>
 </div>

@@ -24,13 +24,13 @@ abstract class BaseCityPeer
     const TM_CLASS = 'CityTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 11;
+    const NUM_COLUMNS = 9;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 11;
+    const NUM_HYDRATE_COLUMNS = 9;
 
     /** the column name for the id field */
     const ID = 'city.id';
@@ -38,14 +38,8 @@ abstract class BaseCityPeer
     /** the column name for the name field */
     const NAME = 'city.name';
 
-    /** the column name for the country_id field */
-    const COUNTRY_ID = 'city.country_id';
-
-    /** the column name for the publish field */
-    const PUBLISH = 'city.publish';
-
-    /** the column name for the date field */
-    const DATE = 'city.date';
+    /** the column name for the country field */
+    const COUNTRY = 'city.country';
 
     /** the column name for the desc field */
     const DESC = 'city.desc';
@@ -84,12 +78,12 @@ abstract class BaseCityPeer
      * e.g. CityPeer::$fieldNames[CityPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'CountryId', 'Publish', 'Date', 'Desc', 'UsefulInfo', 'Place', 'Hotel', 'Restoran', 'BuyCenter', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'countryId', 'publish', 'date', 'desc', 'usefulInfo', 'place', 'hotel', 'restoran', 'buyCenter', ),
-        BasePeer::TYPE_COLNAME => array (CityPeer::ID, CityPeer::NAME, CityPeer::COUNTRY_ID, CityPeer::PUBLISH, CityPeer::DATE, CityPeer::DESC, CityPeer::USEFUL_INFO, CityPeer::PLACE, CityPeer::HOTEL, CityPeer::RESTORAN, CityPeer::BUY_CENTER, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'COUNTRY_ID', 'PUBLISH', 'DATE', 'DESC', 'USEFUL_INFO', 'PLACE', 'HOTEL', 'RESTORAN', 'BUY_CENTER', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'country_id', 'publish', 'date', 'desc', 'useful_info', 'place', 'hotel', 'restoran', 'buy_center', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'Country', 'Desc', 'UsefulInfo', 'Place', 'Hotel', 'Restoran', 'BuyCenter', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'country', 'desc', 'usefulInfo', 'place', 'hotel', 'restoran', 'buyCenter', ),
+        BasePeer::TYPE_COLNAME => array (CityPeer::ID, CityPeer::NAME, CityPeer::COUNTRY, CityPeer::DESC, CityPeer::USEFUL_INFO, CityPeer::PLACE, CityPeer::HOTEL, CityPeer::RESTORAN, CityPeer::BUY_CENTER, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'COUNTRY', 'DESC', 'USEFUL_INFO', 'PLACE', 'HOTEL', 'RESTORAN', 'BUY_CENTER', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'country', 'desc', 'useful_info', 'place', 'hotel', 'restoran', 'buy_center', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -99,12 +93,12 @@ abstract class BaseCityPeer
      * e.g. CityPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'CountryId' => 2, 'Publish' => 3, 'Date' => 4, 'Desc' => 5, 'UsefulInfo' => 6, 'Place' => 7, 'Hotel' => 8, 'Restoran' => 9, 'BuyCenter' => 10, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'countryId' => 2, 'publish' => 3, 'date' => 4, 'desc' => 5, 'usefulInfo' => 6, 'place' => 7, 'hotel' => 8, 'restoran' => 9, 'buyCenter' => 10, ),
-        BasePeer::TYPE_COLNAME => array (CityPeer::ID => 0, CityPeer::NAME => 1, CityPeer::COUNTRY_ID => 2, CityPeer::PUBLISH => 3, CityPeer::DATE => 4, CityPeer::DESC => 5, CityPeer::USEFUL_INFO => 6, CityPeer::PLACE => 7, CityPeer::HOTEL => 8, CityPeer::RESTORAN => 9, CityPeer::BUY_CENTER => 10, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'COUNTRY_ID' => 2, 'PUBLISH' => 3, 'DATE' => 4, 'DESC' => 5, 'USEFUL_INFO' => 6, 'PLACE' => 7, 'HOTEL' => 8, 'RESTORAN' => 9, 'BUY_CENTER' => 10, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'country_id' => 2, 'publish' => 3, 'date' => 4, 'desc' => 5, 'useful_info' => 6, 'place' => 7, 'hotel' => 8, 'restoran' => 9, 'buy_center' => 10, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'Country' => 2, 'Desc' => 3, 'UsefulInfo' => 4, 'Place' => 5, 'Hotel' => 6, 'Restoran' => 7, 'BuyCenter' => 8, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'country' => 2, 'desc' => 3, 'usefulInfo' => 4, 'place' => 5, 'hotel' => 6, 'restoran' => 7, 'buyCenter' => 8, ),
+        BasePeer::TYPE_COLNAME => array (CityPeer::ID => 0, CityPeer::NAME => 1, CityPeer::COUNTRY => 2, CityPeer::DESC => 3, CityPeer::USEFUL_INFO => 4, CityPeer::PLACE => 5, CityPeer::HOTEL => 6, CityPeer::RESTORAN => 7, CityPeer::BUY_CENTER => 8, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'COUNTRY' => 2, 'DESC' => 3, 'USEFUL_INFO' => 4, 'PLACE' => 5, 'HOTEL' => 6, 'RESTORAN' => 7, 'BUY_CENTER' => 8, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'country' => 2, 'desc' => 3, 'useful_info' => 4, 'place' => 5, 'hotel' => 6, 'restoran' => 7, 'buy_center' => 8, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -180,9 +174,7 @@ abstract class BaseCityPeer
         if (null === $alias) {
             $criteria->addSelectColumn(CityPeer::ID);
             $criteria->addSelectColumn(CityPeer::NAME);
-            $criteria->addSelectColumn(CityPeer::COUNTRY_ID);
-            $criteria->addSelectColumn(CityPeer::PUBLISH);
-            $criteria->addSelectColumn(CityPeer::DATE);
+            $criteria->addSelectColumn(CityPeer::COUNTRY);
             $criteria->addSelectColumn(CityPeer::DESC);
             $criteria->addSelectColumn(CityPeer::USEFUL_INFO);
             $criteria->addSelectColumn(CityPeer::PLACE);
@@ -192,9 +184,7 @@ abstract class BaseCityPeer
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.name');
-            $criteria->addSelectColumn($alias . '.country_id');
-            $criteria->addSelectColumn($alias . '.publish');
-            $criteria->addSelectColumn($alias . '.date');
+            $criteria->addSelectColumn($alias . '.country');
             $criteria->addSelectColumn($alias . '.desc');
             $criteria->addSelectColumn($alias . '.useful_info');
             $criteria->addSelectColumn($alias . '.place');
@@ -494,244 +484,6 @@ abstract class BaseCityPeer
         }
 
         return array($obj, $col);
-    }
-
-
-    /**
-     * Returns the number of rows matching criteria, joining the related Country table
-     *
-     * @param      Criteria $criteria
-     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-     * @param      PropelPDO $con
-     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return int Number of matching rows.
-     */
-    public static function doCountJoinCountry(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        // we're going to modify criteria, so copy it first
-        $criteria = clone $criteria;
-
-        // We need to set the primary table name, since in the case that there are no WHERE columns
-        // it will be impossible for the BasePeer::createSelectSql() method to determine which
-        // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(CityPeer::TABLE_NAME);
-
-        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-            $criteria->setDistinct();
-        }
-
-        if (!$criteria->hasSelectClause()) {
-            CityPeer::addSelectColumns($criteria);
-        }
-
-        $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
-
-        // Set the correct dbName
-        $criteria->setDbName(CityPeer::DATABASE_NAME);
-
-        if ($con === null) {
-            $con = Propel::getConnection(CityPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-        }
-
-        $criteria->addJoin(CityPeer::COUNTRY_ID, CountryPeer::ID, $join_behavior);
-
-        $stmt = BasePeer::doCount($criteria, $con);
-
-        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $count = (int) $row[0];
-        } else {
-            $count = 0; // no rows returned; we infer that means 0 matches.
-        }
-        $stmt->closeCursor();
-
-        return $count;
-    }
-
-
-    /**
-     * Selects a collection of City objects pre-filled with their Country objects.
-     * @param      Criteria  $criteria
-     * @param      PropelPDO $con
-     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of City objects.
-     * @throws PropelException Any exceptions caught during processing will be
-     *		 rethrown wrapped into a PropelException.
-     */
-    public static function doSelectJoinCountry(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        $criteria = clone $criteria;
-
-        // Set the correct dbName if it has not been overridden
-        if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(CityPeer::DATABASE_NAME);
-        }
-
-        CityPeer::addSelectColumns($criteria);
-        $startcol = CityPeer::NUM_HYDRATE_COLUMNS;
-        CountryPeer::addSelectColumns($criteria);
-
-        $criteria->addJoin(CityPeer::COUNTRY_ID, CountryPeer::ID, $join_behavior);
-
-        $stmt = BasePeer::doSelect($criteria, $con);
-        $results = array();
-
-        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = CityPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = CityPeer::getInstanceFromPool($key1))) {
-                // We no longer rehydrate the object, since this can cause data loss.
-                // See http://www.propelorm.org/ticket/509
-                // $obj1->hydrate($row, 0, true); // rehydrate
-            } else {
-
-                $cls = CityPeer::getOMClass();
-
-                $obj1 = new $cls();
-                $obj1->hydrate($row);
-                CityPeer::addInstanceToPool($obj1, $key1);
-            } // if $obj1 already loaded
-
-            $key2 = CountryPeer::getPrimaryKeyHashFromRow($row, $startcol);
-            if ($key2 !== null) {
-                $obj2 = CountryPeer::getInstanceFromPool($key2);
-                if (!$obj2) {
-
-                    $cls = CountryPeer::getOMClass();
-
-                    $obj2 = new $cls();
-                    $obj2->hydrate($row, $startcol);
-                    CountryPeer::addInstanceToPool($obj2, $key2);
-                } // if obj2 already loaded
-
-                // Add the $obj1 (City) to $obj2 (Country)
-                $obj2->addCity($obj1);
-
-            } // if joined row was not null
-
-            $results[] = $obj1;
-        }
-        $stmt->closeCursor();
-
-        return $results;
-    }
-
-
-    /**
-     * Returns the number of rows matching criteria, joining all related tables
-     *
-     * @param      Criteria $criteria
-     * @param      boolean $distinct Whether to select only distinct columns; deprecated: use Criteria->setDistinct() instead.
-     * @param      PropelPDO $con
-     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return int Number of matching rows.
-     */
-    public static function doCountJoinAll(Criteria $criteria, $distinct = false, PropelPDO $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        // we're going to modify criteria, so copy it first
-        $criteria = clone $criteria;
-
-        // We need to set the primary table name, since in the case that there are no WHERE columns
-        // it will be impossible for the BasePeer::createSelectSql() method to determine which
-        // tables go into the FROM clause.
-        $criteria->setPrimaryTableName(CityPeer::TABLE_NAME);
-
-        if ($distinct && !in_array(Criteria::DISTINCT, $criteria->getSelectModifiers())) {
-            $criteria->setDistinct();
-        }
-
-        if (!$criteria->hasSelectClause()) {
-            CityPeer::addSelectColumns($criteria);
-        }
-
-        $criteria->clearOrderByColumns(); // ORDER BY won't ever affect the count
-
-        // Set the correct dbName
-        $criteria->setDbName(CityPeer::DATABASE_NAME);
-
-        if ($con === null) {
-            $con = Propel::getConnection(CityPeer::DATABASE_NAME, Propel::CONNECTION_READ);
-        }
-
-        $criteria->addJoin(CityPeer::COUNTRY_ID, CountryPeer::ID, $join_behavior);
-
-        $stmt = BasePeer::doCount($criteria, $con);
-
-        if ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $count = (int) $row[0];
-        } else {
-            $count = 0; // no rows returned; we infer that means 0 matches.
-        }
-        $stmt->closeCursor();
-
-        return $count;
-    }
-
-    /**
-     * Selects a collection of City objects pre-filled with all related objects.
-     *
-     * @param      Criteria  $criteria
-     * @param      PropelPDO $con
-     * @param      String    $join_behavior the type of joins to use, defaults to Criteria::LEFT_JOIN
-     * @return array           Array of City objects.
-     * @throws PropelException Any exceptions caught during processing will be
-     *		 rethrown wrapped into a PropelException.
-     */
-    public static function doSelectJoinAll(Criteria $criteria, $con = null, $join_behavior = Criteria::LEFT_JOIN)
-    {
-        $criteria = clone $criteria;
-
-        // Set the correct dbName if it has not been overridden
-        if ($criteria->getDbName() == Propel::getDefaultDB()) {
-            $criteria->setDbName(CityPeer::DATABASE_NAME);
-        }
-
-        CityPeer::addSelectColumns($criteria);
-        $startcol2 = CityPeer::NUM_HYDRATE_COLUMNS;
-
-        CountryPeer::addSelectColumns($criteria);
-        $startcol3 = $startcol2 + CountryPeer::NUM_HYDRATE_COLUMNS;
-
-        $criteria->addJoin(CityPeer::COUNTRY_ID, CountryPeer::ID, $join_behavior);
-
-        $stmt = BasePeer::doSelect($criteria, $con);
-        $results = array();
-
-        while ($row = $stmt->fetch(PDO::FETCH_NUM)) {
-            $key1 = CityPeer::getPrimaryKeyHashFromRow($row, 0);
-            if (null !== ($obj1 = CityPeer::getInstanceFromPool($key1))) {
-                // We no longer rehydrate the object, since this can cause data loss.
-                // See http://www.propelorm.org/ticket/509
-                // $obj1->hydrate($row, 0, true); // rehydrate
-            } else {
-                $cls = CityPeer::getOMClass();
-
-                $obj1 = new $cls();
-                $obj1->hydrate($row);
-                CityPeer::addInstanceToPool($obj1, $key1);
-            } // if obj1 already loaded
-
-            // Add objects for joined Country rows
-
-            $key2 = CountryPeer::getPrimaryKeyHashFromRow($row, $startcol2);
-            if ($key2 !== null) {
-                $obj2 = CountryPeer::getInstanceFromPool($key2);
-                if (!$obj2) {
-
-                    $cls = CountryPeer::getOMClass();
-
-                    $obj2 = new $cls();
-                    $obj2->hydrate($row, $startcol2);
-                    CountryPeer::addInstanceToPool($obj2, $key2);
-                } // if obj2 loaded
-
-                // Add the $obj1 (City) to the collection in $obj2 (Country)
-                $obj2->addCity($obj1);
-            } // if joined row not null
-
-            $results[] = $obj1;
-        }
-        $stmt->closeCursor();
-
-        return $results;
     }
 
     /**

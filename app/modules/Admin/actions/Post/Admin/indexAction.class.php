@@ -22,7 +22,7 @@ class Admin_Post_Admin_indexAction extends agentAdminBaseAction
 	{
 		$value = array();
 		$id = $rd->getParameter('id');
-		$post = PostQuery::create()->filterByPublisher(true)->orderByOrder()->paginate($id,20);
+		$post = NewsQuery::create()->filterByPublish(true)->paginate($id,20);
 		$page = $post->getLinks(100);
 		$this->setAttribute('page', $page);
 		foreach ($post as $p)

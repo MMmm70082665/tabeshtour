@@ -21,7 +21,7 @@ class Admin_Post_Edit_IndexAction extends agentAdminBaseAction
 	public function executeRead(AgaviRequestDataHolder $rd)
 	{
 		$id = $rd->getParameter('id');
-		$post = PostQuery::create()->findPks($id);
+		$post = NewsQuery::create()->findPks($id);
 		$this->setAttribute('post', $post->toArray());
 		return 'Input';
 	}
@@ -33,11 +33,11 @@ class Admin_Post_Edit_IndexAction extends agentAdminBaseAction
 		$short_desc = $rd->getParameter('short_desc');
 		$tag = $rd->getParameter('tag');
 		$pub = $rd->getParameter('publisher');
-		$object = PostQuery::create()->filterById($id)
+		$object = NewsQuery::create()->filterById($id)
 		->update(
 		array(
 		'Subject' => $subject,
-		'Publisher' => $pub,
+		'Publish' => $pub,
 		'LongDesc' => $long_desc,
 		'ShortDesc' => $short_desc,
 		'Tag' =>$tag

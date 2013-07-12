@@ -21,11 +21,11 @@ class Admin_Post_Publish_PubAction extends agentAdminBaseAction
 	public function executeRead(AgaviRequestDataHolder $rd)
 	{
 		$id = $rd->getParameter('id');
-		$object = PostQuery::create()->findPk($id);
-		if ($object->getPublisher() == true)
-		$object->setPublisher(false);
+		$object = NewsQuery::create()->findPk($id);
+		if ($object->getPublish() == true)
+		$object->setPublish(false);
 		else 
-		$object->setPublisher(true);
+		$object->setPublish(true);
 		$object->save();
 		return 'Success';
 	}

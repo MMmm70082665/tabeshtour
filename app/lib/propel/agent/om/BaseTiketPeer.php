@@ -24,13 +24,13 @@ abstract class BaseTiketPeer
     const TM_CLASS = 'TiketTableMap';
 
     /** The total number of columns. */
-    const NUM_COLUMNS = 9;
+    const NUM_COLUMNS = 8;
 
     /** The number of lazy-loaded columns. */
     const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /** The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS) */
-    const NUM_HYDRATE_COLUMNS = 9;
+    const NUM_HYDRATE_COLUMNS = 8;
 
     /** the column name for the id field */
     const ID = 'tiket.id';
@@ -38,14 +38,14 @@ abstract class BaseTiketPeer
     /** the column name for the name field */
     const NAME = 'tiket.name';
 
+    /** the column name for the subject field */
+    const SUBJECT = 'tiket.subject';
+
     /** the column name for the email field */
     const EMAIL = 'tiket.email';
 
     /** the column name for the mobile field */
     const MOBILE = 'tiket.mobile';
-
-    /** the column name for the order field */
-    const ORDER = 'tiket.order';
 
     /** the column name for the desc field */
     const DESC = 'tiket.desc';
@@ -55,9 +55,6 @@ abstract class BaseTiketPeer
 
     /** the column name for the publish field */
     const PUBLISH = 'tiket.publish';
-
-    /** the column name for the subject field */
-    const SUBJECT = 'tiket.subject';
 
     /** The default string format for model objects of the related table **/
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -78,12 +75,12 @@ abstract class BaseTiketPeer
      * e.g. TiketPeer::$fieldNames[TiketPeer::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'Email', 'Mobile', 'Order', 'Desc', 'Date', 'Publish', 'Subject', ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'email', 'mobile', 'order', 'desc', 'date', 'publish', 'subject', ),
-        BasePeer::TYPE_COLNAME => array (TiketPeer::ID, TiketPeer::NAME, TiketPeer::EMAIL, TiketPeer::MOBILE, TiketPeer::ORDER, TiketPeer::DESC, TiketPeer::DATE, TiketPeer::PUBLISH, TiketPeer::SUBJECT, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'EMAIL', 'MOBILE', 'ORDER', 'DESC', 'DATE', 'PUBLISH', 'SUBJECT', ),
-        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'email', 'mobile', 'order', 'desc', 'date', 'publish', 'subject', ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id', 'Name', 'Subject', 'Email', 'Mobile', 'Desc', 'Date', 'Publish', ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id', 'name', 'subject', 'email', 'mobile', 'desc', 'date', 'publish', ),
+        BasePeer::TYPE_COLNAME => array (TiketPeer::ID, TiketPeer::NAME, TiketPeer::SUBJECT, TiketPeer::EMAIL, TiketPeer::MOBILE, TiketPeer::DESC, TiketPeer::DATE, TiketPeer::PUBLISH, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID', 'NAME', 'SUBJECT', 'EMAIL', 'MOBILE', 'DESC', 'DATE', 'PUBLISH', ),
+        BasePeer::TYPE_FIELDNAME => array ('id', 'name', 'subject', 'email', 'mobile', 'desc', 'date', 'publish', ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
     /**
@@ -93,12 +90,12 @@ abstract class BaseTiketPeer
      * e.g. TiketPeer::$fieldNames[BasePeer::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'Email' => 2, 'Mobile' => 3, 'Order' => 4, 'Desc' => 5, 'Date' => 6, 'Publish' => 7, 'Subject' => 8, ),
-        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'email' => 2, 'mobile' => 3, 'order' => 4, 'desc' => 5, 'date' => 6, 'publish' => 7, 'subject' => 8, ),
-        BasePeer::TYPE_COLNAME => array (TiketPeer::ID => 0, TiketPeer::NAME => 1, TiketPeer::EMAIL => 2, TiketPeer::MOBILE => 3, TiketPeer::ORDER => 4, TiketPeer::DESC => 5, TiketPeer::DATE => 6, TiketPeer::PUBLISH => 7, TiketPeer::SUBJECT => 8, ),
-        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'EMAIL' => 2, 'MOBILE' => 3, 'ORDER' => 4, 'DESC' => 5, 'DATE' => 6, 'PUBLISH' => 7, 'SUBJECT' => 8, ),
-        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'email' => 2, 'mobile' => 3, 'order' => 4, 'desc' => 5, 'date' => 6, 'publish' => 7, 'subject' => 8, ),
-        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        BasePeer::TYPE_PHPNAME => array ('Id' => 0, 'Name' => 1, 'Subject' => 2, 'Email' => 3, 'Mobile' => 4, 'Desc' => 5, 'Date' => 6, 'Publish' => 7, ),
+        BasePeer::TYPE_STUDLYPHPNAME => array ('id' => 0, 'name' => 1, 'subject' => 2, 'email' => 3, 'mobile' => 4, 'desc' => 5, 'date' => 6, 'publish' => 7, ),
+        BasePeer::TYPE_COLNAME => array (TiketPeer::ID => 0, TiketPeer::NAME => 1, TiketPeer::SUBJECT => 2, TiketPeer::EMAIL => 3, TiketPeer::MOBILE => 4, TiketPeer::DESC => 5, TiketPeer::DATE => 6, TiketPeer::PUBLISH => 7, ),
+        BasePeer::TYPE_RAW_COLNAME => array ('ID' => 0, 'NAME' => 1, 'SUBJECT' => 2, 'EMAIL' => 3, 'MOBILE' => 4, 'DESC' => 5, 'DATE' => 6, 'PUBLISH' => 7, ),
+        BasePeer::TYPE_FIELDNAME => array ('id' => 0, 'name' => 1, 'subject' => 2, 'email' => 3, 'mobile' => 4, 'desc' => 5, 'date' => 6, 'publish' => 7, ),
+        BasePeer::TYPE_NUM => array (0, 1, 2, 3, 4, 5, 6, 7, )
     );
 
     /**
@@ -174,23 +171,21 @@ abstract class BaseTiketPeer
         if (null === $alias) {
             $criteria->addSelectColumn(TiketPeer::ID);
             $criteria->addSelectColumn(TiketPeer::NAME);
+            $criteria->addSelectColumn(TiketPeer::SUBJECT);
             $criteria->addSelectColumn(TiketPeer::EMAIL);
             $criteria->addSelectColumn(TiketPeer::MOBILE);
-            $criteria->addSelectColumn(TiketPeer::ORDER);
             $criteria->addSelectColumn(TiketPeer::DESC);
             $criteria->addSelectColumn(TiketPeer::DATE);
             $criteria->addSelectColumn(TiketPeer::PUBLISH);
-            $criteria->addSelectColumn(TiketPeer::SUBJECT);
         } else {
             $criteria->addSelectColumn($alias . '.id');
             $criteria->addSelectColumn($alias . '.name');
+            $criteria->addSelectColumn($alias . '.subject');
             $criteria->addSelectColumn($alias . '.email');
             $criteria->addSelectColumn($alias . '.mobile');
-            $criteria->addSelectColumn($alias . '.order');
             $criteria->addSelectColumn($alias . '.desc');
             $criteria->addSelectColumn($alias . '.date');
             $criteria->addSelectColumn($alias . '.publish');
-            $criteria->addSelectColumn($alias . '.subject');
         }
     }
 
