@@ -4,7 +4,7 @@
 /**
  * Base static class for performing query and update operations on the 'user' table.
  *
- * 
+ *
  *
  * @package propel.generator.agent.om
  */
@@ -343,7 +343,7 @@ abstract class BaseUserPeer
 
         return null; // just to be explicit
     }
-    
+
     /**
      * Clear the instance pool.
      *
@@ -353,7 +353,7 @@ abstract class BaseUserPeer
     {
         UserPeer::$instances = array();
     }
-    
+
     /**
      * Method to invalidate the instance pool of all tables related to user
      * by a foreign key with ON DELETE CASCADE
@@ -396,7 +396,7 @@ abstract class BaseUserPeer
 
         return (int) $row[$startcol];
     }
-    
+
     /**
      * The returned array will contain objects of the default type or
      * objects that inherit from the default.
@@ -407,7 +407,7 @@ abstract class BaseUserPeer
     public static function populateObjects(PDOStatement $stmt)
     {
         $results = array();
-    
+
         // set the class once to avoid overhead in the loop
         $cls = UserPeer::getOMClass();
         // populate the object(s)
@@ -651,7 +651,7 @@ abstract class BaseUserPeer
             // use transaction because $criteria could contain info
             // for more than one table or we could emulating ON DELETE CASCADE, etc.
             $con->beginTransaction();
-            
+
             $affectedRows += BasePeer::doDelete($criteria, $con);
             UserPeer::clearRelatedInstancePool();
             $con->commit();

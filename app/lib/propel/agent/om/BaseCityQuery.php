@@ -4,7 +4,7 @@
 /**
  * Base class that represents a query for the 'city' table.
  *
- * 
+ *
  *
  * @method CityQuery orderById($order = Criteria::ASC) Order by the id column
  * @method CityQuery orderByCity($order = Criteria::ASC) Order by the city column
@@ -105,7 +105,7 @@ abstract class BaseCityQuery extends ModelCriteria
      * $obj  = $c->findPk(12, $con);
      * </code>
      *
-     * @param mixed $key Primary key to use for the query 
+     * @param mixed $key Primary key to use for the query
      * @param     PropelPDO $con an optional connection object
      *
      * @return   City|City[]|mixed the result, formatted by the current formatter
@@ -160,7 +160,7 @@ abstract class BaseCityQuery extends ModelCriteria
     {
         $sql = 'SELECT `id`, `city`, `country`, `desc`, `useful_info`, `place`, `hotel`, `restoran`, `buy_center` FROM `city` WHERE `id` = :p0';
         try {
-            $stmt = $con->prepare($sql);			
+            $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {

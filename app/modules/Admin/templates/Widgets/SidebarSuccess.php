@@ -39,7 +39,7 @@
 <div class="title">اسلایدر</div>
 <ul class="menu">
 <li class=""><a href="<?php echo $ro->gen('admin.communication.contact.admin');?>">آپلود عکس</a></li>
-<li class=""><a href="<?php echo $ro->gen('admin.comment.admin.index');?>">مدیریت دیدگاه ها</a></li>
+<li class=""><a href="<?php echo $ro->gen('admin.comment.admin.index');?>">مدیریت تصاویر</a></li>
 </ul>
 </div>
 <div class="left_menu_box">

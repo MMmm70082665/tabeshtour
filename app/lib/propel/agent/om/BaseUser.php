@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'user' table.
  *
- * 
+ *
  *
  * @package    propel.generator.agent.om
  */
@@ -63,7 +63,7 @@ abstract class BaseUser extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     * 
+     *
      * @return int
      */
     public function getId()
@@ -73,7 +73,7 @@ abstract class BaseUser extends BaseObject implements Persistent
 
     /**
      * Get the [username] column value.
-     * 
+     *
      * @return string
      */
     public function getUsername()
@@ -83,7 +83,7 @@ abstract class BaseUser extends BaseObject implements Persistent
 
     /**
      * Get the [password] column value.
-     * 
+     *
      * @return string
      */
     public function getPassword()
@@ -93,7 +93,7 @@ abstract class BaseUser extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     * 
+     *
      * @param int $v new value
      * @return User The current object (for fluent API support)
      */
@@ -114,7 +114,7 @@ abstract class BaseUser extends BaseObject implements Persistent
 
     /**
      * Set the value of [username] column.
-     * 
+     *
      * @param string $v new value
      * @return User The current object (for fluent API support)
      */
@@ -135,7 +135,7 @@ abstract class BaseUser extends BaseObject implements Persistent
 
     /**
      * Set the value of [password] column.
-     * 
+     *
      * @param string $v new value
      * @return User The current object (for fluent API support)
      */
@@ -429,13 +429,13 @@ abstract class BaseUser extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':						
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`username`':						
+                    case '`username`':
                         $stmt->bindValue($identifier, $this->username, PDO::PARAM_STR);
                         break;
-                    case '`password`':						
+                    case '`password`':
                         $stmt->bindValue($identifier, $this->password, PDO::PARAM_STR);
                         break;
                 }

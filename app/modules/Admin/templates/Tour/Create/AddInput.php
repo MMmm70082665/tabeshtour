@@ -71,6 +71,7 @@
 				<label for="travel">سفر <em>*</em>: </label>
 				<select name="travel">
 				<option value="sky">هوایی</option>
+				<option value="train">ریلی</option>
 				<option value="ground">زمینی</option>
 				</select>
 							<label for="status">وضعیت <em>*</em>: </label>

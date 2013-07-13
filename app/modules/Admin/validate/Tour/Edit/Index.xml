@@ -6,8 +6,127 @@
 >
 	
 	<ae:configuration>
+		<validators method="read">
+		 	<validator class="number">
+        		<arguments>
+          			<argument>id</argument>
+        		</arguments>
+      		</validator>
+      		</validators>
 		
-		<validators>
+		<validators method="write">
+		<validator class="number">
+        		<arguments>
+          			<argument>id</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+		 	<validator class="string">
+        		<arguments>
+          			<argument>desc</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>madarek</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>khadamat</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">false</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+		<validator class="number">
+			<arguments>
+				<argument>status</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+		<validator class="string">
+			<arguments>
+				<argument>package_code</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+		<validator class="string">
+			<arguments>
+				<argument>cost</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+		<validator class="string">
+			<arguments>
+				<argument>mabda</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+		<validator class="number">
+			<arguments>
+				<argument>maghsad</argument>
+			</arguments>
+			    <ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+		</validator>
+      		<validator class="string">
+        		<arguments>
+          			<argument>begin_date</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+        		<arguments>
+          			<argument>end_date</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+        		<arguments>
+          			<argument>travel</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+      			<validator class="string">
+        		<arguments>
+          			<argument>kind</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
+       	<validator class="string">
+        		<arguments>
+          			<argument>type</argument>
+        		</arguments>
+        		<ae:parameters>
+         			 <ae:parameter name="required">true</ae:parameter>
+          		</ae:parameters>
+      		</validator>
 		</validators>
 		
 	</ae:configuration>

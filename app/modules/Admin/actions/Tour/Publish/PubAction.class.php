@@ -18,6 +18,17 @@ class Admin_Tour_Publish_PubAction extends agentAdminBaseAction
 	{
 		return 'Success';
 	}
+		public function executeRead(AgaviRequestDataHolder $rd)
+	{
+		$id = $rd->getParameter('id');
+		$object = TourQuery::create()->findPk($id);
+		if ($object->getStatus() == true)
+		$object->setStatus(false);
+		else 
+		$object->setStatus(true);
+		$object->save();
+		return 'Success';
+	}
 }
 
 ?>

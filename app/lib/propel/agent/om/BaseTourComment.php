@@ -4,7 +4,7 @@
 /**
  * Base class that represents a row from the 'tour_comment' table.
  *
- * 
+ *
  *
  * @package    propel.generator.agent.om
  */
@@ -98,7 +98,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [id] column value.
-     * 
+     *
      * @return int
      */
     public function getId()
@@ -108,7 +108,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [name] column value.
-     * 
+     *
      * @return string
      */
     public function getName()
@@ -118,7 +118,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [date] column value.
-     * 
+     *
      * @return string
      */
     public function getDate()
@@ -128,7 +128,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [email] column value.
-     * 
+     *
      * @return string
      */
     public function getEmail()
@@ -138,7 +138,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [desc] column value.
-     * 
+     *
      * @return string
      */
     public function getDesc()
@@ -148,7 +148,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [answer] column value.
-     * 
+     *
      * @return string
      */
     public function getAnswer()
@@ -158,7 +158,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [publish] column value.
-     * 
+     *
      * @return boolean
      */
     public function getPublish()
@@ -168,7 +168,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Get the [tour_id] column value.
-     * 
+     *
      * @return int
      */
     public function getTourId()
@@ -178,7 +178,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Set the value of [id] column.
-     * 
+     *
      * @param int $v new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -199,7 +199,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Set the value of [name] column.
-     * 
+     *
      * @param string $v new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -220,7 +220,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Set the value of [date] column.
-     * 
+     *
      * @param string $v new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -241,7 +241,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Set the value of [email] column.
-     * 
+     *
      * @param string $v new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -262,7 +262,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Set the value of [desc] column.
-     * 
+     *
      * @param string $v new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -283,7 +283,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Set the value of [answer] column.
-     * 
+     *
      * @param string $v new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -308,7 +308,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
      *   * 1, '1', 'true',  'on',  and 'yes' are converted to boolean true
      *   * 0, '0', 'false', 'off', and 'no'  are converted to boolean false
      * Check on string values is case insensitive (so 'FaLsE' is seen as 'false').
-     * 
+     *
      * @param boolean|integer|string $v The new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -333,7 +333,7 @@ abstract class BaseTourComment extends BaseObject implements Persistent
 
     /**
      * Set the value of [tour_id] column.
-     * 
+     *
      * @param int $v new value
      * @return TourComment The current object (for fluent API support)
      */
@@ -667,28 +667,28 @@ abstract class BaseTourComment extends BaseObject implements Persistent
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case '`id`':						
+                    case '`id`':
                         $stmt->bindValue($identifier, $this->id, PDO::PARAM_INT);
                         break;
-                    case '`name`':						
+                    case '`name`':
                         $stmt->bindValue($identifier, $this->name, PDO::PARAM_STR);
                         break;
-                    case '`date`':						
+                    case '`date`':
                         $stmt->bindValue($identifier, $this->date, PDO::PARAM_STR);
                         break;
-                    case '`email`':						
+                    case '`email`':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
                         break;
-                    case '`desc`':						
+                    case '`desc`':
                         $stmt->bindValue($identifier, $this->desc, PDO::PARAM_STR);
                         break;
-                    case '`answer`':						
+                    case '`answer`':
                         $stmt->bindValue($identifier, $this->answer, PDO::PARAM_STR);
                         break;
                     case '`publish`':
                         $stmt->bindValue($identifier, (int) $this->publish, PDO::PARAM_INT);
                         break;
-                    case '`tour_id`':						
+                    case '`tour_id`':
                         $stmt->bindValue($identifier, $this->tour_id, PDO::PARAM_INT);
                         break;
                 }
